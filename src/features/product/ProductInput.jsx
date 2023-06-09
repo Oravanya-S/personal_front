@@ -1,6 +1,6 @@
-import createClasses from '../../../utils/create-classes';
+import createClasses from '../../utils/create-classes';
 
-export default function RegisterInput({
+export default function ProductInput({
   placeholder,
   value,
   onChange,
@@ -8,14 +8,14 @@ export default function RegisterInput({
   isInvalid
 }) {
     const className = createClasses(
-        "w-full", "block border-b py-2 outline-none",
+        "w-full block border-b py-2 outline-none",
         isInvalid
           ? "border-b-red-500 focus:ring-red-300"
           : "border-b-gray-300 focus:border-b-blue-500 focus:ring-b-blue-300"
       );
   return (
-    <div>
-      {/* <p className="py-2 text-gray-400">{placeholder}</p> */}
+    <div className='w-full'>
+      <p className="py-2 text-gray-800">{placeholder}</p>
       <input
         type="text"
         className={className}

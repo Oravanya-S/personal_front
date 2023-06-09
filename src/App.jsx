@@ -1,10 +1,14 @@
-import SelectBagType from "./components/SelectBagType"
-import HomePage from "./pages/Home"
+import ProductForm from "./features/product/ProductForm"
+import Navbar from "./layouts/Navbar"
+import HomePage from "./pages/HomePage"
 
 function App() {
   return (
     <>
-        <HomePage />
+        <Navbar />
+        <ProductForm />
+
+        {/* <HomePage /> */}
     </>
   )
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SideBar() {
   return (
-    <div class="flex flex-col h-screen justify-between border-e bg-white">
+    <div class="flex flex-col h-screen justify-between border-e bg-white shadow-lg">
       <div class="px-4">
         <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1">
           <a

@@ -25,7 +25,7 @@ export default function SelectGroupColor({valueName, onChangeGroup}) {
   return (
     <div className='flex items-center gap-2'>
         <label for="colors" className="dark:text-white">Group color:</label>
-        <select className='min-w-[100px] p-0 m-0' name="colors" id="colors" onChange={onChangeGroup}>
+        <select className='min-w-[100px] py-[1px] m-0 text-xl rounded-lg border border-gray-400 text-gray-700' name="colors" id="colors" onChange={onChangeGroup}>
             {groupColor.map(el => ((el.name==valueName)? <option selected value={el.id}>{el.name}</option> : <option value={el.id}>{el.name}</option>))}
         </select>
     </div>
