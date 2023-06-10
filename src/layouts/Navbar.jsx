@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Modal from '../components/Modal'
 import RegisterForm from '../features/auth/components/RegisterForm'
 import LoginForm from '../features/auth/components/LoginForm'
-import { getBagType } from '../api/admin-api'
 
 export default function Navbar({bgColor = 'bg-transparent'}) {
-    const [bagType, setBagType] = useState([])
-
-    const BagType = async () => {
-      try {
-          const result = await getBagType()
-          setBagType(result.data)
-      } catch (err) {
-          console.log(err)
-      }
+    const user = useSelector(state => state.auth.user);
+    if (user) {
+      const {id, firstName, role} = user
+      console.log(id, firstName, role)
+    } else {
+      console.log("No login")
     }
-
-    useEffect(()=>{
-        BagType();
-      }, [])
-
     const [openSignIn, setOpenSignIn] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
     const handleSignIn = () => {
@@ -27,10 +20,8 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
       setOpenSignIn(true)
     }
 
-    const handleSignUp = () => {
-      setOpenSignUp(true)
-    }
-
+    const handleSignUp = () => setOpenSignUp(true)
+    
     const closeSignIn = () => setOpenSignIn(false)
     const closeSignUp = () => {
       setOpenSignIn(false)
@@ -43,9 +34,8 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
             <div>
             <a className='text-5xl font-bold'>MARIETTA</a>
             </div>
-            {bagType.map(el => <a key={el.id} className='text-[20px] hover:underline hover:underline-offset-8 cursor-pointer'>{el.name}</a>)}
-            
-            <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='20'>{(openSignUp)? <RegisterForm open={handleSignIn}/> : <LoginForm open={handleSignUp}/>}</Modal>
+             
+            <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='20'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>
             <div className='flex gap-4'>
             {/* <a className='cursor-pointer'><i className="fa-solid fa-magnifying-glass text-2xl text-black p-2"></i>Search</a> */}
             <a className='cursor-pointer' onClick={handleSignIn}><i className="fa-regular fa-user text-2xl text-black p-2 hover:underline"></i>Sign in</a>

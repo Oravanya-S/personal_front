@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SelectGroupColor from '../SelectGroupColor';
+import SelectGroupColor from '../../components/SelectGroupColor';
 
 export default function Form({textConFirm, onIsAddMode, oldColor, nameType}) {
   const [colorName, setColorName] = useState(oldColor?.name || '');

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import Item from '../Add/Item'
-import { getBagType } from '../../api/admin-api'
+import Item from '../features/Add/Item'
+import { getBagType } from '../../../api/admin-api'
 
 export default function BagList() {
     const [bagType, setBagType] = useState([])

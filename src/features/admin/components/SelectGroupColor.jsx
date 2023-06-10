@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getGroupColor } from '../api/admin-api'
+import { getGroupColor } from '../../../api/admin-api'
 
 export default function SelectGroupColor({valueName, onChangeGroup}) {
     const [groupColor, setGroupColor] = useState([])

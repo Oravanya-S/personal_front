@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getBagType } from '../api/admin-api'
+import { getBagType } from '../../../api/admin-api'
 
 export default function SelectBagType() {
     const [bagType, setBagType] = useState([])
