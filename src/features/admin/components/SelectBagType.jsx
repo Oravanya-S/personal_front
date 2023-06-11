@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { getBagType } from '../../../api/admin-api'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { bagTypeListAsync } from '../../auth/slice/admin-slice'
 
-export default function SelectBagType() {
-    const [bagType, setBagType] = useState([])
-
-    const BagType = async () => {
-        try {
-            const result = await getBagType()
-            setBagType(result.data)
-            
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    useEffect(()=>{
-        BagType();
-      }, [])
+export default function SelectBagType({valueId, onChangeBagtype}) {
+    const dispatch = useDispatch()
+    const bagType = useSelector(state=> state.admin.bagTypeList)
+    useEffect(() => {
+      dispatch(bagTypeListAsync())
+    },[]) 
     
     return (
-        <div>
-            <select className='min-w-[100px]' name="bags" id="bags" >
-                {bagType.map(el => <option value={el.id}>{el.name}</option>)}
+        <div className='flex items-center gap-2'>
+            <label htmlFor="bags" className="dark:text-white">Bagtype:</label>
+            <select className='min-w-[100px] py-[1px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700' name="bags" id="bags" onChange={onChangeBagtype}>
+                {bagType.map(el => ((el.id==valueId)? <option selected value={el.id}>{el.name}</option> : <option value={el.id}>{el.name}</option>))}
             </select>
         </div>
     )

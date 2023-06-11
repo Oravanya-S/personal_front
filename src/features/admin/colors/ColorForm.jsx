@@ -1,32 +1,56 @@
 import React, { useState } from 'react'
-import SelectGroupColor from '../../components/SelectGroupColor';
+import SelectGroupColor from '../components/SelectGroupColor'
+import { useDispatch } from 'react-redux';
+import { createColor, updateColor } from '../../auth/slice/admin-slice';
 
-export default function Form({textConFirm, onIsAddMode, oldColor, nameType}) {
+export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}) {
   const [colorName, setColorName] = useState(oldColor?.name || '');
   const [colorCode, setColorCode] = useState(oldColor?.hexcode || '#000000');
-  const [groupColorName, setGroupColorName] = useState(oldColor?.GroupColor?.name || '');
+  const [groupColorId, setGroupColorId] = useState(oldColor?.GroupColor?.id || 1);
+  const [error, setError] = useState(false);
+  const dispatch = useDispatch()
+
+  const validate = (text) => {
+    if (text.trim() === '') {
+        setError(true);
+        return false;
+    } else {
+        setError(false);
+        return true;
+    }
+  };
 
   const handleChangeColorName = (e) => {
-    console.log(e.target.value)
     setColorName(e.target.value)
   }
   const handleChangeColorCode = (e) => {
-    console.log(e.target.value)
     setColorCode(e.target.value)
   }
 
-  const handleChangeGroupColorName = (e) => {
-    console.log(e.target.value)
-    setGroupColorName(e.target.value)
-    console.log('eeeeee', groupColorName)
+  const handleChangeGroupColorId = (e) => {
+    setGroupColorId(e.target.value)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let validName = validate(colorName);
+    // let validCode = validate(colorCode);
+    // let validGroupColor = validate(groupColorId);
+    // validName && validCode && validGroupColor && 
+
+    if (validName && !oldColor) {
+        dispatch(createColor({"name": colorName, "hexcode": colorCode, "groupColorId": groupColorId}))
+        onIsAddMode(false);
+    } else if (validName && oldColor) {
+        dispatch(updateColor(oldColor.id, {"name": colorName, "hexcode": colorCode, "groupColorId": groupColorId}))
+        onIsAddMode(false);
+    }
+    };
+
   return (
-    <form>
-        <div className='flex items-center gap-8 text-xl border-b px-3 rounded-lg min-h-[65px]'>
-                {(nameType=="Color")? (
-                  <>
-                    <SelectGroupColor valueName={groupColorName} onChangeGroup={handleChangeGroupColorName}/>
+    <form onSubmit={handleSubmit}>
+        <div className='flex items-center gap-8 text-lg border-b px-3 min-h-[65px]'>
+                    <SelectGroupColor onChangeGroup={handleChangeGroupColorId} valueId={groupColorId}/>
                     <div className='flex items-center gap-2'>
                     <label htmlFor='pick_color' className='w-20'>Shade:</label>
                     <div className='w-6 h-6 overflow-hidden rounded-full relative border ring-gray-400 ring-1'>
@@ -35,7 +59,7 @@ export default function Form({textConFirm, onIsAddMode, oldColor, nameType}) {
                         value={colorCode}
                         onChange={handleChangeColorCode}/>
                     </div>
-                </div></>): ""}
+                </div>
                 <div className='flex items-center gap-2 flex-1 py-1 placeholder:text-sm'>
                     <label htmlFor='color_name'>Name {nameType}:</label>
                     <div>
@@ -47,7 +71,7 @@ export default function Form({textConFirm, onIsAddMode, oldColor, nameType}) {
                     </div>
                 </div>
                 <div className='flex items-center gap-2'>
-                    <div className={`bg-black text-base text-white px-2 py-1 rounded-md border-[1px] border-black min-w-[60px] text-center`} role="button" onClick={()=> console.log("edit")}>{textConFirm}</div>
+                    <button type='submit' className={`bg-black text-base text-white px-2 py-1 rounded-md border-[1px] border-black min-w-[60px] text-center`}>{textConFirm}</button>
                     <div className={`px-2 py-1 rounded-md border-[1px] border-black text-base`} role="button" onClick={()=> onIsAddMode(false)}>cancel</div>
             </div>   
         </div>

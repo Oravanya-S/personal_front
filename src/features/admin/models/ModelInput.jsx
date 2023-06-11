@@ -1,17 +1,16 @@
-import createClasses from '../../utils/create-classes';
+import createClasses from '../../../utils/create-classes';
 
-export default function ProductInput({
+export default function ModelInput({
   placeholder,
   value,
   onChange,
   name,
-  isInvalid
 }) {
     const className = createClasses(
         "w-full block border-b py-2 outline-none",
-        isInvalid
-          ? "border-b-red-500 focus:ring-red-300"
-          : "border-b-gray-300 focus:border-b-blue-500 focus:ring-b-blue-300"
+        // isInvalid
+          // ? "border-b-red-500 focus:ring-red-300":
+           "border-b-gray-300 focus:border-b-blue-500 focus:ring-b-blue-300"
       );
   return (
     <div className='w-full'>

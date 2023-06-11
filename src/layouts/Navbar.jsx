@@ -30,9 +30,9 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
 
     return (
       <div className={`sticky z-${(openSignIn || openSignUp)? 20: 30} border-b`}>
-        <nav className={`flex justify-between w-screen px-12 items-center bg-${bgColor} h-24`}>
+        <nav className={`flex justify-between w-screen px-10 items-center bg-${bgColor} h-24`}>
             <div>
-            <a className='text-5xl font-bold'>MARIETTA</a>
+              <Link to='/' className='text-5xl font-bold'>MARIETTA</Link>
             </div>
              
             <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='20'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>

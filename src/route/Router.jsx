@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import AdminPage from '../pages/AdminPage'
 import HomePage from '../pages/HomePage'
 import ProductPage from '../pages/ProductPage'
 import NotFound from '../pages/NotFound';
 import RedirectIfAuthenticated from '../features/auth/components/RedirectIfAuthenticated';
 import Container from '../layouts/Container';
+import AdminHomePage from '../pages/AdminHomePage';
 
 const router = createBrowserRouter([
     {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/admin',
-            element: <AdminPage />
+            element: <AdminHomePage />
           },
         ],
         errorElement: <NotFound />,

@@ -1,6 +1,5 @@
 import { ToastContainer } from 'react-toastify';
 import Router from "./route/Router";
-import Navbar from './layouts/Navbar';
 
 function App() {
   return (
