@@ -10,29 +10,25 @@ export default function ColorItem({item, nameType}) {
         dispatch(deleteColor(item.id))
     };
 
-    useEffect(() => {
-      dispatch(groupColorListAsync())
-      dispatch(colorListAsync())
-    },[]) 
-
   return (
     <div key={item.id}>
     {isEditMode? <ColorForm textConFirm={`Edit`} onIsAddMode={setIsEditMode} oldColor={item} nameType={nameType}/> : (
     <div className='flex items-center gap-8 text-lg border-b px-3 h-[65px]'>
+        {console.log(item.GroupColor)}
             
             <div className='flex items-center gap-2'>
-                <p>Group color:</p>
+                <p className='font-medium'>Group color:</p>
                 <p className='min-w-[100px] px-[5px]'>{item.GroupColor?.name}</p>
             </div>
                     
             <div className='flex items-center gap-2'>
-                <div className='w-20'>Shade:</div>
+                <div className='w-20 font-medium'>Shade:</div>
                     <div className='w-6 h-6 rounded-full border' style={{backgroundColor: `${item.hexcode}`}}>
                 </div>
             </div>         
 
             <div className='flex items-center gap-2 flex-1' >
-                <label>Name {nameType}:</label>
+                <label className='font-medium'>Name {nameType}:</label>
                 <div className=''>
                     <p>{item.name}</p>
                 </div>

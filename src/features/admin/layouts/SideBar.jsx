@@ -1,5 +1,5 @@
 import React from "react";
-import { AddIcon, BagIcon, CategoryIcon, DetailIcon, LogoutIcon, OnePersonIcon, OrderIcon, SittingIcon, UpdateIcon } from "../../../icons";
+import { AddIcon, BagIcon, CategoryIcon, DetailIcon, LogoutIcon, ModelIcon, OnePersonIcon, OrderIcon, SittingIcon, UpdateIcon } from "../../../icons";
 import { logout } from "../../auth/slice/auth-slice";
 import { useDispatch } from "react-redux";
 
@@ -74,8 +74,16 @@ export default function SideBar() {
                 </svg>
               </span>
             </summary>
+            
 
             <nav aria-label="Teams Nav" class="mt-2 flex flex-col px-4">
+              <a
+                href="#"
+                class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+              >
+                <ModelIcon />
+                <span class="text-base font-medium"> Add models </span>
+              </a>  
               <a
                 href="#"
                 class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"

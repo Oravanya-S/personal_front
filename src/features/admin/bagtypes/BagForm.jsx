@@ -23,14 +23,14 @@ export default function BagForm({textConFirm, onIsAddMode, oldBagType, nameType}
   }
   
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
         e.preventDefault();
         let validName = validate(name);
         if (validName && !oldBagType) {
-            dispatch(createBagtype(name))
+            await dispatch(createBagtype(name))
             onIsAddMode(false);
         } else if (validName && oldBagType) {
-            dispatch(updateBagtype(oldBagType.id, name))
+            await dispatch(updateBagtype(oldBagType.id, name))
             onIsAddMode(false);
         }
 
@@ -40,7 +40,7 @@ export default function BagForm({textConFirm, onIsAddMode, oldBagType, nameType}
     <form onSubmit={handleSubmit}>
         <div className='flex items-center gap-8 text-lg border-b px-3 min-h-[65px]'>
                 <div className='flex items-center gap-2 flex-1 py-1 placeholder:text-sm'>
-                    <label htmlFor='color_name'>Name {nameType}:</label>
+                    <label htmlFor='color_name' className='font-medium'>Name {nameType}:</label>
                     <div>
                         <input id='color_name' type="text" 
                         className='block w-full border-b border-b-gray-300 outline-none focus:border-black focus:ring-blue-200' 

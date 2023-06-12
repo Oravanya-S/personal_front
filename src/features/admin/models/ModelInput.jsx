@@ -14,7 +14,7 @@ export default function ModelInput({
       );
   return (
     <div className='w-full'>
-      <p className="py-2 text-gray-800">{placeholder}</p>
+      <p className="py-2 text-gray-800 font-medium">{placeholder}</p>
       <input
         type="text"
         className={className}

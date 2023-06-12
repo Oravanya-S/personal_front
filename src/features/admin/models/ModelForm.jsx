@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModelInput from "./ModelInput";
 import { useDispatch } from "react-redux";
-import { createModel, updateModel } from "../../auth/slice/admin-slice";
+import { createModel, productListAsync, updateModel } from "../../auth/slice/admin-slice";
 import SelectBagType from "../components/SelectBagType";
 
 export default function ModelForm({
@@ -49,7 +49,7 @@ export default function ModelForm({
     
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let validName = validate(name);
     let validBrand = validate(brand);
@@ -58,7 +58,7 @@ export default function ModelForm({
     console.log(name,brand,meterial,description,bagtypeId)
 
     if (validName && validBrand && validMeterial && validDesc && !oldModel) {
-      dispatch(
+      await dispatch(
         createModel({
           "name": name,
           "brand": brand,
@@ -68,8 +68,11 @@ export default function ModelForm({
         })
       );
       onIsAddMode(false);
+      await dispatch(modelListAsync())
+      await dispatch(productListAsync())
+      
     } else if(validName && validBrand && validMeterial && validDesc && oldModel) {
-      dispatch(
+      await dispatch(
         updateModel(oldModel.id, {
           "name": name,
           "brand": brand,
@@ -79,14 +82,16 @@ export default function ModelForm({
         })
       );
       onIsAddMode(false);
-    }
+      await dispatch(modelListAsync())
+      await dispatch(productListAsync())
+    } 
   };
 
   return (
     <>
       <form onSubmit={handleSubmit} className="flex justify-center">
         <div className="flex flex-col w-full gap-4">
-          <div className="flex flex-col text-lg font-medium">
+          <div className="flex flex-col text-lg">
             <div className={`flex flex-col gap-6 text-lg p-4`}>
               <div className="flex justify-between gap-10">
                 <ModelInput
@@ -103,7 +108,7 @@ export default function ModelForm({
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-10">
+              <div className="grid grid-cols-2 gap-10 items-center">
                 <ModelInput
                   placeholder="Meterial"
                   value={meterial}
@@ -116,7 +121,7 @@ export default function ModelForm({
               <div>
                 <label
                   htmlFor="description"
-                  class="block mb-2 text-gray-800 dark:text-white"
+                  class="block mb-2 text-gray-800 dark:text-white font-medium"
                 >
                   Description
                 </label>

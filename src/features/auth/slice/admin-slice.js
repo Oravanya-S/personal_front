@@ -61,6 +61,18 @@ export const modelListAsync = createAsyncThunk(
   }
 );
 
+export const productListAsync = createAsyncThunk(
+  "admin/productListAsync",
+  async (_, thunkApi) => {
+    try {
+      const res = await adminService.getProduct();
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
 const adminSlice = createSlice({
   name: "admin",
   initialState,
@@ -106,6 +118,20 @@ const adminSlice = createSlice({
       const index = state.modelList.findIndex((el) => el.id == modelId);
       state.modelList[index] = updateModelObj;
     },
+    addProduct: (state, action) => {
+      const newProduct = action.payload;
+      state.productList.unshift(newProduct);
+    },
+    removeProduct: (state, action) => {
+      const { productId, updateProduct } = action.payload;
+      console.log(state.productList)
+      state.productList = state.productList.filter((product) => product.id != productId);
+    },
+    editProduct: (state, action) => {
+      const { productId, updateProductObj } = action.payload;
+      const index = state.productList.findIndex((el) => el.id == productId);
+      state.productList[index] = updateProductObj;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -140,7 +166,17 @@ const adminSlice = createSlice({
       .addCase(modelListAsync.rejected, (state, action) => {
         state.error = action.payload;
         state.initialLoading = false;
-      }),
+      })
+      .addCase(productListAsync.fulfilled, (state, action) => {
+        state.productList = action.payload;
+
+        console.log(action.payload)
+        state.initialLoading = false;
+      })
+      .addCase(productListAsync.rejected, (state, action) => {
+        state.error = action.payload;
+        state.initialLoading = false;
+      })
 });
 
 export default adminSlice.reducer;
@@ -154,7 +190,10 @@ export const {
   editColor,
   addModel,
   removeModel,
-  editModel
+  editModel,
+  addProduct,
+  removeProduct,
+  editProduct
 } = adminSlice.actions;
 
 export function createColor(newColorObj) {
@@ -254,8 +293,42 @@ export function updateModel(modelId, updateModelObj) {
   return async (dispatch) => {
     try {
       const response = await adminService.updateModel(modelId, updateModelObj);
-      console.log("ddddd", response.data);
       dispatch(editModel({ modelId, updateModelObj }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function createProduct(newProductObj) {
+  return async (dispatch) => {
+    try {
+      const response = await adminService.createProduct(newProductObj);
+      dispatch(addProduct(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function deleteProduct(productId, updateProductObj) {
+  return async (dispatch) => {
+    try {
+      const response = await adminService.deleteProduct(productId, updateProductObj);
+      console.log(response.data)
+      dispatch(removeProduct({productId, updateProductObj}));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export function updateProduct(productId, updateProductObj) {
+  return async (dispatch) => {
+    try {
+      const response = await adminService.updateProduct(productId, updateProductObj);
+      dispatch(editProduct({ productId, updateProductObj }));
     } catch (error) {
       console.log(error);
     }

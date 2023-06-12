@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SelectGroupColor from '../components/SelectGroupColor'
 import { useDispatch } from 'react-redux';
-import { createColor, updateColor } from '../../auth/slice/admin-slice';
+import { colorListAsync, createColor, groupColorListAsync, updateColor } from '../../auth/slice/admin-slice';
 
 export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}) {
   const [colorName, setColorName] = useState(oldColor?.name || '');
@@ -31,7 +31,7 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
     setGroupColorId(e.target.value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let validName = validate(colorName);
     // let validCode = validate(colorCode);
@@ -39,12 +39,14 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
     // validName && validCode && validGroupColor && 
 
     if (validName && !oldColor) {
-        dispatch(createColor({"name": colorName, "hexcode": colorCode, "groupColorId": groupColorId}))
+      await  dispatch(createColor({"name": colorName, "hexcode": colorCode, "groupColorId": groupColorId}))
         onIsAddMode(false);
     } else if (validName && oldColor) {
-        dispatch(updateColor(oldColor.id, {"name": colorName, "hexcode": colorCode, "groupColorId": groupColorId}))
+      await  dispatch(updateColor(oldColor.id, {"name": colorName, "hexcode": colorCode, "groupColorId": groupColorId}))
         onIsAddMode(false);
     }
+      await dispatch(groupColorListAsync())
+      await dispatch(colorListAsync())
     };
 
   return (
@@ -52,7 +54,7 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
         <div className='flex items-center gap-8 text-lg border-b px-3 min-h-[65px]'>
                     <SelectGroupColor onChangeGroup={handleChangeGroupColorId} valueId={groupColorId}/>
                     <div className='flex items-center gap-2'>
-                    <label htmlFor='pick_color' className='w-20'>Shade:</label>
+                    <label htmlFor='pick_color' className='w-20 font-medium'>Shade:</label>
                     <div className='w-6 h-6 overflow-hidden rounded-full relative border ring-gray-400 ring-1'>
                         <input type='color' id='pick_color' 
                         className='absolute -top-2 -left-2 w-16 h-16 cursor-pointer border: none'
@@ -61,7 +63,7 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
                     </div>
                 </div>
                 <div className='flex items-center gap-2 flex-1 py-1 placeholder:text-sm'>
-                    <label htmlFor='color_name'>Name {nameType}:</label>
+                    <label htmlFor='color_name' className='font-medium'>Name {nameType}:</label>
                     <div>
                         <input id='color_name' type="text" 
                         className='block w-full border-b border-b-gray-300 outline-none focus:border-black focus:ring-blue-200' 

@@ -16,7 +16,7 @@ export default function BagItem({item, nameType}) {
     {isEditMode? <BagForm textConFirm={`Edit`} onIsAddMode={setIsEditMode} oldBagType={item} nameType={nameType}/> : (
     <div className='flex items-center gap-8 text-lg border-b px-3 h-[65px]'>
             <div className='flex items-center gap-2 flex-1' >
-                <label>Name {nameType}:</label>
+                <label className='font-medium'>Name {nameType}:</label>
                 <div className=''>
                     <p>{item.name}</p>
                 </div>

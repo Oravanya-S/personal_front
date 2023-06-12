@@ -8,14 +8,14 @@ export default function ProductInput({
   isInvalid
 }) {
     const className = createClasses(
-        "w-full block border-b py-2 outline-none",
+        "block border-b py-0 outline-none",
         isInvalid
           ? "border-b-red-500 focus:ring-red-300"
           : "border-b-gray-300 focus:border-b-blue-500 focus:ring-b-blue-300"
       );
   return (
-    <div className='w-full'>
-      <p className="py-2 text-gray-800">{placeholder}</p>
+    <div className='w-full flex items-center gap-4 font-normal'>
+      <p className="py-1 text-gray-800 font-medium w-[60px]">{placeholder}</p>
       <input
         type="text"
         className={className}

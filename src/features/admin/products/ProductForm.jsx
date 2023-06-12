@@ -1,70 +1,146 @@
-import React, { useState } from 'react'
-import ProductInput from './ProductInput'
-import SelectGroupColor from '../components/SelectGroupColor'
+import React, { useEffect, useState } from "react";
+import ProductInput from "./ProductInput";
+import SelectGroupColor from "../components/SelectGroupColor";
+import SelectColor from "../components/SelectColor";
+import SelectModel from "../components/SelectModel";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct, updateProduct, productListAsync, modelListAsync } from "../../auth/slice/admin-slice";
 
-export default function ProductForm({placeholder, value, onChange, name, isInvalid, onClose}) {
-    const [addModelMode, setAddModelMode] = useState(true)
-    const [addColorMode, setAddColorMode] = useState(false)
+export default function ProductForm({
+    textConFirm,
+    onIsAddMode,
+    oldProduct,
+    idModel,
+    idModelName,
+    nameType = "",
+}) {
 
-    const handleClickAddColorMode = () => {
-        setAddColorMode(true)
+    const [modelId, setModelId] = useState(oldProduct?.modelId|| idModel);
+    const [colorId, setColorId] = useState(oldProduct?.colorId || "");
+    const [price, setPrice] = useState(oldProduct?.price || "");
+    const [stock, setStock] = useState(oldProduct?.stock || "");
+    const [image, setImage] = useState(oldProduct?.bagTypeId || 1);
+    const [error, setError] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleChangePrice = (e) => {
+        setPrice(e.target.value);
+    };
+
+    const handleChangeStock = (e) => {
+        setStock(e.target.value);
+    };
+
+    // const handleChangeModelId = (e) => {
+    //     console.log(e.target.value)
+    //     setModelId(e.target.value)
+    // };
+
+    const handleChangeColorId = (e) => {
+        console.log(e.target.value)
+        setColorId(e.target.value);
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!oldProduct) {
+           await dispatch(
+              createProduct({
+                "modelId": modelId,
+                "colorId": colorId,
+                "stock": stock ,
+                "price": price,
+                "image": ""
+              })
+            );
+            onIsAddMode(false);
+          } else if(oldProduct) {
+            await dispatch(
+              updateProduct(oldProduct.id, {
+                "stock": stock ,
+                "price": price,
+                "image": ""
+              })
+            );
+            onIsAddMode(false);
+          }
+      
+          dispatch(productListAsync())
     }
 
-    const display = (addColorMode)? "hidden" : "block"
-    return (
-      <form className='flex justify-center'>
-          <div className='flex flex-col w-full gap-4'>
-                  <div className='flex flex-col text-lg rounded-3xl border font-medium'>
-                      <div className='flex justify-between items-center px-4 pt-4'>
-                          <p className='flex text-xl'>Add model</p>
-                          <i className='fa fa-heart' role='button'></i>
-                      </div>    
-                      <div className={`flex flex-col gap-6 text-lg p-4 ${display}`}>
-                        <div className='flex justify-between gap-10'>
-                            <ProductInput placeholder="Model"/>
-                            <ProductInput placeholder="Brand"/>
-                        </div>
+  return (
+    <form onSubmit={handleSubmit} className="flex justify-center">
+      <div className="flex flex-col w-full gap-4">
+        <div className="flex flex-col text-lg rounded-3xl">
+          <div className="flex flex-col gap-1 text-lg rounded-3xl">
+            <div className={`flex flex-col gap-8 text-lg p-4`}>
+              <div className="grid grid-cols-2 gap-10">
+                <div className="border w-full cursor-pointer">
+                  <input type="file" accept="image/*" />
+                </div>
 
-                        <div>
-                            <ProductInput placeholder="Meterial"/>
-                        </div>
-
-                        <div>
-                            <label htmlFor="description" class="block mb-2 text-gray-800 dark:text-white">Description</label>
-                            <textarea id="description" rows="3" class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your product description..."></textarea>
-                        </div> 
-
-                        <button type='button' className='p-3 text-white text-lg bg-black' onClick={handleClickAddColorMode}>Add color</button>
-                      </div>
-
-                      <div className='flex flex-col gap-1 text-lg rounded-3xl border font-medium'>
-                        
-                        <div className='flex justify-between items-center p-4'>
-                            <p className='flex'>Add Color</p>
-                            <i className='fa fa-heart' role='button'></i>
-                        </div> 
-                        <div className={`flex flex-col gap-8 text-base p-4`}>
-                        <div className='grid grid-cols-2 gap-10'>
-                            <div className='border w-full cursor-pointer'>
-                                <input type='file' accept="image/*" />
-                            </div>
-                            <div className='flex flex-col gap-2 w-full'>
-                                <SelectGroupColor />
-                                <ProductInput placeholder="Price"/>
-                                <ProductInput placeholder="Stock"/>
-                            </div>  
-                        </div>
-                            <button type='button' className='p-3 text-white text-lg bg-black' onClick={() => setAddColorMode(false)}>Add product</button>
-                        </div>
-
-                        <div className='p-4'>
-                            
-                        </div>
-
-                    </div>
+                <div className="flex flex-col gap-4 w-full">
+                  <div className="flex gap-4 w-full">
+                    {oldProduct? 
+                    (<div className="flex items-center gap-2">
+                        {/* <p className="dark:text-white font-medium w-[60px]">Model:</p>
+                        <span className='w-[120px]'>{oldProduct.Model.name}</span> */}
+                    </div>)
+                    : 
+                    (
+                    <div className="flex items-center gap-2">
+                      <p className="dark:text-white font-medium w-[60px]">Model:</p>
+                      <p>{idModelName}</p>
+                    </div>)}
                   </div>
-                  
+
+                  <div className="flex gap-4 w-full">
+                    {oldProduct? 
+                        (<div className="flex items-center gap-2">
+                            <p className="dark:text-white font-medium w-[60px]">Color:</p>
+                            <span className='w-6 h-6 rounded-full border' style={{backgroundColor: `${oldProduct.Color.hexcode}`}}></span>                  
+                            <span className='w-[150px]'>{oldProduct.Color.name}</span>
+                        </div>)
+                        : <SelectColor onChangeColor={handleChangeColorId} valueId={colorId}/>}
+                  </div>
+
+                  <ProductInput
+                  placeholder="Price"
+                  value={price}
+                  onChange={handleChangePrice}
+                  name="price"
+                  />
+
+                  <ProductInput
+                  placeholder="Stock"
+                  value={stock}
+                  onChange={handleChangeStock}
+                  name="stock"
+                  />    
+                </div>
+                
+              </div>
+              <div className="grid grid-cols-2 gap-10">
+                <button
+                  type="submit"
+                  className="bg-black text-base text-white px-2 py-2 rounded-md border-[1px] border-black min-w-[60px] text-center"
+                >
+                  {textConFirm}
+                </button>
+                <div
+                  className="px-2 py-2 rounded-md border-[1px] border-black text-base text-center"
+                  role="button"
+                  onClick={() => onIsAddMode(false)}
+                >
+                  cancel
+                </div>
+              </div>
+              
+            </div>
           </div>
-      </form>
-    )
+        </div>
+      </div>
+    </form>
+  );
 }

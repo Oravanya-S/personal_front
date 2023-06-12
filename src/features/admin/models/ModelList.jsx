@@ -12,7 +12,6 @@ export default function ModelList() {
 
   return (
     <>
-        {/* {model.map(item => <div className='flex flex-col gap-2 py-1' key={item.id}><ColorItem item={item} nameType="Color"/></div>)} */}
         {model.map(item => <div className='flex flex-col gap-2 py-1' key={item.id}><ModelItem item={item}/></div>)}
     </>
   )

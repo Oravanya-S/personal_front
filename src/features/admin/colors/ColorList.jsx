@@ -6,6 +6,7 @@ import ColorItem from './ColorItem';
 export default function ColorList() {
   const dispatch = useDispatch()
   const color = useSelector(state=> state.admin.colorList)
+  
   useEffect(() => {
     dispatch(colorListAsync())
   },[]) 
