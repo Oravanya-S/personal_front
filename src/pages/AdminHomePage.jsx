@@ -2,8 +2,6 @@ import React from 'react'
 import SideBar from '../features/admin/layouts/SideBar'
 import UpdateCategories from '../features/admin/components/UpdateCategories'
 import UpdateModel from '../features/admin/components/UpdateModel'
-import ProductList from '../features/admin/products/ProductList'
-import AddProduct from '../features/admin/products/AddProduct'
 
 export default function AdminHomePage() {
   return (
@@ -14,8 +12,6 @@ export default function AdminHomePage() {
       <div className='flex flex-col w-full m-6 gap-6 overflow-auto flex-1'>
         <UpdateCategories />
         <UpdateModel />
-        {/* <ProductList /> */}
-        
       </div>
     </div>
   )

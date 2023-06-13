@@ -13,6 +13,23 @@ export function BagIcon() {
   );
 }
 
+export function LoaderIcon({ className = null }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      height="4rem"
+      width="4rem"
+      fill="#000"
+      className={className}
+    >
+      <g>
+        <path d="M10,1V3a7,7,0,1,1-7,7H1a9,9,0,1,0,9-9Z" />
+      </g>
+    </svg>
+  );
+}
+
 export function PersonIcon() {
   return (
     <svg
@@ -21,7 +38,7 @@ export function PersonIcon() {
       height="28px"
       viewBox="-3 0 19 19"
       xmlns="http://www.w3.org/2000/svg"
-      class="cf-icon-svg"
+      className="cf-icon-svg"
     >
       <path d="M12.517 12.834v1.9a1.27 1.27 0 0 1-1.267 1.267h-9.5a1.27 1.27 0 0 1-1.267-1.267v-1.9A3.176 3.176 0 0 1 3.65 9.667h5.7a3.176 3.176 0 0 1 3.167 3.167zM3.264 5.48A3.236 3.236 0 1 1 6.5 8.717a3.236 3.236 0 0 1-3.236-3.236z" />
     </svg>
@@ -43,11 +60,11 @@ export function PickerColorIcon() {
       <title>color-picker-solid</title>
       <path
         d="M33.73,2.11a4.09,4.09,0,0,0-5.76.1L22.81,7.38a3.13,3.13,0,0,1-4.3.11L17.09,8.91,27,18.79l1.42-1.42A3.18,3.18,0,0,1,28.46,13l5.17-5.17A4.08,4.08,0,0,0,33.73,2.11Z"
-        class="clr-i-solid clr-i-solid-path-1"
+        className="clr-i-solid clr-i-solid-path-1"
       ></path>
       <path
         d="M22.18,16.79,7.46,31.51a2,2,0,1,1-2.82-2.83L19.35,14l-1.41-1.41L3.22,27.27a4,4,0,0,0-.68,4.8L1.06,33.55a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l1.44-1.44a3.93,3.93,0,0,0,2.09.6,4.06,4.06,0,0,0,2.88-1.2L23.6,18.21Z"
-        class="clr-i-solid clr-i-solid-path-2"
+        className="clr-i-solid clr-i-solid-path-2"
       ></path>
       <rect x="0" y="0" width="36" height="36" fill-opacity="0" />
     </svg>
@@ -98,7 +115,7 @@ export function SittingIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5 opacity-75"
+      className="h-5 w-5 opacity-75"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -122,7 +139,7 @@ export function OnePersonIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5 opacity-75"
+      className="h-5 w-5 opacity-75"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -354,7 +371,7 @@ export function LogoutIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6 opacity-75"
+      className="h-6 w-6 opacity-75"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -375,7 +392,7 @@ export function DetailIcon() {
       width="24px"
       height="24px"
       viewBox="0 0 1024 1024"
-      class="icon"
+      className="icon"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -405,9 +422,3 @@ export function ModelIcon() {
     </svg>
   );
 }
-
-// export function Icon() {
-//     return (
-
-//     );
-// }

@@ -20,6 +20,7 @@ export default function SelectColor({ valueId, onChangeColor }) {
         id="colors"
         onChange={onChangeColor}
       >
+        <option disabled selected value>Select color</option>
         {color.map((el) =>
           el.id == valueId ? (
             <option selected value={el.id}>

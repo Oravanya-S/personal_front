@@ -1,25 +1,27 @@
-import React from 'react'
-import { getBagType } from '../api/admin-api'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { bagTypeListAsync } from "../features/auth/slice/admin-slice";
+import MenuItem from "./MenuItem";
 
 export default function Menu() {
-    const [bagType, setBagType] = useState([])
-
-    const BagType = async () => {
-      try {
-          const result = await getBagType()
-          setBagType(result.data)
-      } catch (err) {
-          console.log(err)
-      }
-    }
-
-    useEffect(()=>{
-        BagType();
-      }, [])
+  const bagType = useSelector((state) => state.admin.bagTypeList);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(bagTypeListAsync());
+  }, []);
 
   return (
-    <div>
-        {bagType.map(el => <a key={el.id} className='text-[20px] hover:underline hover:underline-offset-8 cursor-pointer active:font-semibold'>{el.name}</a>)}
+    <div className="flex gap-8">
+      {bagType.map((el) => (
+        <MenuItem
+          className="text-lg cursor-pointer hover:underline hover:underline-offset-8"
+          menu={el}
+          key={el.id}
+          to={`/models/${el.id}`}
+          active={location.pathname === `/models/${el.id}`}
+        />
+      ))}
     </div>
-  )
+  );
 }
+

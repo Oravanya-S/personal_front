@@ -5,10 +5,10 @@ export default function AddProduct({category = "", nameType = "", idModel, idMod
     const [isAddMode, setIsAddMode] = useState(false)
 
   return (
-    <div className=''>
+    <div className='border-b'>
         {(isAddMode)? (
-            <div className='flex flex-col w-full gap-4'>
-                <div className='flex flex-col text-lg rounded-3xl border font-medium'>
+            <div className='flex flex-col w-full gap-4 px-4 py-2'>
+                <div className='flex flex-col text-lg font-medium'>
                     <ProductForm textConFirm={`Add`} onIsAddMode={setIsAddMode} nameType={nameType} idModel={idModel} idModelName={idModelName}/>
                 </div>
             </div>) : (

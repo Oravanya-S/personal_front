@@ -169,8 +169,6 @@ const adminSlice = createSlice({
       })
       .addCase(productListAsync.fulfilled, (state, action) => {
         state.productList = action.payload;
-
-        console.log(action.payload)
         state.initialLoading = false;
       })
       .addCase(productListAsync.rejected, (state, action) => {

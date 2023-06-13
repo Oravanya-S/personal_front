@@ -4,9 +4,11 @@ import { toast } from 'react-toastify';
 // import validateLogin from '../validators/validate-login';
 // import InputErrorMessage from './inputErrorMessage';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login } from '../slice/auth-slice';
+import { fetchMe, login } from '../slice/auth-slice';
 import { FacebookIcon, FailIcon, GoogleIcon, SuccessIcon } from '../../../icons';
+import { useSelector } from 'react-redux';
 
 const initialInput = {
   email: '',
@@ -15,7 +17,9 @@ const initialInput = {
 
 
 export default function LoginForm({placeholder, value, onChange, name, isInvalid, open, onClose}) {
-  
+  const navigate = useNavigate()
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const user = useSelector(state => state.auth.user);
   const [input, setInput] = useState(initialInput);
   const dispatch = useDispatch();
 
@@ -26,11 +30,17 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
   const handleSubmitForm = async e => {
     try {
       e.preventDefault();
-      console.log(input)
       await dispatch(login(input)).unwrap();
+
       toast.success('login successfully', {
         icon: <SuccessIcon />
       });
+
+      // navigate('/')
+      // if (isAuthenticated && user.id == 1) {
+      //   navigate('/admin')
+      // }
+      // navigate('/')
       onClose()
       onSuccess();
     } catch (err) {

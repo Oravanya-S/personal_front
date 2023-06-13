@@ -31,13 +31,7 @@ export default function ProductForm({
         setStock(e.target.value);
     };
 
-    // const handleChangeModelId = (e) => {
-    //     console.log(e.target.value)
-    //     setModelId(e.target.value)
-    // };
-
     const handleChangeColorId = (e) => {
-        console.log(e.target.value)
         setColorId(e.target.value);
     };
 
@@ -70,10 +64,10 @@ export default function ProductForm({
     }
 
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center">
+    <form onSubmit={handleSubmit} className="flex justify-center border rounded-3xl">
       <div className="flex flex-col w-full gap-4">
         <div className="flex flex-col text-lg rounded-3xl">
-          <div className="flex flex-col gap-1 text-lg rounded-3xl">
+          <div className="flex flex-col gap-1 text-lg">
             <div className={`flex flex-col gap-8 text-lg p-4`}>
               <div className="grid grid-cols-2 gap-10">
                 <div className="border w-full cursor-pointer">

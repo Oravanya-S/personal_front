@@ -8,27 +8,27 @@ export default function SideBar() {
   const dispatch = useDispatch();
 
   return (
-    <div class="flex flex-col h-screen justify-between border-e bg-white shadow-lg text-black">
-      <div class="px-4">
-        <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1">
+    <div className="flex flex-col h-screen justify-between border-e bg-white shadow-lg text-black">
+      <div className="px-4">
+        <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
           <a
             href="#"
-            class="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2"
+            className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2"
           >
             <SittingIcon />
-            <span class="text-xl font-medium">General</span>
+            <span className="text-xl font-medium">General</span>
           </a>
 
-          <details class="group [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 hover:bg-gray-100">
-              <div class="flex items-center gap-2">
+          <details className="group [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 hover:bg-gray-100">
+              <div className="flex items-center gap-2">
                 <CategoryIcon />
-                <span class="text-lg font-medium"> Categories </span>
+                <span className="text-lg font-medium"> Categories </span>
               </div>
-              <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+              <span className="shrink-0 transition duration-300 group-open:-rotate-180">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
+                  className="h-5 w-5"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -41,28 +41,28 @@ export default function SideBar() {
                 </span>
             </summary>
 
-            <nav aria-label="Teams Nav" class="mt-2 flex flex-col px-4">
+            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4">
               <a
                 href="#"
-                class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <UpdateIcon />
-                <span class="text-base font-medium"> Update categories </span>
+                <span className="text-base font-medium"> Update categories </span>
               </a>
             </nav>
           </details>
 
-          <details class="group [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 hover:bg-gray-100">
-              <div class="flex items-center gap-2">
+          <details className="group [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 hover:bg-gray-100">
+              <div className="flex items-center gap-2">
                 <BagIcon />
-                <span class="text-lg font-medium"> Product </span>
+                <span className="text-lg font-medium"> Product </span>
               </div>
 
-              <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+              <span className="shrink-0 transition duration-300 group-open:-rotate-180">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
+                  className="h-5 w-5"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -76,44 +76,44 @@ export default function SideBar() {
             </summary>
             
 
-            <nav aria-label="Teams Nav" class="mt-2 flex flex-col px-4">
+            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4">
               <a
                 href="#"
-                class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <ModelIcon />
-                <span class="text-base font-medium"> Add models </span>
+                <span className="text-base font-medium"> Add models </span>
               </a>  
               <a
                 href="#"
-                class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <AddIcon/>
-                <span class="text-base font-medium"> Add products </span>
+                <span className="text-base font-medium"> Add products </span>
               </a>
 
               <a
                 href="#"
-                class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <OrderIcon />
-                <span class="text-base font-medium"> Orders</span>
+                <span className="text-base font-medium"> Orders</span>
               </a>
             </nav>
           </details>
 
-          <details class="group [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 hover:bg-gray-100">
-              <div class="flex items-center gap-2">
+          <details className="group [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 hover:bg-gray-100">
+              <div className="flex items-center gap-2">
                 <OnePersonIcon />
 
-                <span class="text-lg font-medium"> Account </span>
+                <span className="text-lg font-medium"> Account </span>
               </div>
 
-              <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+              <span className="shrink-0 transition duration-300 group-open:-rotate-180">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
+                  className="h-5 w-5"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -126,22 +126,22 @@ export default function SideBar() {
               </span>
             </summary>
 
-            <nav aria-label="Account Nav" class="mt-2 flex flex-col px-4">
+            <nav aria-label="Account Nav" className="mt-2 flex flex-col px-4">
               <a
                 href="#"
-                class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <DetailIcon />
-                <span class="text-base font-medium"> Details </span>
+                <span className="text-base font-medium"> Details </span>
               </a>
 
                 <button
                   type="submit"
-                  class="flex w-full items-center gap-2 rounded-lg px-4 py-2 hover:bg-gray-100"
+                  className="flex w-full items-center gap-2 rounded-lg px-4 py-2 hover:bg-gray-100"
                   onClick={() => dispatch(logout())}
                 >
                   <LogoutIcon />
-                  <span class="text-base font-medium text-gray-500"> Logout </span>
+                  <span className="text-base font-medium text-gray-500"> Logout </span>
                 </button>
             </nav>
           </details>

@@ -50,4 +50,3 @@ export default function ModelItem({item, nameType}) {
           </div>
         </div>
 )}
-

@@ -8,7 +8,7 @@ export default function ProductItem({item, nameType}) {
     const dispatch = useDispatch()
     const handleClickDeleteBox = () => {
         dispatch(deleteProduct(item.id))
-        dispatch(productListAsync())
+        // dispatch(productListAsync())
     };
 
     const display = (isEditMode)? "block" : "hidden"
@@ -52,7 +52,7 @@ export default function ProductItem({item, nameType}) {
                             </div>
                           </div>
                       </div> :    
-                      <div className={`flex flex-col gap-6 text-lg ${display}`}>        
+                      <div className={`flex flex-col gap-6 text-lg ${display} px-4 pt-1 pb-2`}>        
                         <ProductForm textConFirm={`Edit`} onIsAddMode={setIsEditMode} oldProduct={item} nameType={nameType}/>
                     </div>}
                   </div>

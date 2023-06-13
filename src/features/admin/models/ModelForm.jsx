@@ -121,14 +121,14 @@ export default function ModelForm({
               <div>
                 <label
                   htmlFor="description"
-                  class="block mb-2 text-gray-800 dark:text-white font-medium"
+                  className="block mb-2 text-gray-800 dark:text-white font-medium"
                 >
                   Description
                 </label>
                 <textarea
                   id="description"
                   rows="3"
-                  class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  className="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Write your product description..."
                   value={description}
                   onChange={handleChangeDescription}
