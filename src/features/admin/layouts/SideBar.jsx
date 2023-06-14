@@ -2,10 +2,13 @@ import React from "react";
 import { AddIcon, BagIcon, CategoryIcon, DetailIcon, LogoutIcon, ModelIcon, OnePersonIcon, OrderIcon, SittingIcon, UpdateIcon } from "../../../icons";
 import { logout } from "../../auth/slice/auth-slice";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   return (
     <div className="flex flex-col h-full justify-between border-e bg-white shadow-lg text-black">
@@ -41,14 +44,13 @@ export default function SideBar() {
                 </span>
             </summary>
 
-            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4">
-              <a
-                href="#"
+            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4" onClick={()=> navigate("/admin")}>
+              <div
                 className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <UpdateIcon />
                 <span className="text-base font-medium"> Update categories </span>
-              </a>
+              </div>
             </nav>
           </details>
 
@@ -76,21 +78,13 @@ export default function SideBar() {
             </summary>
             
 
-            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4">
-              <a
-                href="#"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-              >
-                <ModelIcon />
-                <span className="text-base font-medium"> Add models </span>
-              </a>  
-              <a
-                href="#"
+            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4"> 
+              <Link to='/admin/update'
                 className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <AddIcon/>
                 <span className="text-base font-medium"> Add products </span>
-              </a>
+              </Link>
 
               <a
                 href="#"

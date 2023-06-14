@@ -8,7 +8,7 @@ export default function CartItem({item}) {
     const handleClickDeleteBox = () => {
         dispatch(DeleteCart(item.id))
     };
-  console.log("first", item.userId, item.productId)
+
   const [count, setCount] = useState(item.quantity)
   const [stock, setStock] = useState(item.Product.stock)
 
@@ -26,7 +26,6 @@ export default function CartItem({item}) {
     }, 1000);
 
     return () => {
-        console.log('Cleanup');
         clearTimeout(id);
     };
   }, [count]);

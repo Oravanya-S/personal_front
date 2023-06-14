@@ -15,9 +15,9 @@ export default function Carousel({gallaryList}){
   }
 
   return (
-    <div className='block relative max-h-[500px] overflow-hidden z-0'>
+    <div className='block relative max-h-[500px] z-0'>
       <div className='flex w-screen'>
-          <img className='block w-screen' src={gallary[picIdx]} alt="" />
+          <img className='block' src={gallary[picIdx]} alt="" />
       </div>
       <p onClick={prevPicture}><i className="fa-solid fa-chevron-left text-6xl absolute top-[45%] left-[2%] cursor-pointer" ></i></p>
       <p onClick={nextPicture}><i className="fa-solid fa-chevron-right text-6xl absolute top-[45%] right-[2%] cursor-pointer"></i></p>

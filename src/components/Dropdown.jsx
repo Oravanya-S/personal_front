@@ -3,10 +3,13 @@ import { LogoutIcon, OrderIcon } from "../icons";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/slice/auth-slice";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Dropdown({user}) {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch();
+  const navigate = useNavigate() 
   return (
     <div className="flex justify-end">
       <div className="relative" role="button" onClick={() => setOpen(!open)}>
@@ -20,7 +23,7 @@ export default function Dropdown({user}) {
             <div className="rounded-full flex justify-center items-center">
               <OrderIcon />
             </div>
-            <span className="text-base">History</span>
+            <span className="text-base" onClick={()=> navigate(`/history/${user.id}`)}>History</span>
           </Link>
           <hr className="border border-gray-300 m-2" />
           <Link to='/' 

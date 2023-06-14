@@ -75,8 +75,6 @@ export function updateCart(updateCartObj) {
   return async (dispatch) => {
     try {
       const response = await cartService.updateCart(updateCartObj);
-      console.log("dsdssdddddddd", response.data)
-      console.log("updateCartObj",updateCartObj)
       dispatch(updateToCart(updateCartObj));
     } catch (error) {
       console.log(error);
@@ -94,3 +92,17 @@ export function DeleteCart(id) {
     }
   };
 }
+
+export function checkout(checkoutObj) {
+  return async (dispatch) => {
+    try {
+      console.log("checkoutObj", checkoutObj)
+      const response = await cartService.checkout(checkoutObj);
+      // dispatch(removeCart(id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+

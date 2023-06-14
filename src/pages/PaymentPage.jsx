@@ -19,6 +19,7 @@ export default function PaymentPage() {
     let totolAmount, sumPrice;
     
     const preorder = useSelector(state=> state.cart.cartList)
+    console.log(preorder)
 
     if (preorder.length > 0) {
         totolAmount = preorder.reduce((acc,el)=>{
@@ -38,7 +39,7 @@ export default function PaymentPage() {
         <div className='flex justify-end'>
             <p className='cursor-pointer hover:underline underline-offset-8'>Shipping Details</p>
         </div>
-        <ShippingForm item={preorder} user={user}/>
+        <ShippingForm item={preorder} user={user} totalPrice={sumPrice}/>
 
       </div>
       <div className='flex flex-col w-[40%] p-10 gap-8 '>

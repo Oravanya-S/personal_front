@@ -12,6 +12,7 @@ import { Outlet } from 'react-router-dom';
 import RedirectedAdmin from '../features/auth/components/RedirectedAdmin';
 import Models from '../pages/Models';
 import PaymentPage from '../pages/PaymentPage';
+import AddProductPage from '../pages/AddProductPage';
 
 const router = createBrowserRouter([
     {
@@ -30,15 +31,15 @@ const router = createBrowserRouter([
                     </RedirectedAdmin>)
           },
           {
-            path: '/admin',
+            path: '/admin/update',
             element: (<ProtectedRoute>
-                      <AdminHomePage />
+                      <AddProductPage />
                     </ProtectedRoute>)
           },
           {
-            path: '/admin/update',
+            path: '/admin',
             element: (<ProtectedRoute>
-                      <AdminHomePage />
+                      <AdminHomePage /> 
                     </ProtectedRoute>)
           },
           
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
             element: <Models />
           },
           {
-            path: '/history',
+            path: '/history/:id',
             element: <HistoryPage />
           },
           {
