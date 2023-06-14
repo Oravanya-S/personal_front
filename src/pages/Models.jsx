@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom"
 import { modelListWithBagTypeAsync } from '../features/auth/slice/model-slice';
-import { bagTypeListAsync } from '../features/auth/slice/admin-slice';
 import ProductWithModel from '../features/admin/products/ProductWithModel';
 
 export default function Models() {
@@ -13,7 +12,6 @@ export default function Models() {
   },[modelId]) 
 
   const product = useSelector(state => state.model.modelListWithBagType)
-  console.log(product)
   
   return (
     <div className='mb-4'>

@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { BasketIcon, FailIcon } from "../../../icons";
-import Modal from "../../../components/Modal";
 import ProductDetail from "./ProductDetail";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { addCart } from "../../auth/slice/cart-slice";
 
 export default function ProductWithModel({ item }) {
+  const dispatch = useDispatch()
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+  const user = useSelector(state => state.auth.user)
+  let user_id;
+  if (isAuthenticated) {
+    user_id = user.id
+  }
   const [detail, setDetail] = useState(false);
   const handleDetail = () => {
     setDetail(!detail);
@@ -23,6 +29,11 @@ export default function ProductWithModel({ item }) {
         position: 'top-center',
         className: "top-[96px]"
       });
+    }
+    else {
+      console.log(item)
+      console.log(user_id, item.id)
+      dispatch(addCart({"userId": user_id, "productId": item.id, "Product": item  }))
     }
 
   };

@@ -16,7 +16,7 @@ export default function ModelItem({item, nameType}) {
     const display = (isEditMode)? "block" : "hidden"
     return (
         <div key={item.id}>
-          <div className='flex flex-col w-full gap-4 border border-black'>
+          <div className='flex flex-col w-full gap-4 border-[1px] border-gray-400 rounded-lg'>
                   <div className='flex flex-col text-lg border-b'>
                       {!isEditMode? 
                       <>

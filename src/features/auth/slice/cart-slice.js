@@ -20,11 +20,77 @@ export const cartListAsync = createAsyncThunk(
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
+    reducers: {
+      addToCart: (state, action) => {
+        const newCart = action.payload;
+        const index = state.cartList.findIndex((el) => el.productId == newCart.productId && el.userId == newCart.userId);
+        if(index==-1){
+          state.cartList.unshift({...newCart, "quantity": 1});
+        } else {
+          state.cartList[index].quantity = state.cartList[index].quantity+1
+        }
+      },
+      updateToCart: (state, action) => {
+        const updateCart = action.payload;
+        const index = state.cartList.findIndex((el) => el.productId == updateCart.productId && el.userId == updateCart.userId);
+        state.cartList[index].quantity = updateCart.quantity
+      },
+      removeCart: (state, action) => {
+        const cartId = action.payload;
+        state.cartList = state.cartList.filter((cart) => cart.id != cartId);
+      }
+    },
     extraReducers: builder =>
       builder
-        .addCase(cartListAsync.fulfilled, state => {
-          state.cartList = false;
+        .addCase(cartListAsync.fulfilled, (state, action) => {
+          state.cartList = action.payload;
+        })
+        .addCase(cartListAsync.rejected, (state, action) => {
+          state.error = action.payload;
         })
   });
 
 export default cartSlice.reducer;
+
+export const {
+  addToCart,
+  updateToCart,
+  removeCart
+} = cartSlice.actions;
+
+
+export function addCart(addCartObj) {
+  return async (dispatch) => {
+    try {
+      const response = await cartService.addCart(addCartObj);
+      console.log("addCartObj",addCartObj)
+      dispatch(addToCart(addCartObj));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function updateCart(updateCartObj) {
+  return async (dispatch) => {
+    try {
+      const response = await cartService.updateCart(updateCartObj);
+      console.log("dsdssdddddddd", response.data)
+      console.log("updateCartObj",updateCartObj)
+      dispatch(updateToCart(updateCartObj));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function DeleteCart(id) {
+  return async (dispatch) => {
+    try {
+      const response = await cartService.DeleteCart(id);
+      dispatch(removeCart(id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

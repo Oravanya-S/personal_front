@@ -44,7 +44,6 @@ export default function ModelForm({
   };
 
   const handleChangeBagtypeId = (e) => {
-    console.log(e.target.value)
     setBagtypeId(e.target.value);
     
   };
@@ -55,7 +54,6 @@ export default function ModelForm({
     let validBrand = validate(brand);
     let validMeterial = validate(meterial);
     let validDesc = validate(description);
-    console.log(name,brand,meterial,description,bagtypeId)
 
     if (validName && validBrand && validMeterial && validDesc && !oldModel) {
       await dispatch(

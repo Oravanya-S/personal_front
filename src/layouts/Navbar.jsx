@@ -8,22 +8,19 @@ import Dropdown from '../components/Dropdown'
 import Menu from './Menu'
 import { toast } from 'react-toastify'
 import { FailIcon } from '../icons'
-import Toast from '../components/Toast'
+import { useNavigate } from 'react-router-dom'
 
 export default function Navbar({bgColor = 'bg-transparent'}) {
     
     const user = useSelector(state => state.auth.user);
-
-    console.log(user)
+    const navigate = useNavigate()
     let id, firstName, role;
     if (user) {
       const {id: _id, firstName: _firstName, role: _role} = user 
         id = _id
         firstName = _firstName
         role = _role
-    } else {
-      console.log("No login")
-    }
+    } 
 
     const [openSignIn, setOpenSignIn] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
@@ -48,7 +45,7 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
           className: "top-[96px]"
         });
       } else {
-        <Navigate to='/cart' />
+        navigate(`/carts/${id}`)
       }
     }
 

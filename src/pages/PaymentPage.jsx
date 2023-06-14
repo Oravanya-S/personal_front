@@ -1,0 +1,61 @@
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { cartListAsync } from '../features/auth/slice/cart-slice';
+import CartItem from '../features/admin/carts/CartItem';
+
+export default function PaymentPage() {
+    const { id } = useParams();
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(cartListAsync(id))
+    },[]) 
+    
+    let totolAmount, sumPrice;
+    
+    const preorder = useSelector(state=> state.cart.cartList)
+
+  if(preorder.length > 0) {
+    totolAmount = preorder.reduce((acc,el)=>{
+      acc+=el?.quantity
+      return acc
+    },0)
+  
+    sumPrice = preorder.reduce((acc,el)=>{
+      acc+=el?.quantity * el?.Product.price
+      return acc
+    },0)
+  }
+  return (
+    <div className='max-w-[1440px] mx-auto min-h-screen border'>
+    <div className='flex border'>
+      <div className='w-[60%] items-center'>
+      </div>
+      <div className='flex flex-col w-[40%] border p-10 gap-8 '>
+        <div className='flex justify-between'>
+            <div className='text-xl font-medium'>Order Summary</div>
+            <button type="button" className="hover:underline underline-offset-4" onClick={()=> navigate(-1)}>Edit cart</button> 
+        </div>
+        <div className='flex gap-3'>
+          <div className='text-gray-500'>{preorder.length} items</div>
+          <div className='text-gray-500'>({totolAmount} {(totolAmount > 1)? "pieces": "piece"})</div>
+        </div>
+        <div className='flex items-center justify-between'>
+          <div className='flex flex-col'>
+            <p className='font-medium text-xl'>Total</p>
+            <p className='text-gray-500'>VAT included</p>
+          </div>
+          <div className='text-3xl font-semibold'>฿ {sumPrice}</div>
+        </div>
+            <div className='flex flex-col'>
+            { preorder.map(item => <div className='flex flex-col' key={item.id}><CartItem item={item}/></div>)}
+            </div>
+        
+      </div>
+      
+    </div> 
+    </div>
+  )
+}

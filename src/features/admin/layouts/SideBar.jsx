@@ -8,7 +8,7 @@ export default function SideBar() {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex flex-col h-screen justify-between border-e bg-white shadow-lg text-black">
+    <div className="flex flex-col h-full justify-between border-e bg-white shadow-lg text-black">
       <div className="px-4">
         <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
           <a

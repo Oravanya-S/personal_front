@@ -11,6 +11,7 @@ import Navbar from '../layouts/Navbar';
 import { Outlet } from 'react-router-dom';
 import RedirectedAdmin from '../features/auth/components/RedirectedAdmin';
 import Models from '../pages/Models';
+import PaymentPage from '../pages/PaymentPage';
 
 const router = createBrowserRouter([
     {
@@ -50,8 +51,12 @@ const router = createBrowserRouter([
             element: <HistoryPage />
           },
           {
-            path: '/cart',
+            path: '/carts/:id',
             element: <CartPage />
+          },
+          {
+            path: '/payment/:id',
+            element: <PaymentPage />
           },
         ],
         errorElement: <NotFound />,
