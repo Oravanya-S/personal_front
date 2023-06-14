@@ -35,12 +35,7 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
       toast.success('login successfully', {
         icon: <SuccessIcon />
       });
-
-      // navigate('/')
-      // if (isAuthenticated && user.id == 1) {
-      //   navigate('/admin')
-      // }
-      // navigate('/')
+      
       onClose()
       onSuccess();
     } catch (err) {

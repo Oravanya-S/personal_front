@@ -15,7 +15,7 @@ const initialInput = {
 };
   
 
-export default function RegisterForm({placeholder, value, onChange, name, isInvalid, open, onClose}) {
+export default function RegisterForm({open, onClose}) {
     const [input, setInput] = useState(initialInput);
     
     const dispatch = useDispatch();

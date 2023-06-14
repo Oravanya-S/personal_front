@@ -6,9 +6,14 @@ import RegisterForm from '../features/auth/components/RegisterForm'
 import LoginForm from '../features/auth/components/LoginForm'
 import Dropdown from '../components/Dropdown'
 import Menu from './Menu'
+import { toast } from 'react-toastify'
+import { FailIcon } from '../icons'
+import Toast from '../components/Toast'
 
 export default function Navbar({bgColor = 'bg-transparent'}) {
+    
     const user = useSelector(state => state.auth.user);
+
     console.log(user)
     let id, firstName, role;
     if (user) {
@@ -35,8 +40,21 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
       setOpenSignUp(false)
     }
 
-    return ( <>
-      {(role==1)? "" : <div className='max-w-[1440px] mx-auto relative z-50'>
+    const goToCart = () => {
+      if(!user) {
+        toast.error('Login before add cart',{
+          icon: <FailIcon />,
+          position: 'top-center',
+          className: "top-[96px]"
+        });
+      } else {
+        <Navigate to='/cart' />
+      }
+    }
+
+    return ( 
+    <div>
+      {(role==1)? "" : <div className='max-w-[1440px] relative z-20 mx-auto'>
         <div className={`sticky z-${(openSignIn || openSignUp)? 20: 30} border`}>
           <nav className={`flex justify-between px-10 items-center bg-${bgColor} h-24`}>
               <div>
@@ -47,14 +65,15 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
               <div className='flex gap-4 text-lg'>
               {user? <Dropdown user={user}/> : <div className='cursor-pointer' onClick={handleSignIn}><i className="fa-regular fa-user text-2xl text-black p-2 hover:underline"></i>Sign in</div>}
               <a className='cursor-pointer'><i className="fa-regular fa-heart text-2xl text-black p-2"></i>Favorites</a>
-              <a className='cursor-pointer'><i className="fa-solid fa-bag-shopping text-2xl text-black p-2"></i>Bag</a>
+              <div className='cursor-pointer' onClick={goToCart}><i className="fa-solid fa-bag-shopping text-2xl text-black p-2"></i>Cart</div>
               </div>
           </nav>
           <hr className='fixed w-full border-gray-300 top-0'/>
         </div>
       </div> }
-      </>
+    </div>
     )
   }
 
 
+  

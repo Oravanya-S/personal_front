@@ -15,7 +15,7 @@ export const modelListWithBagTypeAsync = createAsyncThunk(
         return thunkApi.rejectWithValue(err.response.data.message);
       }
     }
-  );
+);
 
 
   const modelSlice = createSlice({
@@ -27,11 +27,11 @@ export const modelListWithBagTypeAsync = createAsyncThunk(
       builder
         .addCase(modelListWithBagTypeAsync.fulfilled, (state, action) => {
           state.modelListWithBagType = action.payload;
-          state.initialLoading = false;
+          // state.initialLoading = false;
         })
         .addCase(modelListWithBagTypeAsync.rejected, (state, action) => {
           state.error = action.payload;
-          state.initialLoading = false;
+          // state.initialLoading = false;
         })
   });
   
