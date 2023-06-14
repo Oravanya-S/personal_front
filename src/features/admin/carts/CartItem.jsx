@@ -23,7 +23,7 @@ export default function CartItem({item}) {
   useEffect(() => {
     const id = setTimeout(() => {
         dispatch(updateCart({ "userId": item.userId, "productId": item.productId, "quantity": +count }));
-    }, 2000);
+    }, 1000);
 
     return () => {
         console.log('Cleanup');
@@ -49,6 +49,7 @@ export default function CartItem({item}) {
             <div className='flex flex-col gap-5 items-start'>
                   <div className="flex items-center border border-gray-600 rounded-full">
                     <button type="button" className="w-10 h-8 text-lg font-semibold text-gray-600 transition hover:opacity-75"
+                    
                     disabled={(count<=1)? true : false}
                      onClick={decrease}>&minus;</button>
                         <input type="number" id="Quantity" value={count} style={{fontSize: '18px'}} className="h-8 w-10 text-xl border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"/>

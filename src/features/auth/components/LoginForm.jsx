@@ -33,7 +33,8 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
       await dispatch(login(input)).unwrap();
 
       toast.success('login successfully', {
-        icon: <SuccessIcon />
+        icon: <SuccessIcon />,
+        className: "top-[96px]"
       });
       
       onClose()

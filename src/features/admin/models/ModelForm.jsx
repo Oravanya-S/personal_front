@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModelInput from "./ModelInput";
 import { useDispatch } from "react-redux";
-import { createModel, productListAsync, updateModel } from "../../auth/slice/admin-slice";
+import { createModel, modelListAsync, productListAsync, updateModel } from "../../auth/slice/admin-slice";
 import SelectBagType from "../components/SelectBagType";
 
 export default function ModelForm({
@@ -66,8 +66,8 @@ export default function ModelForm({
         })
       );
       onIsAddMode(false);
-      await dispatch(modelListAsync())
-      await dispatch(productListAsync())
+       dispatch(modelListAsync())
+        dispatch(productListAsync())
       
     } else if(validName && validBrand && validMeterial && validDesc && oldModel) {
       await dispatch(
@@ -80,8 +80,8 @@ export default function ModelForm({
         })
       );
       onIsAddMode(false);
-      await dispatch(modelListAsync())
-      await dispatch(productListAsync())
+      dispatch(modelListAsync())
+      dispatch(productListAsync())
     } 
   };
 

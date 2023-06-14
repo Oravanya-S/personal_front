@@ -12,7 +12,6 @@ export default function ProductForm({
     oldProduct,
     idModel,
     idModelName,
-    nameType = "",
 }) {
 
     const [modelId, setModelId] = useState(oldProduct?.modelId|| idModel);
