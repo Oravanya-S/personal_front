@@ -31,8 +31,6 @@ export default function ProductWithModel({ item }) {
       });
     }
     else {
-      console.log(item)
-      console.log(user_id, item.id)
       dispatch(addCart({"userId": user_id, "productId": item.id, "Product": item  }))
     }
 

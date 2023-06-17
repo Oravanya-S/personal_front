@@ -48,7 +48,7 @@ const router = createBrowserRouter([
             element: <Models />
           },
           {
-            path: '/history/:id',
+            path: '/orders/:id',
             element: <HistoryPage />
           },
           {

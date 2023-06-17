@@ -1,8 +1,8 @@
 import React from 'react'
 import LoginInput from './LoginInput';
 import { toast } from 'react-toastify';
-// import validateLogin from '../validators/validate-login';
-// import InputErrorMessage from './inputErrorMessage';
+import validateLogin from '../validators/validate-login';
+import InputErrorMessage from './InputErrorMessage';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -21,6 +21,7 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const user = useSelector(state => state.auth.user);
   const [input, setInput] = useState(initialInput);
+  const [error, setError] = useState({});
   const dispatch = useDispatch();
 
   const handleChangeInput = e => {
@@ -30,13 +31,16 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
   const handleSubmitForm = async e => {
     try {
       e.preventDefault();
+      const result = validateLogin(input);
+      if (result) {
+        return setError(result);
+      }
+      setError({});
       await dispatch(login(input)).unwrap();
-
       toast.success('login successfully', {
         icon: <SuccessIcon />,
         className: "top-[96px]"
       });
-      
       onClose()
       onSuccess();
     } catch (err) {
@@ -55,6 +59,7 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
         <div className='flex justify-between'>
             <p>Please login below</p>
         </div> 
+        <div className="grid gap-6">
         <div>
           <LoginInput
             placeholder="Email"
@@ -63,7 +68,9 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
             onChange={handleChangeInput}
             // isInvalid={error.emailOrMobile}
           />
-          {/* <InputErrorMessage message={error.emailOrMobile} /> */}
+          <div className='h-8'>
+            <InputErrorMessage message={error.email} />
+          </div>
         </div>
         <div>
           <LoginInput
@@ -73,7 +80,10 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
             onChange={handleChangeInput}
             // isInvalid={error.password}
           />
-          {/* <InputErrorMessage message={error.password} /> */}
+          <div className='h-8'>
+            <InputErrorMessage message={error.password} />
+          </div>
+        </div>
         </div>
         <button type='submit' className='p-3 text-white text-lg bg-black'>Login</button>
         <div className='flex justify-center'>

@@ -5,8 +5,6 @@ import ShippingInput from "./ShippingInput";
 import { FailIcon, SuccessIcon } from "../../../icons";
 import { checkout } from "../../auth/slice/cart-slice";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../../components/Modal";
-import Notification from "../../../components/Notification";
 
 const initialInput = {
   phone: "",
@@ -18,7 +16,7 @@ export default function ShippingForm({ item, user, totalPrice }) {
   const [error, setError] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [payment, setPayment] = useState(true);
+  const [payment, setPayment] = useState(false);
 
   const validate = (text) => {
     if (text.trim() === "") {
@@ -48,7 +46,7 @@ export default function ShippingForm({ item, user, totalPrice }) {
           address: input.address,
         })
       );
-          navigate(`/history/${user.id}`)
+          navigate(`/orders/${user.id}`)
         
 
       // toast.success('Order successfully', {

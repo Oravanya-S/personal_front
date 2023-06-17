@@ -13,9 +13,9 @@ export default function ColorItem({item, nameType}) {
   return (
     <div key={item.id}>
     {isEditMode? <ColorForm textConFirm={`Edit`} onIsAddMode={setIsEditMode} oldColor={item} nameType={nameType}/> : (
-    <div className='flex items-center gap-8 text-lg border-b px-3 h-[65px]'>
+    <div className='flex items-center gap-8 text-lg border-b px-3 h-[70px]'>
             
-            <div className='flex items-center gap-2'>
+            <div className='flex items-end gap-2'>
                 <p className='font-medium'>Group color:</p>
                 <p className='min-w-[100px] px-[5px]'>{item.GroupColor?.name}</p>
             </div>

@@ -11,8 +11,9 @@ export default function SelectBagType({valueId, onChangeBagtype}) {
     
     return (
         <div className='flex items-center gap-2'>
-            <label htmlFor="bags" className="dark:text-white font-medium">Bagtype:</label>
-            <select className='min-w-[100px] py-[1px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700' name="bags" id="bags" onChange={onChangeBagtype}>
+            <label htmlFor="bagtype" className="dark:text-white font-medium">Bagtype:</label>
+            <select className='min-w-[100px] py-[1px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700' name="bagtype" id="bagtype" onChange={onChangeBagtype}>
+                <option disabled selected value>Select type</option>
                 {bagType.map(el => ((el.id==valueId)? <option selected value={el.id}>{el.name}</option> : <option value={el.id}>{el.name}</option>))}
             </select>
         </div>

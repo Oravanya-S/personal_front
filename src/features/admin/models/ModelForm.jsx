@@ -3,6 +3,8 @@ import ModelInput from "./ModelInput";
 import { useDispatch } from "react-redux";
 import { createModel, modelListAsync, productListAsync, updateModel } from "../../auth/slice/admin-slice";
 import SelectBagType from "../components/SelectBagType";
+import { toast } from 'react-toastify';
+import { FailIcon } from "../../../icons";
 
 export default function ModelForm({
   textConFirm,
@@ -14,7 +16,7 @@ export default function ModelForm({
   const [brand, setBrand] = useState(oldModel?.brand || "");
   const [meterial, setMeterial] = useState(oldModel?.meterial || "");
   const [description, setDescription] = useState(oldModel?.description || "");
-  const [bagtypeId, setBagtypeId] = useState(oldModel?.bagTypeId || 1);
+  const [bagtypeId, setBagtypeId] = useState(oldModel?.bagTypeId || "");
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
@@ -49,6 +51,7 @@ export default function ModelForm({
   };
 
   const handleSubmit = async (e) => {
+    try{
     e.preventDefault();
     let validName = validate(name);
     let validBrand = validate(brand);
@@ -83,7 +86,12 @@ export default function ModelForm({
       dispatch(modelListAsync())
       dispatch(productListAsync())
     } 
-  };
+    } catch (err) {
+      toast.error(err,{
+        icon: <FailIcon />
+    })
+    }
+  }
 
   return (
     <>
@@ -125,6 +133,7 @@ export default function ModelForm({
                 </label>
                 <textarea
                   id="description"
+                  name="description"
                   rows="3"
                   className="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Write your product description..."
