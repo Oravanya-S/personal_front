@@ -57,8 +57,8 @@ export function PersonIcon() {
   return (
     <svg
       fill="#000000"
-      width="28px"
-      height="28px"
+      width="24px"
+      height="24px"
       viewBox="-3 0 19 19"
       xmlns="http://www.w3.org/2000/svg"
       className="cf-icon-svg"

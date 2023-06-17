@@ -13,7 +13,7 @@ export default function ProductListWithModel({modelId}) {
 
   return (
     <>
-        {productWithModelId.map(item => <div className='flex flex-col gap-2 py-1' key={item.id}><ProductItem item={item}/></div>)}
+        {productWithModelId.map(item => <div className='flex flex-col gap-2 py-1 ' key={item.id}><ProductItem item={item}/></div>)}
     </>
   )
 }

@@ -3,7 +3,7 @@ import SelectGroupColor from '../components/SelectGroupColor'
 import { useDispatch } from 'react-redux';
 import { colorListAsync, createColor, groupColorListAsync, updateColor } from '../../auth/slice/admin-slice';
 import validateColor from '../../auth/validators/validate-color';
-import InputErrorMessage from '../../auth/components/InputErrorMessage';
+import InputErrorMessage from '../../auth/components/inputErrorMessage';
 
 
 
@@ -41,7 +41,6 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
     setError({});
 
     if (!oldColor) {
-      console.log("hjkhgffh", input)
       await dispatch(createColor(input))
         onIsAddMode(false);
     } else if (oldColor) {
@@ -66,7 +65,7 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
                     </div>
                 </div>
                 <div className='flex items-center gap-2 flex-1 placeholder:text-sm'>
-                    <label htmlFor='color_name' className='font-medium'>Name {nameType}:</label>
+                    <label htmlFor='name' className='font-medium'>Name {nameType}:</label>
                     <div>
                         <input id='name' type="text" 
                         name="name"
@@ -74,7 +73,7 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
                         placeholder={`Enter ${nameType}`}
                         value={input.name}
                         onChange={handleChangeInput}/>
-                        <div className='h-0 boder'> 
+                        <div className='h-0'> 
                           {error.name && (<InputErrorMessage message={error.name} />)}
                         </div>
                     </div>

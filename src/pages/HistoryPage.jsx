@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { orderListAsync } from "../features/auth/slice/order-slice";
 import { useNavigate } from "react-router-dom";
 import Order from "../features/admin/order/Order";
+import { Link } from "react-router-dom";
 
 export default function HistoryPage() {
   const { id } = useParams();
@@ -28,16 +29,21 @@ export default function HistoryPage() {
               Hello,
             </div>
             <div className="w-5/6 text-xl font-medium">
-              Orders
+              {order.length} Orders
             </div>
           </div>
           <hr className="border-black my-6"/>
           <div className="flex text-lg">
-            <div className="w-1/6 cursor-pointer font-medium">
-              Order History
+            <div className="w-1/6 cursor-pointer">
+                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-4'>
+                    <Link to={`/orders/${id}`} className='font-medium'>Order History</Link>
+                    <Link to={`/profile/${id}`}>Profile</Link>
+                </div>
+                </div>
             </div>
             <div className="flex flex-col gap-4 w-5/6"> 
-              {order.map(el => <Order order={el}/>)}
+              {order.map(el => <Order key={el.id} order={el}/>)}
             </div>
           </div>
         </div>

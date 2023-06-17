@@ -1,18 +1,18 @@
-import createClasses from '../../../utils/create-classes';
+import createClasses from '../../../../utils/create-classes';
 
-export default function ModelInput({
+export default function ProfileInput({
   placeholder,
   value,
   onChange,
   name,
 }) {
     const className = createClasses(
-        "w-full block border-b outline-none",
+        "w-full", "block border-b py-2 outline-none",
         "border-b-gray-300 focus:border-b-blue-500 focus:ring-b-blue-300"
       );
   return (
-    <div className='w-full'>
-      <p className="py-1 text-gray-800 font-medium">{placeholder}</p>
+    <div>
+      {/* <p className="py-2 text-gray-400">{placeholder}</p> */}
       <input
         type="text"
         className={className}
@@ -24,3 +24,4 @@ export default function ModelInput({
     </div>
   );
 }
+

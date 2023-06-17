@@ -2,6 +2,7 @@ import React from 'react'
 import SideBar from '../features/admin/layouts/SideBar'
 import UpdateCategories from '../features/admin/components/UpdateCategories'
 import UpdateModel from '../features/admin/components/UpdateModel'
+import PictureForm from '../features/admin/products/PictureForm'
 
 export default function AdminHomePage() {
   return (

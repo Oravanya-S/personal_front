@@ -13,6 +13,7 @@ import RedirectedAdmin from '../features/auth/components/RedirectedAdmin';
 import Models from '../pages/Models';
 import PaymentPage from '../pages/PaymentPage';
 import AddProductPage from '../pages/AddProductPage';
+import ProfilePage from '../pages/ProfilePage';
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
           {
             path: '/payment/:id',
             element: <PaymentPage />
+          },
+          {
+            path: '/profile/:id',
+            element: <ProfilePage />
           },
         ],
         errorElement: <NotFound />,

@@ -16,11 +16,11 @@ export default function ModelItem({item, nameType}) {
     const display = (isEditMode)? "block" : "hidden"
     return (
         <div key={item.id}>
-          <div className='flex flex-col w-full gap-4 border-[1px] border-gray-400 rounded-lg'>
+          <div className='flex flex-col w-full gap-4 border-[1px] border-gray-300 rounded-lg'>
                   <div className='flex flex-col text-lg border-b'>
                       {!isEditMode? 
                       <>
-                      <div className='flex justify-between items-center px-4 py-2'>
+                      <div className='flex justify-between items-center pl-8 pr-4 pt-4'>
                           <div className='flex gap-2'>
                             <p className='flex text-lg font-medium'>Model name:</p>
                             <p>{item.name}</p>
@@ -36,11 +36,11 @@ export default function ModelItem({item, nameType}) {
                                 <i className="fa-regular fa-trash-can text-2xl text-black p-2 cursor-pointer"></i>
                             </div>
                           </div>
-                      </div> 
-                      <div className='px-4'>
-                      <AddProduct category='color' idModel={item.id} idModelName={item.name}/>
+                      </div > 
+                      <div className='pl-4'>
+                        <AddProduct category='color' idModel={item.id} idModelName={item.name}/>
+                        <ProductListWithModel modelId={item.id}/>
                       </div>
-                      <ProductListWithModel modelId={item.id}/>
                       </>
                       :    
                       <div className={`flex flex-col gap-6 text-lg ${display}`}>        

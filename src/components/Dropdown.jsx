@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { LogoutIcon, OrderIcon } from "../icons";
+import { LogoutIcon, OrderIcon, PersonIcon } from "../icons";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/slice/auth-slice";
 import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Dropdown({user}) {
@@ -26,10 +25,21 @@ export default function Dropdown({user}) {
             <span className="text-base">History</span>
           </Link>
           <hr className="border border-gray-300 m-2" />
+          <Link to={`/profile/${user.id}`}
+            className="flex gap-4 items-center mx-1 p-2 hover:bg-gray-100 rounded-lg"
+            role="button" onClick={() => setOpen(false)}>
+            <div className="rounded-full flex justify-center items-center">
+              <PersonIcon />
+            </div>
+            <span className="text-base">Profile</span>
+          </Link>
+          <hr className="border border-gray-300 m-2" />
           <Link to='/' 
             className="flex gap-4 items-center mx-1 p-2 hover:bg-gray-100 rounded-lg text-red-900"
             role="button"
-            onClick={() => dispatch(logout())}>
+            onClick={() => {
+              setOpen(false) 
+              dispatch(logout())}}>
             <div className="flex justify-center items-center">
               <LogoutIcon />
             </div>

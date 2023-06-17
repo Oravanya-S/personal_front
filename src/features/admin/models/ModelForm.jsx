@@ -3,94 +3,52 @@ import ModelInput from "./ModelInput";
 import { useDispatch } from "react-redux";
 import { createModel, modelListAsync, productListAsync, updateModel } from "../../auth/slice/admin-slice";
 import SelectBagType from "../components/SelectBagType";
-import { toast } from 'react-toastify';
-import { FailIcon } from "../../../icons";
+import validateModel from '../../auth/validators/validate-model';
+import InputErrorMessage from '../../auth/components/inputErrorMessage';
 
 export default function ModelForm({
   textConFirm,
   onIsAddMode,
   oldModel,
-  nameType = "",
 }) {
-  const [name, setName] = useState(oldModel?.name || "");
-  const [brand, setBrand] = useState(oldModel?.brand || "");
-  const [meterial, setMeterial] = useState(oldModel?.meterial || "");
-  const [description, setDescription] = useState(oldModel?.description || "");
-  const [bagtypeId, setBagtypeId] = useState(oldModel?.bagTypeId || "");
+
+  const initialInput = {
+    name: oldModel?.name || '',
+    brand: oldModel?.brand || '',
+    meterial: oldModel?.meterial || '',
+    bagTypeId: oldModel?.bagTypeId || '',
+    description: oldModel?.description || ''
+  };
+
+  const [input, setInput] = useState(initialInput);
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
-  const validate = (text) => {
-    if (text.trim() === "") {
-      setError(true);
-      return false;
-    } else {
-      setError(false);
-      return true;
-    }
+  const handleChangeInput = e => {
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-  const handleChangeBrand = (e) => {
-    setBrand(e.target.value);
-  };
-
-  const handleChangeMeterial = (e) => {
-    setMeterial(e.target.value);
-  };
-
-  const handleChangeDescription = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleChangeBagtypeId = (e) => {
-    setBagtypeId(e.target.value);
-    
-  };
-
+  
   const handleSubmit = async (e) => {
-    try{
     e.preventDefault();
-    let validName = validate(name);
-    let validBrand = validate(brand);
-    let validMeterial = validate(meterial);
-    let validDesc = validate(description);
+    const result = validateModel(input);
+    if (result) {
+        return setError(result);
+    }
+    setError({});
 
-    if (validName && validBrand && validMeterial && validDesc && !oldModel) {
-      await dispatch(
-        createModel({
-          "name": name,
-          "brand": brand,
-          "meterial": meterial,
-          "description": description,
-          "bagTypeId": bagtypeId
-        })
-      );
-      onIsAddMode(false);
-       dispatch(modelListAsync())
-        dispatch(productListAsync())
-      
-    } else if(validName && validBrand && validMeterial && validDesc && oldModel) {
-      await dispatch(
-        updateModel(oldModel.id, {
-          "name": name,
-          "brand": brand,
-          "meterial": meterial,
-          "description": description,
-          "bagTypeId": bagtypeId
-        })
-      );
+    if (!oldModel) {
+      await dispatch(createModel(input));
       onIsAddMode(false);
       dispatch(modelListAsync())
       dispatch(productListAsync())
+      
+    } else if(oldModel) {
+      await dispatch(updateModel(oldModel.id, input))
+        onIsAddMode(false);
+        dispatch(modelListAsync())
+        dispatch(productListAsync())
     } 
-    } catch (err) {
-      toast.error(err,{
-        icon: <FailIcon />
-    })
-    }
   }
 
   return (
@@ -100,34 +58,54 @@ export default function ModelForm({
           <div className="flex flex-col text-lg">
             <div className={`flex flex-col gap-6 text-lg p-4`}>
               <div className="flex justify-between gap-10">
-                <ModelInput
-                  placeholder="Model"
-                  value={name}
-                  onChange={handleChangeName}
-                  name="name"
-                />
-                <ModelInput
-                  placeholder="Brand"
-                  value={brand}
-                  onChange={handleChangeBrand}
-                  name="brand"
-                />
-              </div>
+                <div className="w-full">
+                  <ModelInput
+                    placeholder="Model"
+                    value={input.name}
+                    onChange={handleChangeInput}
+                    name="name"
+                  />
+                  <div className='h-0 pb-2'> 
+                    {error.name && (<InputErrorMessage message={error.name} />)}
+                  </div>
+                </div>
+                <div className="w-full">
+                  <ModelInput
+                    placeholder="Brand"
+                    value={input.brand}
+                    onChange={handleChangeInput}
+                    name="brand"
+                  />
+                  <div className='h-0 pb-2'> 
+                    {error.brand && (<InputErrorMessage message={error.brand} />)}
+                  </div>
+                  </div>
+                </div>
 
               <div className="grid grid-cols-2 gap-10 items-center">
-                <ModelInput
-                  placeholder="Meterial"
-                  value={meterial}
-                  onChange={handleChangeMeterial}
-                  name="meterial"
-                />
-                <SelectBagType onChangeBagtype={handleChangeBagtypeId} valueId={bagtypeId}/>
+                <div className="w-full">
+                  <ModelInput
+                    placeholder="Meterial"
+                    value={input.meterial}
+                    onChange={handleChangeInput}
+                    name="meterial"
+                  />
+                  <div className='h-0 pb-2'> 
+                    {error.meterial && (<InputErrorMessage message={error.meterial} />)}
+                  </div>
+                </div>
+                <div className="w-full">
+                  <SelectBagType onChange={handleChangeInput} valueId={input.bagTypeId}/>
+                  <div className='h-0 ml-[88px] pb-2'> 
+                    {error.bagTypeId && (<InputErrorMessage message={error.bagTypeId} />)}
+                  </div>
+                </div>
               </div>
 
               <div>
                 <label
                   htmlFor="description"
-                  className="block mb-2 text-gray-800 dark:text-white font-medium"
+                  className="block mb-2 pt-2 text-gray-800 dark:text-white font-medium"
                 >
                   Description
                 </label>
@@ -137,9 +115,12 @@ export default function ModelForm({
                   rows="3"
                   className="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Write your product description..."
-                  value={description}
-                  onChange={handleChangeDescription}
+                  value={input.description}
+                  onChange={handleChangeInput}
                 ></textarea>
+                <div className='h-0 pb-4'> 
+                    {error.description && (<InputErrorMessage message={error.description} />)}
+                  </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">

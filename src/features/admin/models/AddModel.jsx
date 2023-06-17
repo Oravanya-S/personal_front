@@ -8,7 +8,7 @@ export default function AddModel({category = "", nameType = ""}) {
     <div className=''>
         {(isAddMode)? (
             <div className='flex flex-col w-full gap-4'>
-                <div className='flex flex-col text-lg rounded-3xl border font-medium'>
+                <div className='flex flex-col text-lg rounded-3xl border'>
                     <ModelForm textConFirm={`Add`} onIsAddMode={setIsAddMode} nameType={nameType}/>
                 </div>
             </div>) : (

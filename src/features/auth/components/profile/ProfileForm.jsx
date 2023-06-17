@@ -1,12 +1,11 @@
 import React from 'react'
 import { toast } from 'react-toastify';
-import RegisterInput from './RegisterInput'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerAsync } from '../slice/auth-slice';
-import { FailIcon, SuccessIcon } from '../../../icons';
-import InputErrorMessage from './inputErrorMessage';
-import validateRegister from '../validators/validate-register';
+import { FailIcon, SuccessIcon } from '../../../../icons';
+import InputErrorMessage from '../inputErrorMessage';
+import validateProfile from '../../../auth/validators/validate-profile'
+import ProfileInput from './ProfileInput';
 
 const initialInput = {
     firstName: '',
@@ -17,7 +16,7 @@ const initialInput = {
 };
   
 
-export default function RegisterForm({open, onClose}) {
+export default function ProfileForm({open, onClose}) {
     const [input, setInput] = useState(initialInput);
     const [error, setError] = useState({});
     const dispatch = useDispatch();
@@ -29,7 +28,7 @@ export default function RegisterForm({open, onClose}) {
     const handleSubmitForm = async e => {
         try {
           e.preventDefault();
-          const result = validateRegister(input);
+          const result = validateProfile(input);
           if (result) {
             return setError(result);
           }
@@ -51,19 +50,9 @@ export default function RegisterForm({open, onClose}) {
 
     <form onSubmit={handleSubmitForm}>
         <div className='flex flex-col gap-12 w-full'>
-                <div>
-                    <p className='font-medium text-xl'>Welcome</p>            
-                    <hr className='border-1 border-black mt-6'/>
-                </div>  
                 <div className='flex flex-col gap-4 text-base'>
-                    <div className='flex justify-between group pb-4'>
-                        <p>Create your accout below</p>
-                        <div className='cursor-pointer flex gap-2 items-center' onClick={open}>
-                            <p className="group hover:underline underline-offset-8">Back to login</p>
-                        </div>
-                    </div>    
                     <div>
-                    <RegisterInput
+                    <ProfileInput
                         name="email"
                         placeholder="Email address"
                         value={input.email}
@@ -78,7 +67,7 @@ export default function RegisterForm({open, onClose}) {
 
                     <div className='grid grid-cols-2 gap-12'>
                         <div>
-                            <RegisterInput
+                            <ProfileInput
                                 name="password"
                                 placeholder="Password"
                                 value={input.password}
@@ -90,7 +79,7 @@ export default function RegisterForm({open, onClose}) {
                             </div>  
                         </div>
                         <div>
-                            <RegisterInput
+                            <ProfileInput
                                 name="confirmPassword"
                                 placeholder="Confirm password"
                                 value={input.confirmPassword}
@@ -105,7 +94,7 @@ export default function RegisterForm({open, onClose}) {
 
                     <div className='grid grid-cols-2 gap-12'>
                         <div>
-                            <RegisterInput
+                            <ProfileInput
                                 name="firstName"
                                 placeholder="First name"
                                 value={input.firstName}
@@ -117,7 +106,7 @@ export default function RegisterForm({open, onClose}) {
                             </div>
                         </div>
                         <div>
-                            <RegisterInput
+                            <ProfileInput
                             name="lastName"
                             placeholder="Last name"
                             value={input.lastName}
@@ -137,3 +126,4 @@ export default function RegisterForm({open, onClose}) {
     </form>
   )
 }
+

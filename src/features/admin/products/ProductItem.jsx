@@ -19,14 +19,10 @@ export default function ProductItem({item, nameType}) {
                       {!isEditMode? <div className='flex justify-between items-center px-4 py-2 text-lg'>
                           <div className='flex gap-8'>
                             <div className='flex gap-3'>
-                                {/* <p className='font-medium'>Model:</p>
-                                <span className='w-[120px]'>{item.Model?.name}</span> */}
                             </div>
-
                             <div className='flex gap-3'>
                                 <span className='w-6 h-6 rounded-full border' style={{backgroundColor: `${item.Color?.hexcode}`}}></span>                  
                                 <span className='w-[150px]'>{item.Color?.name}</span>
-                                {/* <p className='font-medium'>Color:</p> */}
                             </div>
 
                             <div className='flex gap-3'>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ProductInput from "./ProductInput";
-import SelectGroupColor from "../components/SelectGroupColor";
 import SelectColor from "../components/SelectColor";
-import SelectModel from "../components/SelectModel";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, updateProduct, productListAsync, modelListAsync } from "../../auth/slice/admin-slice";
+import validateModel from '../../auth/validators/valid-product';
+import InputErrorMessage from '../../auth/components/inputErrorMessage';
+import Loading from '../../../components/Loading';
 
 export default function ProductForm({
     textConFirm,
@@ -14,48 +15,35 @@ export default function ProductForm({
     idModelName,
 }) {
 
-    const [modelId, setModelId] = useState(oldProduct?.modelId|| idModel);
-    const [colorId, setColorId] = useState(oldProduct?.colorId || "");
-    const [price, setPrice] = useState(oldProduct?.price || "");
-    const [stock, setStock] = useState(oldProduct?.stock || "");
-    const [image, setImage] = useState(oldProduct?.bagTypeId || 1);
+    const initialInput = {
+      modelId: oldProduct?.modelId|| idModel,
+      colorId: oldProduct?.colorId || "",
+      price: oldProduct?.price || "",
+      stock: oldProduct?.stock || "",
+      image: oldProduct?.image || ""
+    };
+
+    const [input, setInput] = useState(initialInput);
     const [error, setError] = useState(false);
     const dispatch = useDispatch();
 
-    const handleChangePrice = (e) => {
-        setPrice(e.target.value);
+    const handleChangeInput = e => {
+      setInput({ ...input, [e.target.name]: e.target.value });
     };
-
-    const handleChangeStock = (e) => {
-        setStock(e.target.value);
-    };
-
-    const handleChangeColorId = (e) => {
-        setColorId(e.target.value);
-    };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const result = validateModel(input);
+        if (result) {
+          return setError(result);
+        }
+        setError({});
+
         if (!oldProduct) {
-           await dispatch(
-              createProduct({
-                "modelId": modelId,
-                "colorId": colorId,
-                "stock": stock ,
-                "price": price,
-                "image": ""
-              })
-            );
+           await dispatch(createProduct(input));
             onIsAddMode(false);
           } else if(oldProduct) {
-            await dispatch(
-              updateProduct(oldProduct.id, {
-                "stock": stock ,
-                "price": price,
-                "image": ""
-              })
-            );
+            await dispatch(updateProduct(oldProduct.id, {"stock": input.stock , "price": input.price, "image": input.image}));
             onIsAddMode(false);
           }
       
@@ -65,52 +53,80 @@ export default function ProductForm({
   return (
     <form onSubmit={handleSubmit} className="flex justify-center border rounded-3xl">
       <div className="flex flex-col w-full gap-4">
-        <div className="flex flex-col text-lg rounded-3xl">
-          <div className="flex flex-col gap-1 text-lg">
-            <div className={`flex flex-col gap-8 text-lg p-4`}>
+        <div className="flex flex-col text-md rounded-3xl">
+          <div className="flex flex-col gap-1">
+            <div className={`flex flex-col gap-8 p-4`}>
               <div className="grid grid-cols-2 gap-10">
-                <div className="border w-full cursor-pointer">
-                  <input type="file" accept="image/*" />
-                </div>
+                
+                  <div className="flex flex-col">
+                  
+                    <label for="dropzone-file" class="h-full flex items-center justify-center rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" />
+                    </label>
+                
+                    <div className='h-4 mx-auto '> 
+                        {error.image && (<InputErrorMessage message={error.image} />)}
+                    </div>
+                  </div>
+                
 
-                <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-3 w-full">
                   <div className="flex gap-4 w-full">
                     {oldProduct? 
                     (<div className="flex items-center gap-2">
-                        {/* <p className="dark:text-white font-medium w-[60px]">Model:</p>
-                        <span className='w-[120px]'>{oldProduct.Model.name}</span> */}
+                        <></>
                     </div>)
                     : 
                     (
                     <div className="flex items-center gap-2">
                       <p className="dark:text-white font-medium w-[60px]">Model:</p>
-                      <p>{idModelName}</p>
+                      <p className="font-normal">{idModelName}</p>
                     </div>)}
                   </div>
 
                   <div className="flex gap-4 w-full">
                     {oldProduct? 
-                        (<div className="flex items-center gap-2">
+                        (<div className="flex items-center gap-2 mb-2">
                             <p className="dark:text-white font-medium w-[60px]">Color:</p>
                             <span className='w-6 h-6 rounded-full border' style={{backgroundColor: `${oldProduct.Color.hexcode}`}}></span>                  
-                            <span className='w-[150px]'>{oldProduct.Color.name}</span>
+                            <span className='w-[150px] '>{oldProduct.Color.name}</span>
                         </div>)
-                        : <SelectColor onChangeColor={handleChangeColorId} valueId={colorId}/>}
+                        : (<div className="flex gap-4 pt-1 pb-2">
+                            <SelectColor onChange={handleChangeInput} valueId={input.colorId}/>
+                            <div className='h-4'> 
+                              {error.colorId && (<InputErrorMessage message={error.colorId} />)}
+                            </div>
+                          </div>)}
                   </div>
-
-                  <ProductInput
-                  placeholder="Price"
-                  value={price}
-                  onChange={handleChangePrice}
-                  name="price"
-                  />
-
-                  <ProductInput
-                  placeholder="Stock"
-                  value={stock}
-                  onChange={handleChangeStock}
-                  name="stock"
-                  />    
+                  
+                  <div>
+                    <ProductInput
+                    placeholder="Price"
+                    value={input.price}
+                    onChange={handleChangeInput}
+                    name="price"
+                    />
+                    <div className='h-4 ml-[75px]'> 
+                      {error.price && (<InputErrorMessage message={error.price} />)}
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <ProductInput
+                    placeholder="Stock"
+                    value={input.stock}
+                    onChange={handleChangeInput}
+                    name="stock"
+                    />    
+                    <div className='h-4 ml-[75px]'> 
+                      {error.stock && (<InputErrorMessage message={error.stock} />)}
+                    </div>
+                  </div>
                 </div>
                 
               </div>
