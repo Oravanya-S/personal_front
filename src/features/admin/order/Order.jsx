@@ -7,7 +7,6 @@ export default function Order({order}) {
   const [accordian, setAccordian] = useState(false)
   // console.log(order.OrderItems)
   const orderItem = order.OrderItems
-  console.log(orderItem)
   let totolAmount, sumPrice;
     if (orderItem.length > 0) {
         totolAmount = orderItem.reduce((acc,el)=>{

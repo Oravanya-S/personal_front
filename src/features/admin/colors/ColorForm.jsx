@@ -15,7 +15,6 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
     name: oldColor?.name ||'',
   };
   
-  
   if (oldColor) {
     initialInput.groupColorId = oldColor.GroupColor.id
     initialInput.hexcode = oldColor.hexcode
@@ -27,14 +26,12 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
     const dispatch = useDispatch()
 
     const handleChangeInput = e => {
-      console.log(input)
       setInput({ ...input, [e.target.name]: e.target.value });
     };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = validateColor(input);
-    console.log("re", result)
     if (result) {
         return setError(result);
     }

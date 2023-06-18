@@ -3,7 +3,7 @@ import ProductInput from "./ProductInput";
 import SelectColor from "../components/SelectColor";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, updateProduct, productListAsync, modelListAsync } from "../../auth/slice/admin-slice";
-import validateModel from '../../auth/validators/valid-product';
+import validateProduct from '../../auth/validators/validate-product';
 import InputErrorMessage from '../../auth/components/inputErrorMessage';
 import Loading from '../../../components/Loading';
 
@@ -33,7 +33,7 @@ export default function ProductForm({
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const result = validateModel(input);
+        const result = validateProduct(input);
         if (result) {
           return setError(result);
         }

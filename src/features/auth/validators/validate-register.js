@@ -17,7 +17,7 @@ const registerSchema = Joi.object({
     .messages({
       'string.empty': 'Password is required.',
       'string.pattern.base':
-        'Password must be at least 6 characters and contain only alphabet and number.'
+        'Password must be at least 6 characters and contains only alphabet and number.'
     }),
   confirmPassword: Joi.string().valid(Joi.ref('password')).messages({
     'any.only': 'Passwords do not match.',

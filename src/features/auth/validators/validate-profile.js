@@ -10,19 +10,8 @@ const profileSchema = Joi.object({
   email: Joi.string().email({ tlds: false }).messages({
     'string.email': 'Must be a valid email'
   }),
-  password: Joi.string()
-    .pattern(/^[a-zA-Z0-9]{6,30}$/)
-    .trim()
-    .required()
-    .messages({
-      'string.empty': 'Password is required.',
-      'string.pattern.base':
-        'Password must be at least 6 characters and contain only alphabet and number.'
-    }),
-  confirmPassword: Joi.string().valid(Joi.ref('password')).messages({
-    'any.only': 'Passwords do not match.',
-    'string.empty': 'Confirm password is required.'
-  })
+  address: Joi.string().trim().optional().allow('').messages({
+  }),
 });
 
 const validateProfile = input => {
@@ -36,3 +25,18 @@ const validateProfile = input => {
   };
   
   export default validateProfile;
+
+
+  // password: Joi.string()
+  //   .pattern(/^[a-zA-Z0-9]{6,30}$/)
+  //   .trim()
+  //   .required()
+  //   .messages({
+  //     'string.empty': 'Password is required.',
+  //     'string.pattern.base':
+  //       'Password must be at least 6 characters and contain only alphabet and number.'
+  //   }),
+  // confirmPassword: Joi.string().valid(Joi.ref('password')).messages({
+  //   'any.only': 'Passwords do not match.',
+  //   'string.empty': 'Confirm password is required.'
+  // })

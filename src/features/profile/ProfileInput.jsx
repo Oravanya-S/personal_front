@@ -1,4 +1,4 @@
-import createClasses from '../../../../utils/create-classes';
+import createClasses from '../../utils/create-classes';
 
 export default function ProfileInput({
   placeholder,
@@ -12,7 +12,7 @@ export default function ProfileInput({
       );
   return (
     <div>
-      {/* <p className="py-2 text-gray-400">{placeholder}</p> */}
+      <p className="pb-2 text-gray-400">{placeholder}</p>
       <input
         type="text"
         className={className}
