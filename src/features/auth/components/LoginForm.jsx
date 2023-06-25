@@ -2,7 +2,7 @@ import React from 'react'
 import LoginInput from './LoginInput';
 import { toast } from 'react-toastify';
 import validateLogin from '../validators/validate-login';
-import InputErrorMessage from './InputErrorMessage';
+import InputErrorMessage from './inputErrorMessage';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

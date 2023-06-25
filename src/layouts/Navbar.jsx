@@ -51,7 +51,7 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
 
     return ( 
     <div>
-      {(role==1)? "" : <div className='max-w-[1440px] relative z-20 mx-auto'>
+      {(role==1)? <></> : <div className='max-w-[1440px] relative z-20 mx-auto'>
         <div className={`sticky z-${(openSignIn || openSignUp)? 20: 30} border`}>
           <nav className={`flex justify-between px-10 items-center bg-${bgColor} h-24`}>
               <div>
