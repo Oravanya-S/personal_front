@@ -12,7 +12,7 @@ export default function BagList() {
     },[]) 
     
   return (
-    <div className='flex flex-col gap-2 py-1'>
+    <div className='flex flex-col gap-2'>
         {bagType.map(item=> <BagItem item={item} key={item.id} nameType="Type"/>)}
     </div>
   )

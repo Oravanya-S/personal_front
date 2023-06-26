@@ -13,7 +13,7 @@ export default function ColorList() {
 
   return (
     <>
-        {color.map(item => <div className='flex flex-col gap-2 py-1' key={item.id}><ColorItem item={item} nameType="Color"/></div>)}
+        {color.map(item => <div key={item.id}><ColorItem item={item} nameType="Color"/></div>)}
     </>
   )
 }

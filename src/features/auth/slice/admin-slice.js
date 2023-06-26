@@ -120,11 +120,11 @@ const adminSlice = createSlice({
     },
     addProduct: (state, action) => {
       const newProduct = action.payload;
+      console.log("first",newProduct)
       state.productList.unshift(newProduct);
     },
     removeProduct: (state, action) => {
       const { productId, updateProduct } = action.payload;
-      console.log(state.productList)
       state.productList = state.productList.filter((product) => product.id != productId);
     },
     editProduct: (state, action) => {
@@ -301,8 +301,10 @@ export function updateModel(modelId, updateModelObj) {
 export function createProduct(newProductObj) {
   return async (dispatch) => {
     try {
+      console.log("dddd", newProductObj)
       const response = await adminService.createProduct(newProductObj);
-      dispatch(addProduct(response.data));
+      console.log("dddd2")
+      await dispatch(addProduct(response.data));
     } catch (error) {
       console.log(error);
     }

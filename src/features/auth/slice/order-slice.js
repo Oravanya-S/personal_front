@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as orderService from '../../../api/order-api';
 
 const initialState = {
-    orderList: []
+    orderList: [],
+    orderListAll: []
 };
 
 export const orderListAsync = createAsyncThunk(
@@ -17,6 +18,18 @@ export const orderListAsync = createAsyncThunk(
     }
 );
 
+export const orderListAllAsync = createAsyncThunk(
+  "order/orderListAllAsync",
+  async (_, thunkApi) => {
+    try {
+      const res = await orderService.orderAll();
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
 const orderSlice = createSlice({
     name: 'order',
     initialState,
@@ -28,6 +41,12 @@ const orderSlice = createSlice({
           state.orderList = action.payload;
         })
         .addCase(orderListAsync.rejected, (state, action) => {
+          state.error = action.payload;
+        })
+        .addCase(orderListAllAsync.fulfilled, (state, action) => {
+          state.orderListAll = action.payload;
+        })
+        .addCase(orderListAllAsync.rejected, (state, action) => {
           state.error = action.payload;
         })
   });

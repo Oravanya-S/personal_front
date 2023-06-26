@@ -40,7 +40,6 @@ export default function ModelForm({
     if (!oldModel) {
       await dispatch(createModel(input));
       onIsAddMode(false);
-      dispatch(modelListAsync())
       dispatch(productListAsync())
       
     } else if(oldModel) {
@@ -56,7 +55,7 @@ export default function ModelForm({
       <form onSubmit={handleSubmit} className="flex justify-center">
         <div className="flex flex-col w-full gap-4">
           <div className="flex flex-col text-lg">
-            <div className={`flex flex-col gap-6 text-lg p-4`}>
+            <div className={`flex flex-col gap-6 text-lg p-6`}>
               <div className="flex justify-between gap-10">
                 <div className="w-full">
                   <ModelInput
@@ -113,7 +112,7 @@ export default function ModelForm({
                   id="description"
                   name="description"
                   rows="3"
-                  className="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  className="block p-2.5 w-full text-gray-900 bg-[#fffffff1] rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Write your product description..."
                   value={input.description}
                   onChange={handleChangeInput}
@@ -138,6 +137,7 @@ export default function ModelForm({
                   cancel
                 </div>
               </div>
+              {oldModel? <hr/> : <></>}
             </div>
           </div>
         </div>

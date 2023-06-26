@@ -16,11 +16,11 @@ export default function ProductForm({
 }) {
 
     const initialInput = {
-      modelId: oldProduct?.modelId|| idModel,
+      modelId: oldProduct?.modelId || idModel,
       colorId: oldProduct?.colorId || "",
       price: oldProduct?.price || "",
       stock: oldProduct?.stock || "",
-      image: oldProduct?.image || ""
+      image: "tutu",
     };
 
     const [input, setInput] = useState(initialInput);
@@ -40,6 +40,8 @@ export default function ProductForm({
         setError({});
 
         if (!oldProduct) {
+          console.log("firstxxx", input)
+           await dispatch(modelListAsync());
            await dispatch(createProduct(input));
             onIsAddMode(false);
           } else if(oldProduct) {
@@ -51,7 +53,7 @@ export default function ProductForm({
     }
 
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center border rounded-3xl">
+    <form onSubmit={handleSubmit} className="flex justify-center border rounded-2xl my-2">
       <div className="flex flex-col w-full gap-4">
         <div className="flex flex-col text-md rounded-3xl">
           <div className="flex flex-col gap-1">

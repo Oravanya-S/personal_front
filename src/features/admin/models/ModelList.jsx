@@ -11,8 +11,8 @@ export default function ModelList() {
   },[]) 
 
   return (
-    <>
-        {model.map(item => <div className='flex flex-col py-2' key={item.id}><ModelItem item={item}/></div>)}
-    </>
+    <div className='flex flex-col gap-6'>
+        {model.map(item => <div className='flex flex-col' key={item.id}><ModelItem item={item}/></div>)}
+    </div>
   )
 }

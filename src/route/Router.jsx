@@ -14,6 +14,9 @@ import Models from '../pages/Models';
 import PaymentPage from '../pages/PaymentPage';
 import AddProductPage from '../pages/AddProductPage';
 import ProfilePage from '../pages/ProfilePage';
+import AddColorPage from '../pages/AddColorPage';
+import AddBagtypePage from '../pages/AddBagtypePage';
+import OrderPage from '../pages/OrderPage';
 
 const router = createBrowserRouter([
     {
@@ -32,18 +35,35 @@ const router = createBrowserRouter([
                     </RedirectedAdmin>)
           },
           {
+            path: '/admin/color',
+            element: (<ProtectedRoute>
+                      <AddColorPage /> 
+                    </ProtectedRoute>)
+          },
+          {
             path: '/admin/update',
             element: (<ProtectedRoute>
                       <AddProductPage />
                     </ProtectedRoute>)
           },
           {
-            path: '/admin',
+            path: '/admin/order',
             element: (<ProtectedRoute>
-                      <AdminHomePage /> 
+                      <OrderPage />  
                     </ProtectedRoute>)
           },
-          
+          {
+            path: '/admin',
+            element: (<ProtectedRoute>
+                      <AdminHomePage />  
+                    </ProtectedRoute>)
+          },
+          {
+            path: '/admin/bagtypes',
+            element: (<ProtectedRoute>
+                      <AddBagtypePage /> 
+                    </ProtectedRoute>)
+          },
           {
             path: '/models/:modelId',
             element: <Models />

@@ -1,5 +1,5 @@
 import React from "react";
-import { AddIcon, BagIcon, CategoryIcon, DetailIcon, LogoutIcon, ModelIcon, OnePersonIcon, OrderIcon, SittingIcon, UpdateIcon } from "../../../icons";
+import { AddIcon, BagIcon, BagIcon2, CategoryIcon, ColorIcon, DetailIcon, DropdownIcon, LogoutIcon, ModelIcon, OnePersonIcon, OrderIcon, SittingIcon, UpdateIcon } from "../../../icons";
 import { logout } from "../../auth/slice/auth-slice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ export default function SideBar() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col h-full justify-between border-e bg-white shadow-lg text-black">
+    <div className="flex flex-col h-full justify-between border-r bg-white text-black">
       <div className="px-4">
         <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
           <a
@@ -29,27 +29,24 @@ export default function SideBar() {
                 <span className="text-lg font-medium"> Categories </span>
               </div>
               <span className="shrink-0 transition duration-300 group-open:-rotate-180">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <DropdownIcon />
                 </span>
             </summary>
 
-            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4" onClick={()=> navigate("/admin")}>
+            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4">
               <div
                 className="flex items-center gap-2 cursor-pointer rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                onClick={()=> navigate("/admin/color")}
               >
-                <UpdateIcon />
-                <span className="text-base font-medium"> Update categories </span>
+                <ColorIcon />
+                <span className="text-base font-medium"> Colors</span>
+              </div>
+              <div
+                className="flex items-center gap-2 cursor-pointer rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                onClick={()=> navigate("/admin/bagtypes")}
+              >
+                <BagIcon2 />
+                <span className="text-base font-medium"> Bag types</span>
               </div>
             </nav>
           </details>
@@ -62,18 +59,7 @@ export default function SideBar() {
               </div>
 
               <span className="shrink-0 transition duration-300 group-open:-rotate-180">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <DropdownIcon />
               </span>
             </summary>
             
@@ -86,13 +72,12 @@ export default function SideBar() {
                 <span className="text-base font-medium"> Add products </span>
               </Link>
 
-              <a
-                href="#"
+              <Link to='/admin/order'
                 className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 <OrderIcon />
                 <span className="text-base font-medium"> Orders</span>
-              </a>
+              </Link>
             </nav>
           </details>
 
@@ -105,18 +90,7 @@ export default function SideBar() {
               </div>
 
               <span className="shrink-0 transition duration-300 group-open:-rotate-180">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <DropdownIcon />
               </span>
             </summary>
 

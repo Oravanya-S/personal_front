@@ -4,8 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+*::-webkit-scrollbar {
+  width: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: #eeeeee;
+  border-radius: 2px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 2px;
+  border: 3px solid #ccc;
+}
+
+
 :root {
-  --headerHeight: 96px
+  --headerHeight: 96px,
+  --brown: #7D6352
 }
 
 html {

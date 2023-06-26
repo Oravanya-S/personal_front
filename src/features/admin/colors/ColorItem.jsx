@@ -17,7 +17,7 @@ export default function ColorItem({item, nameType}) {
             
             <div className='flex items-end gap-2'>
                 <p className='font-medium'>Group color:</p>
-                <p className='min-w-[100px] px-[5px]'>{item.GroupColor?.name}</p>
+                <p className='min-w-[100px] px-[4.5px] pt-[2px]'>{item.GroupColor?.name}</p>
             </div>
                     
             <div className='flex items-center gap-2'>

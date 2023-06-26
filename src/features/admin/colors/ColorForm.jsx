@@ -49,7 +49,7 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
 
   return (
     <form onSubmit={handleSubmit}>
-        <div className='flex items-center gap-8 text-lg border-b px-3 min-h-[70px]'>
+        <div className={`flex items-center gap-8 text-lg border-b px-3 min-h-[70px] ${(!oldColor? "pb-4" : "")}`}>
                     <SelectGroupColor onChangeGroup={handleChangeInput} valueId={input.groupColorId} error={error}/>
                     <div className='flex items-center gap-2'>
                     <label htmlFor='colorCode' className='w-20 font-medium'>Shade:</label>

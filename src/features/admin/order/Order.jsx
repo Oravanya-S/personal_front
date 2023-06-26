@@ -5,7 +5,6 @@ import { useState } from 'react'
 export default function Order({order}) {
 
   const [accordian, setAccordian] = useState(false)
-  // console.log(order.OrderItems)
   const orderItem = order.OrderItems
   let totolAmount, sumPrice;
     if (orderItem.length > 0) {
@@ -47,7 +46,7 @@ export default function Order({order}) {
                     <p className='text-gray-500'>VAT included</p>
                   </div>
                   <div className='flex flex-col items-end'>
-                    <div className='text-3xl font-semibold'>฿ {sumPrice}</div>
+                    <div className='text-2xl font-semibold'>฿ {sumPrice}</div>
                     <p className='text-gray-500 text-base'>{`(${totolAmount} ${totolAmount>1? "pieces" : "piece"})`}</p>
                   </div>
                 </div>
@@ -59,6 +58,11 @@ export default function Order({order}) {
                 <div className='flex items-center justify-between '>
                   <p className='font-medium text-xl w-[100px]'>SHIP TO</p>
                   <p>{order.address}</p>
+                </div>
+
+                <div className='flex items-center justify-between '>
+                  <p className='font-medium text-xl w-[100px]'>Receiver</p>
+                  <p>{order.User?.firstName} {order.User?.lastName}</p>
                 </div>
               </div>
             </div>}

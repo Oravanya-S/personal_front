@@ -38,17 +38,20 @@ export default function BagForm({textConFirm, onIsAddMode, oldBagType, nameType}
 
   return (
     <form onSubmit={handleSubmit}>
-        <div className='flex items-center gap-8 text-lg border-b px-3 min-h-[65px]'>
-                <div className='flex items-center gap-2 flex-1 py-1 placeholder:text-sm'>
-                    <label htmlFor='color_name' className='font-medium'>Name {nameType}:</label>
+        <div className={`flex items-center gap-8 text-lg border-b px-3 min-h-[70px] ${(!oldBagType? "" : "")}`}>
+                <div className='flex items-center gap-2 flex-1'>
+                    <div className='flex flex-col'>
+                      <label htmlFor='color_name' className='font-medium'>Name {nameType}:</label>
+                      <div className='py-1'></div>
+                    </div>
                     <div className='flex flex-col'>
                         <input id='color_name' type="text" 
-                        className='block w-full border-b border-b-gray-300 outline-none focus:border-black focus:ring-blue-200' 
+                        className='block w-full pt-[1px] border-b border-b-gray-300 outline-none focus:border-black focus:ring-blue-200' 
                         placeholder={`Enter ${nameType}`}
                         value={name}
                         onChange={handleChangeName}/>
-                        {error? <div className='h-0 boder text-red-500 text-xs'>Bagtype name is required.</div>
-                         : <></>}
+                        {error? <div className='h-[0px] py-1 text-red-500 text-xs'>Bagtype name is required.</div>
+                         : <div className='py-1'></div>}
                     </div>
                 </div>
                 <div className='flex items-center gap-2'>

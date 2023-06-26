@@ -14,8 +14,8 @@ export default function SelectGroupColor({valueId, onChangeGroup, error}) {
     <div className='flex flex-col'>
     <div className='flex items-end gap-2'>
         <label htmlFor="groupColorId" className="dark:text-white font-medium">Group color:</label>
-        <select className='min-w-[100px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700' name="groupColorId" id="groupColorId" onChange={onChangeGroup}>
-          <option disabled selected value>Select</option>
+        <select value={valueId} className='min-w-[100px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700' name="groupColorId" id="groupColorId" onChange={onChangeGroup}>
+          <option disabled hidden value={""}>Select</option>
             {groupColor.map(el => ((el.id==valueId)? <option selected value={el.id}>{el.name}</option> : <option value={el.id}>{el.name}</option>))}
         </select>
     </div>

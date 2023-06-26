@@ -18,16 +18,17 @@ export default function SelectColor({ valueId, onChange}) {
         className="min-w-[160px]  m-0 text-lg rounded-lg border border-gray-400 text-gray-700 font-normal"
         name="colorId"
         id="colorId"
+        value={valueId}
         onChange={onChange}
       >
-        <option disabled selected value>Select color</option>
+        <option disabled hidden value={""}>Select color</option>
         {color.map((el) =>
           el.id == valueId ? (
-            <option selected value={el.id}>
+            <option selected value={el.id} key={el.id}>
               {el.name}
             </option>
           ) : (
-            <option value={el.id}>
+            <option value={el.id} key={el.id}>
                 {el.name}
             </option>
           )
