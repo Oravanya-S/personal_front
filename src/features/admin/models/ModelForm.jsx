@@ -112,7 +112,7 @@ export default function ModelForm({
                   id="description"
                   name="description"
                   rows="3"
-                  className="block p-2.5 w-full text-gray-900 bg-[#fffffff1] rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                  className="block p-2.5 w-full text-gray-900 bg-[#fff] rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Write your product description..."
                   value={input.description}
                   onChange={handleChangeInput}

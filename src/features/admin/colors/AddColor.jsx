@@ -5,7 +5,7 @@ export default function AddColor({category = "", nameType = ""}) {
     const [isAddMode, setIsAddMode] = useState(false)
 
   return (
-    <div>
+    <div className='bg-white'>
         {(isAddMode)? (
         <div>
             <ColorForm textConFirm={`Add`} onIsAddMode={setIsAddMode} nameType={nameType}/>

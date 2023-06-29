@@ -3,8 +3,7 @@ import SelectGroupColor from '../components/SelectGroupColor'
 import { useDispatch } from 'react-redux';
 import { colorListAsync, createColor, groupColorListAsync, updateColor } from '../../auth/slice/admin-slice';
 import validateColor from '../../auth/validators/validate-color';
-import InputErrorMessage from '../../auth/components/inputErrorMessage';
-
+import InputErrorMessage from '../../auth/components/InputErrorMessage';
 
 
 export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}) {
@@ -39,9 +38,10 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
 
     if (!oldColor) {
       await dispatch(createColor(input))
-        onIsAddMode(false);
+      onIsAddMode(false);
     } else if (oldColor) {
       await dispatch(updateColor(oldColor.id, input))
+      onIsAddMode(false);
     }
       await dispatch(groupColorListAsync())
       await dispatch(colorListAsync())

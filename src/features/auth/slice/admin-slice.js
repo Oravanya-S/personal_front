@@ -5,10 +5,12 @@ const initialState = {
   bagTypeList: [],
   groupColorList: [],
   colorList: [],
+  colorListFilter: [],
+  searchColorValue: "",
   modelList: [],
   productList: [],
   error: null,
-  loading: false,
+  isLoading: false,
   user: null,
   initialLoading: false,
 };
@@ -95,15 +97,24 @@ const adminSlice = createSlice({
     removeColor: (state, action) => {
       const colorId = action.payload;
       state.colorList = state.colorList.filter((color) => color.id != colorId);
+      state.colorListFilter = state.colorList.filter((color) => color.id != colorId);
     },
     addColor: (state, action) => {
       const newColor = action.payload;
       state.colorList.unshift(newColor);
+      state.colorListFilter.unshift(newColor);
     },
     editColor: (state, action) => {
       const { colorId, updateColorObj } = action.payload;
       const index = state.colorList.findIndex((el) => el.id == colorId);
       state.colorList[index] = updateColorObj;
+      state.colorListFilter[index] = updateColorObj;
+    },
+    searchColor: (state, action) => {
+      const searchValue = action.payload
+      state.searchColorValue = action.payload;
+      console.log("value", searchValue)
+      state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(searchValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(searchValue.toLowerCase()))
     },
     addModel: (state, action) => {
       const newModel = action.payload;
@@ -137,43 +148,48 @@ const adminSlice = createSlice({
     builder
       .addCase(bagTypeListAsync.fulfilled, (state, action) => {
         state.bagTypeList = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
       .addCase(bagTypeListAsync.rejected, (state, action) => {
         state.error = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
       .addCase(groupColorListAsync.fulfilled, (state, action) => {
         state.groupColorList = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
       .addCase(groupColorListAsync.rejected, (state, action) => {
         state.error = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
+
       .addCase(colorListAsync.fulfilled, (state, action) => {
         state.colorList = action.payload;
-        state.initialLoading = false;
+        if(state.searchColorValue.trim() === "") state.colorListFilter = state.colorList
+        else {
+          state.colorListFilter = action.payload.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
+        }
+        state.isLoading = false;
       })
       .addCase(colorListAsync.rejected, (state, action) => {
         state.error = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
       .addCase(modelListAsync.fulfilled, (state, action) => {
         state.modelList = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
       .addCase(modelListAsync.rejected, (state, action) => {
         state.error = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
       .addCase(productListAsync.fulfilled, (state, action) => {
         state.productList = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
       .addCase(productListAsync.rejected, (state, action) => {
         state.error = action.payload;
-        state.initialLoading = false;
+        state.isLoading = false;
       })
 });
 
@@ -186,6 +202,7 @@ export const {
   removeColor,
   addColor,
   editColor,
+  searchColor,
   addModel,
   removeModel,
   editModel,
@@ -301,9 +318,7 @@ export function updateModel(modelId, updateModelObj) {
 export function createProduct(newProductObj) {
   return async (dispatch) => {
     try {
-      console.log("dddd", newProductObj)
       const response = await adminService.createProduct(newProductObj);
-      console.log("dddd2")
       await dispatch(addProduct(response.data));
     } catch (error) {
       console.log(error);
