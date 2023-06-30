@@ -135,18 +135,19 @@ const adminSlice = createSlice({
     },
     addModel: (state, action) => {
       const newModel = action.payload;
-      console.log(newModel)
       state.modelList.unshift(newModel);
       state.modelListFilter = state.modelList.filter((model) => model.name.toLowerCase().includes(state.searchModelValue.toLowerCase()))
     },
     removeModel: (state, action) => {
       const { modelId, updateModel } = action.payload;
       state.modelList = state.modelList.filter((model) => model.id != modelId);
+      state.modelListFilter = state.modelList.filter((model) => model.name.toLowerCase().includes(state.searchModelValue.toLowerCase()))
     },
     editModel: (state, action) => {
       const { modelId, updateModelObj } = action.payload;
       const index = state.modelList.findIndex((el) => el.id == modelId);
-      state.modelList[index] = updateModelObj;
+      state.modelList[index] = {...updateModelObj};
+      state.modelListFilter = state.modelList.filter((model) => model.name.toLowerCase().includes(state.searchModelValue.toLowerCase()))
     },
     searchModel: (state, action) => {
       const searchValue = action.payload
@@ -155,7 +156,11 @@ const adminSlice = createSlice({
     },
     addProduct: (state, action) => {
       const newProduct = action.payload;
-      state.productList.unshift(newProduct);
+      const color = JSON.parse(JSON.stringify(state.colorList))
+      const model = JSON.parse(JSON.stringify(state.modelList))
+      const indexColor = color.findIndex((el) => el.id == newProduct.colorId);
+      const indexModel = model.findIndex((el) => el.id == newProduct.modelId);
+      state.productList.unshift({...newProduct, Color: color[indexColor], Model: model[indexModel]});
     },
     removeProduct: (state, action) => {
       const { productId, updateProduct } = action.payload;
@@ -341,6 +346,7 @@ export function updateModel(modelId, updateModelObj) {
   return async (dispatch) => {
     try {
       const response = await adminService.updateModel(modelId, updateModelObj);
+      console.log("up", updateModelObj)
       dispatch(editModel({ modelId, updateModelObj }));
     } catch (error) {
       console.log(error);

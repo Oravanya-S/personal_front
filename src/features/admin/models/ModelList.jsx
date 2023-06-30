@@ -9,7 +9,6 @@ export default function ModelList() {
   useEffect(() => {
     dispatch(modelListAsync())
   },[]) 
-  console.log(model)
 
   return (
     <>

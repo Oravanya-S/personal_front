@@ -17,7 +17,7 @@ export default function AddColorPage() {
             <div>
               <SearchValue />
             </div>
-            <div className='border rounded-lg flex flex-col h-[690px] w-full overflow-hidden p-6 bg-white'>
+            <div className='border rounded-lg flex flex-col h-[700px] w-full overflow-hidden p-6 bg-white'>
               <AddColor category="color" nameType="Color"/>
               <div className='overflow-auto mt-2'>
                   <ColorList />

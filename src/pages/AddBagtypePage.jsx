@@ -7,7 +7,7 @@ import SearchBagTypeValue from '../features/admin/bagtypes/SearchBagTypeValue'
 
 export default function AddBagtypePage() {
   return (
-    <div className='flex w-[1440px] border-2 mx-auto min-h-screen bg-gray-50'>
+    <div className='flex w-[1440px] border-2 border-y-0 mx-auto min-h-screen bg-gray-50'>
       <div className='w-[350px]'>
         <SideBar />
       </div>
@@ -17,7 +17,7 @@ export default function AddBagtypePage() {
             <div>
               <SearchBagTypeValue />
             </div>
-            <div className='border rounded-lg flex flex-col max-h-[690px] w-full overflow-hidden p-6 bg-white'>
+            <div className='border rounded-lg flex flex-col max-h-[700px] w-full overflow-hidden p-6 bg-white'>
                 <AddBagType title="Bag Type" category="Type" nameType="Type" list=""/>
                 <div className='overflow-auto mt-2'>
                     <BagList /> 

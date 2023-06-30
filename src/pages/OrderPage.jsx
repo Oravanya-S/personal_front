@@ -20,7 +20,7 @@ export default function OrderPage() {
         <SideBar />
       </div>
       <div className='flex flex-col w-full gap-6 flex-1 max-h-screen overflow-hidden'>
-        <HeaderAdmin topic="Order"/>
+        <HeaderAdmin topic="Order Summary"/>
         <div className=''>
         <div className='bg-white mx-8 rounded-md pt-8 overflow-auto'>
             {orderAll.length == 0 ? (
@@ -28,7 +28,7 @@ export default function OrderPage() {
             No order
             </div>
         ) :(
-            <div className="px-6 max-h-[640px] overflow-auto">
+            <div className="px-6 max-h-[700px] overflow-auto">
             <div className="flex justify-end gap-3">
             <div className="text-xl font-medium">
                 Total:

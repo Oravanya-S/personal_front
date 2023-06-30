@@ -7,6 +7,7 @@ export default function ProductListWithModel({modelId}) {
   const dispatch = useDispatch()
   const product = useSelector(state=> state.admin.productList)
   const productWithModelId = product.filter((product) => product.Model?.id == modelId);
+
   useEffect(() => {
     dispatch(productListAsync())
   },[]) 

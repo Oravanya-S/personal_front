@@ -506,6 +506,29 @@ export function SearchIcon() {
   );
 }
 
+export function DashboardIcon() {
+  return (
+    <svg
+      fill="#000000"
+      version="1.1"
+      id="Capa_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      width="20px"
+      height="18px"
+      viewBox="0 0 31.109 31.109"
+      xmlSpace="preserve"
+    >
+      <g>
+        <path
+          d="M30.65,0v31.109h-5.289V0H30.65z M17.062,31.109h5.285V6.171h-5.285V31.109z M8.76,31.109h5.289V14.543H8.76V31.109z
+		 M0.459,31.109h5.289V20.051H0.459V31.109z"
+        />
+      </g>
+    </svg>
+  );
+}
+
 export function CloseIcon() {
   return (
     <svg

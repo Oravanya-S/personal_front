@@ -6,7 +6,7 @@ import SearchModelValue from '../features/admin/models/SearchModelValue'
 
 export default function AddProductPage() {
   return (
-    <div className='flex w-[1440px] border-2 mx-auto min-h-screen bg-gray-50'>
+    <div className='flex w-[1440px] border-2 border-y-0 mx-auto min-h-screen bg-gray-50'>
       <div className='w-[350px]'>
         <SideBar />
       </div>

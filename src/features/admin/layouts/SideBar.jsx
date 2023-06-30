@@ -1,5 +1,5 @@
 import React from "react";
-import { AddIcon, BagIcon, BagIcon2, CategoryIcon, ColorIcon, DetailIcon, DropdownIcon, LogoutIcon, ModelIcon, OnePersonIcon, OrderIcon, SittingIcon, UpdateIcon } from "../../../icons";
+import { AddIcon, BagIcon, BagIcon2, CategoryIcon, ColorIcon, DashboardIcon, DetailIcon, DropdownIcon, LogoutIcon, ModelIcon, OnePersonIcon, OrderIcon, SittingIcon, UpdateIcon } from "../../../icons";
 import { logout } from "../../auth/slice/auth-slice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,6 +21,12 @@ export default function SideBar() {
             <SittingIcon />
             <span className="text-xl font-medium">General</span>
           </a>
+          <Link to="/admin/dashboard"
+            className="flex items-center gap-2 rounded-lg px-4 py-2"
+          >
+            <DashboardIcon />
+            <span className="text-lg font-medium">Dashboard</span>
+          </Link>
 
           <details className="group [&_summary::-webkit-details-marker]:hidden">
             <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 hover:bg-gray-100">

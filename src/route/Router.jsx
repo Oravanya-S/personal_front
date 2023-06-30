@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '../pages/HomePage'
-import ProductPage from '../pages/ProductPage'
 import NotFound from '../pages/NotFound';
-import Container from '../layouts/Container';
 import AdminHomePage from '../pages/AdminHomePage';
 import HistoryPage from '../pages/HistoryPage';
 import CartPage from '../pages/CartPage';
@@ -17,6 +15,7 @@ import ProfilePage from '../pages/ProfilePage';
 import AddColorPage from '../pages/AddColorPage';
 import AddBagtypePage from '../pages/AddBagtypePage';
 import OrderPage from '../pages/OrderPage';
+import DashboardPage from '../pages/DashboardPage';
 
 const router = createBrowserRouter([
     {
@@ -38,6 +37,12 @@ const router = createBrowserRouter([
             path: '/admin/color',
             element: (<ProtectedRoute>
                       <AddColorPage /> 
+                    </ProtectedRoute>)
+          },
+          {
+            path: '/admin/dashboard',
+            element: (<ProtectedRoute>
+                      <DashboardPage /> 
                     </ProtectedRoute>)
           },
           {
@@ -89,14 +94,6 @@ const router = createBrowserRouter([
       }
 
 ]);
-
-
-
-
-
-
-
-
 
 export default function Router() {
     return <RouterProvider router={router} />;
