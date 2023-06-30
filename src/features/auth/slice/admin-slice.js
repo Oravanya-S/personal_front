@@ -3,11 +3,15 @@ import * as adminService from "../../../api/admin-api";
 
 const initialState = {
   bagTypeList: [],
+  bagTypeListFilter: [],
   groupColorList: [],
   colorList: [],
   colorListFilter: [],
   searchColorValue: "",
+  searchBagTypeValue: "",
+  searchModelValue: "",
   modelList: [],
+  modelListFilter: [],
   productList: [],
   error: null,
   isLoading: false,
@@ -81,44 +85,59 @@ const adminSlice = createSlice({
   reducers: {
     removeBagType: (state, action) => {
       const bagTypeId = action.payload;
-      state.bagTypeList = state.bagTypeList.filter(
-        (bagType) => bagType.id != bagTypeId
-      );
+      state.bagTypeList = state.bagTypeList.filter((bagType) => bagType.id != bagTypeId);
+      state.bagTypeListFilter = state.bagTypeList.filter((bag) => bag.name.toLowerCase().includes(state.searchBagTypeValue.toLowerCase()))
     },
     addBagType: (state, action) => {
       const newBagType = action.payload;
+      console.log(newBagType)
       state.bagTypeList.unshift(newBagType);
+      state.bagTypeListFilter = state.bagTypeList.filter((bag) => bag.name.toLowerCase().includes(state.searchBagTypeValue.toLowerCase()))
     },
     editBagType: (state, action) => {
       const { bagTypeId, updateBagType } = action.payload;
       const index = state.bagTypeList.findIndex((el) => el.id == bagTypeId);
       state.bagTypeList[index].name = updateBagType.name;
+      state.bagTypeListFilter = state.bagTypeList.filter((bag) => bag.name.toLowerCase().includes(state.searchBagTypeValue.toLowerCase()))
+    },
+    searchBagType: (state, action) => {
+      const searchValue = action.payload
+      state.searchBagTypeValue = action.payload;
+      state.bagTypeListFilter = state.bagTypeList.filter((bag) => bag.name.toLowerCase().includes(searchValue.toLowerCase()))
     },
     removeColor: (state, action) => {
       const colorId = action.payload;
       state.colorList = state.colorList.filter((color) => color.id != colorId);
-      state.colorListFilter = state.colorList.filter((color) => color.id != colorId);
+      state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
     },
     addColor: (state, action) => {
       const newColor = action.payload;
-      state.colorList.unshift(newColor);
-      state.colorListFilter.unshift(newColor);
+      const groupColor = JSON.parse(JSON.stringify(state.groupColorList))
+      const indexGroupColor = groupColor.findIndex((el) => el.id == newColor.groupColorId);
+      const groupColorNow = groupColor[indexGroupColor]
+      state.colorList.unshift({...newColor, GroupColor: groupColorNow});
+      state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
     },
     editColor: (state, action) => {
       const { colorId, updateColorObj } = action.payload;
-      const index = state.colorList.findIndex((el) => el.id == colorId);
-      state.colorList[index] = updateColorObj;
-      state.colorListFilter[index] = updateColorObj;
+      const index = state.colorList.findIndex((el) => el.id == colorId)
+      const groupColor = JSON.parse(JSON.stringify(state.groupColorList))
+      const indexGroupColor = groupColor.findIndex((el) => el.id == updateColorObj.groupColorId);
+      const groupColorNow = groupColor[indexGroupColor]
+      const now = {...updateColorObj.GroupColor, id: groupColorNow.id, name: groupColorNow.name}
+      state.colorList[index] = {...updateColorObj, GroupColor: now}
+      state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
     },
     searchColor: (state, action) => {
       const searchValue = action.payload
       state.searchColorValue = action.payload;
-      console.log("value", searchValue)
       state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(searchValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(searchValue.toLowerCase()))
     },
     addModel: (state, action) => {
       const newModel = action.payload;
+      console.log(newModel)
       state.modelList.unshift(newModel);
+      state.modelListFilter = state.modelList.filter((model) => model.name.toLowerCase().includes(state.searchModelValue.toLowerCase()))
     },
     removeModel: (state, action) => {
       const { modelId, updateModel } = action.payload;
@@ -129,9 +148,13 @@ const adminSlice = createSlice({
       const index = state.modelList.findIndex((el) => el.id == modelId);
       state.modelList[index] = updateModelObj;
     },
+    searchModel: (state, action) => {
+      const searchValue = action.payload
+      state.searchModelValue = action.payload;
+      state.modelListFilter = state.modelList.filter((model) => model.name.toLowerCase().includes(searchValue.toLowerCase()))
+    },
     addProduct: (state, action) => {
       const newProduct = action.payload;
-      console.log("first",newProduct)
       state.productList.unshift(newProduct);
     },
     removeProduct: (state, action) => {
@@ -148,6 +171,10 @@ const adminSlice = createSlice({
     builder
       .addCase(bagTypeListAsync.fulfilled, (state, action) => {
         state.bagTypeList = action.payload;
+        if(state.searchBagTypeValue.trim() === "") state.bagTypeListFilter = state.bagTypeList
+        else {
+          state.bagTypeListFilter = action.payload.filter((bag) => bag.name.toLowerCase().includes(state.searchBagTypeValue.toLowerCase()))
+        }
         state.isLoading = false;
       })
       .addCase(bagTypeListAsync.rejected, (state, action) => {
@@ -177,6 +204,10 @@ const adminSlice = createSlice({
       })
       .addCase(modelListAsync.fulfilled, (state, action) => {
         state.modelList = action.payload;
+        if(state.searchModelValue.trim() === "") state.modelListFilter = state.modelList
+        else {
+          state.modelListFilter = action.payload.filter((model) => model.name.toLowerCase().includes(state.searchModelValue.toLowerCase()))
+        }
         state.isLoading = false;
       })
       .addCase(modelListAsync.rejected, (state, action) => {
@@ -199,6 +230,7 @@ export const {
   removeBagType,
   addBagType,
   editBagType,
+  searchBagType,
   removeColor,
   addColor,
   editColor,
@@ -206,6 +238,7 @@ export const {
   addModel,
   removeModel,
   editModel,
+  searchModel,
   addProduct,
   removeProduct,
   editProduct

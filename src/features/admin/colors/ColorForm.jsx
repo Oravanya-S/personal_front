@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SelectGroupColor from '../components/SelectGroupColor'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { colorListAsync, createColor, groupColorListAsync, updateColor } from '../../auth/slice/admin-slice';
 import validateColor from '../../auth/validators/validate-color';
 import InputErrorMessage from '../../auth/components/InputErrorMessage';
@@ -40,12 +40,13 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
       await dispatch(createColor(input))
       onIsAddMode(false);
     } else if (oldColor) {
-      await dispatch(updateColor(oldColor.id, input))
+      console.log("old",oldColor)
+      console.log("input", input)
+
+      await dispatch(updateColor(oldColor.id, {...oldColor, ...input}))
       onIsAddMode(false);
     }
-      await dispatch(groupColorListAsync())
-      await dispatch(colorListAsync())
-    };
+  };
 
   return (
     <form onSubmit={handleSubmit}>

@@ -8,7 +8,6 @@ export default function ColorList() {
   const dispatch = useDispatch()
   const color = useSelector(state=> state.admin.colorListFilter)
   const isLoading = useSelector((state) => state?.admin?.isLoading);
-  console.log(color)
   
   useEffect(() => {
     dispatch(colorListAsync())

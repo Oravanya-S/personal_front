@@ -29,7 +29,7 @@ export default function BagItem({item, nameType}) {
             <div className='flex items-center gap-4'>
                 <div 
                     onClick={(e)=> {
-                        // e.stopPropagation();
+                        e.stopPropagation();
                         setIsEditMode(true)
                     }}>
                     <i className="fa-solid fa-pen text-black cursor-pointer"></i>

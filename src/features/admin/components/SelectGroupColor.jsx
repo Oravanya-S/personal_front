@@ -16,7 +16,7 @@ export default function SelectGroupColor({valueId, onChangeGroup, error}) {
         <label htmlFor="groupColorId" className="dark:text-white font-medium">Group color:</label>
         <select value={valueId} className='min-w-[100px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700' name="groupColorId" id="groupColorId" onChange={onChangeGroup}>
           <option disabled hidden value={""}>Select</option>
-            {groupColor.map(el => ((el.id==valueId)? <option selected value={el.id}>{el.name}</option> : <option value={el.id}>{el.name}</option>))}
+            {groupColor.map(el => ((el.id==valueId)? <option selected value={el.id} key={el.id}>{el.name}</option> : <option value={el.id} key={el.id}>{el.name}</option>))}
         </select>
     </div>
     <div className='h-0'> 
