@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 
 import BagForm from './BagForm';
 import { deleteBagtype } from '../../auth/slice/admin-slice'
+import ModalDeleteBox from '../../../components/ModalDeleteBox';
 
 
 export default function BagItem({item, nameType}) {
     const [isEditMode, setIsEditMode] = useState(false)
+    const [isClickDeleteBox, setIsClickDeleteBox] = useState(false);
     const dispatch = useDispatch()
     const handleClickDeleteBox = () => {
         dispatch(deleteBagtype(item.id))
@@ -34,11 +36,19 @@ export default function BagItem({item, nameType}) {
                     }}>
                     <i className="fa-solid fa-pen text-black cursor-pointer"></i>
                 </div>
-                <div onClick={handleClickDeleteBox}>
+                <div onClick={() => setIsClickDeleteBox(true)}>
                     <i className="fa-regular fa-trash-can text-2xl text-black p-2 cursor-pointer"></i>
                 </div>
             </div>
     </div>)}
+    {isClickDeleteBox ? 
+        <ModalDeleteBox 
+            open={isClickDeleteBox}
+            onClose={()=> setIsClickDeleteBox(false)}
+            confirm={handleClickDeleteBox}
+        />
+        : 
+        <></>}
     </div>
   )
 }

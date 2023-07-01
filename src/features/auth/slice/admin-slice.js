@@ -14,9 +14,7 @@ const initialState = {
   modelListFilter: [],
   productList: [],
   error: null,
-  isLoading: false,
-  user: null,
-  initialLoading: false,
+  isLoading: true,
 };
 
 export const bagTypeListAsync = createAsyncThunk(
@@ -195,6 +193,9 @@ const adminSlice = createSlice({
         state.isLoading = false;
       })
 
+      .addCase(colorListAsync.pending, (state) => {
+        // state.isLoading = true;
+      })
       .addCase(colorListAsync.fulfilled, (state, action) => {
         state.colorList = action.payload;
         if(state.searchColorValue.trim() === "") state.colorListFilter = state.colorList

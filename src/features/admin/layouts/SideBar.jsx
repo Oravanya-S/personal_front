@@ -14,13 +14,13 @@ export default function SideBar() {
     <div className="flex flex-col h-full justify-between border-r bg-white text-black">
       <div className="px-4">
         <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
-          <a
-            href="#"
+          <div
+            
             className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2"
           >
             <SittingIcon />
             <span className="text-xl font-medium">General</span>
-          </a>
+          </div>
           <Link to="/admin/dashboard"
             className="flex items-center gap-2 rounded-lg px-4 py-2"
           >

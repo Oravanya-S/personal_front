@@ -7,15 +7,12 @@ import Loading from "../../../components/Loading";
 export default function ColorList() {
   const dispatch = useDispatch()
   const color = useSelector(state=> state.admin.colorListFilter)
-  const isLoading = useSelector((state) => state?.admin?.isLoading);
   
   useEffect(() => {
     dispatch(colorListAsync())
   },[]) 
 
-  if (isLoading) {
-    return <Loading />
-  }
+  
 
   return (
     <>

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import ProductForm from './ProductForm';
 import { colorListAsync, deleteProduct, modelListAsync, productListAsync } from '../../auth/slice/admin-slice';
+import ModalDeleteBox from '../../../components/ModalDeleteBox';
 
 export default function ProductItem({item, nameType}) {
     const [isEditMode, setIsEditMode] = useState(false)
+    const [isClickDeleteBox, setIsClickDeleteBox] = useState(false);
     const dispatch = useDispatch()
     const handleClickDeleteBox = () => {
         dispatch(deleteProduct(item.id))
-        // dispatch(productListAsync())
     };
 
     const display = (isEditMode)? "block" : "hidden"
@@ -43,7 +44,7 @@ export default function ProductItem({item, nameType}) {
                             }}>
                             <i className="fa-solid fa-pen text-black cursor-pointer"></i>
                             </div>
-                            <div onClick={handleClickDeleteBox}>
+                            <div onClick={() => setIsClickDeleteBox(true)}>
                                 <i className="fa-regular fa-trash-can text-2xl text-black py-2 cursor-pointer"></i>
                             </div>
                           </div>
@@ -51,6 +52,14 @@ export default function ProductItem({item, nameType}) {
                       <div className={`flex flex-col gap-6 text-lg ${display} pt-1 pb-2`}>        
                         <ProductForm textConFirm={`Edit`} onIsAddMode={setIsEditMode} oldProduct={item} nameType={nameType}/>
                     </div>}
+                    {isClickDeleteBox ? 
+                        <ModalDeleteBox 
+                            open={isClickDeleteBox}
+                            onClose={()=> setIsClickDeleteBox(false)}
+                            confirm={handleClickDeleteBox}
+                        />
+                        : 
+                        <></>}
                   </div>
           </div>
         </div>

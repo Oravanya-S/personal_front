@@ -40,14 +40,10 @@ export default function ModelForm({
     if (!oldModel) {
       await dispatch(createModel(input));
       onIsAddMode(false);
-      // dispatch(productListAsync())
       
-    } else if(oldModel) {
+    } else if (oldModel) {
       await dispatch(updateModel(oldModel.id, {...oldModel, ...input}))
-        console.log("old",oldModel)
-        onIsAddMode(false);
-        // dispatch(modelListAsync())
-        dispatch(productListAsync())
+      onIsAddMode(false);
     } 
   }
 

@@ -40,9 +40,6 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
       await dispatch(createColor(input))
       onIsAddMode(false);
     } else if (oldColor) {
-      console.log("old",oldColor)
-      console.log("input", input)
-
       await dispatch(updateColor(oldColor.id, {...oldColor, ...input}))
       onIsAddMode(false);
     }
