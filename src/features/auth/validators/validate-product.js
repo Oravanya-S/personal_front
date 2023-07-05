@@ -16,8 +16,8 @@ const productSchema = Joi.object({
         'number.base': 'Stock must be a number',
     }),
     
-    image: Joi.string().trim().messages({
-        // 'string.empty': 'Image is required.'
+    image: Joi.any().required().messages({
+        'any.required': 'Image is required.'
     }),
 });
   

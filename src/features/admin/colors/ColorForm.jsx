@@ -3,7 +3,7 @@ import SelectGroupColor from '../components/SelectGroupColor'
 import { useDispatch, useSelector } from 'react-redux';
 import { colorListAsync, createColor, groupColorListAsync, updateColor } from '../../auth/slice/admin-slice';
 import validateColor from '../../auth/validators/validate-color';
-import InputErrorMessage from '../../auth/components/InputErrorMessage';
+import InputErrorMessage from '../../auth/components/inputErrorMessage';
 
 
 export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}) {
@@ -13,12 +13,6 @@ export default function ColorForm({textConFirm, onIsAddMode, oldColor, nameType}
     hexcode: oldColor?.hexcode || '#000000',
     name: oldColor?.name ||'',
   };
-  
-  if (oldColor) {
-    initialInput.groupColorId = oldColor.GroupColor.id
-    initialInput.hexcode = oldColor.hexcode
-    initialInput.name = oldColor.name
-  }
 
     const [input, setInput] = useState(initialInput);
     const [error, setError] = useState({});

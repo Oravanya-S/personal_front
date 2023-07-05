@@ -165,8 +165,11 @@ const adminSlice = createSlice({
       state.productList = state.productList.filter((product) => product.id != productId);
     },
     editProduct: (state, action) => {
-      const { productId, updateProductObj } = action.payload;
-      const index = state.productList.findIndex((el) => el.id == productId);
+      const updateProductObj  = action.payload;
+      console.log("update", updateProductObj)
+      console.log("updateId", updateProductObj?.id)
+      const index = state.productList.findIndex((el) => el.id == updateProductObj.id);
+      console.log("index",index)
       state.productList[index] = updateProductObj;
     },
   },
@@ -359,6 +362,7 @@ export function createProduct(newProductObj) {
   return async (dispatch) => {
     try {
       const response = await adminService.createProduct(newProductObj);
+      console.log("after create", response.data)
       await dispatch(addProduct(response.data));
     } catch (error) {
       console.log(error);
@@ -379,11 +383,17 @@ export function deleteProduct(productId, updateProductObj) {
 }
 
 
-export function updateProduct(productId, updateProductObj) {
+export function updateProduct(updateProductObj) {
   return async (dispatch) => {
     try {
-      const response = await adminService.updateProduct(productId, updateProductObj);
-      dispatch(editProduct({ productId, updateProductObj }));
+      const response = await adminService.updateProduct(updateProductObj);
+      console.log("response data", response.data)
+      console.log("response", response)
+      console.log("updateProductObj", updateProductObj)
+      // const formDataObj = {};
+      // updateProductObj.forEach((value, key) => (formDataObj[key] = value));
+      // console.log("formDataObj", formDataObj)
+      dispatch(editProduct(response.data));
     } catch (error) {
       console.log(error);
     }

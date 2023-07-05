@@ -11,7 +11,7 @@ export default function ProductWithModel({ item }) {
   const user = useSelector(state => state.auth.user)
   let user_id;
   if (isAuthenticated) {
-    user_id = user.id
+    user_id = user?.id
   }
   const [detail, setDetail] = useState(false);
   const handleDetail = () => {
@@ -39,14 +39,14 @@ export default function ProductWithModel({ item }) {
   return (
     <div className="bg-red-50 flex justify-center items-center relative border-[0.5px] border-slate-600 border-collapse group cursor-pointer h-[500px]">
       <p className="absolute bottom-4 right-4 text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        ฿ {item.price}
+        ฿ {item?.price}
       </p>
       <div className="flex gap-2 absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         <div
           className="w-7 h-7 rounded-full border"
-          style={{ backgroundColor: `${item.Color.hexcode}` }}
+          style={{ backgroundColor: `${item?.Color?.hexcode}` }}
         ></div>
-        <p className="text-1xl pt-1">{item.Model.name}</p>
+        <p className="text-1xl pt-1">{item?.Model?.name}</p>
       </div>
       <div
         className="absolute top-0 right-1 text-black p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 cursor-pointer"
@@ -65,7 +65,7 @@ export default function ProductWithModel({ item }) {
       {detail ? (
         <div className="absolute bg-white opacity-75 h-[70%] w-[75%]">
             <>
-                <ProductDetail item={item.Model} onClose={handleCloseDetail}/>
+                <ProductDetail item={item?.Model} onClose={handleCloseDetail}/>
             </>
         </div>
       ) : (
@@ -74,7 +74,7 @@ export default function ProductWithModel({ item }) {
 
       <img
         className="object-cover h-full block"
-        src="https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw70c09258/23E213BA001-3100-852_1_main.jpg?sw=475&sh=633&q=100"
+        src={item?.image || "https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw70c09258/23E213BA001-3100-852_1_main.jpg?sw=475&sh=633&q=100"}
         alt="Bag"
       />
     </div>

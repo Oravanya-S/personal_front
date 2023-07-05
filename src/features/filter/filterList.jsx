@@ -4,11 +4,10 @@ import { groupColorListAsync } from '../auth/slice/admin-slice'
 
 export default function filterList() {
     const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch(groupColorListAsync())
-    // },[]) 
-    
     const groupColor = useSelector(state=> state.admin.groupColorList)
+    useEffect(() => {
+      dispatch(groupColorListAsync())
+    },[]) 
     
     console.log(groupColor)
   return (

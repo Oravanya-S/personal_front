@@ -20,7 +20,8 @@ export const createProduct = async (newProductObj) => await axios.post('/admin/p
 export const updateBagtype = async (bagTypeId, updateBagtypeObj) => await axios.patch(`/admin/bagtype/${bagTypeId}`, updateBagtypeObj);
 export const updateColor = async (colorId, updateColorObj) => await axios.put(`/admin/color/${colorId}`, updateColorObj);
 export const updateModel = async (modelId, updateModelObj) => await axios.put(`/admin/model/${modelId}`, updateModelObj);
-export const updateProduct = async (productId, updateProductObj) => await axios.put(`/admin/product/${productId}`, updateProductObj);
+// export const updateProduct = async (productId, updateProductObj) => await axios.put(`/admin/product/${productId}`, updateProductObj);
+export const updateProduct = async (updateProductObj) => await axios.put(`/admin/product`, updateProductObj);
 
 
 //add product
