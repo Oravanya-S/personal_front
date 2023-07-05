@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { modelListAsync } from '../../auth/slice/admin-slice'
+import { bagTypeListAsync, colorListAsync, modelListAsync, productListAsync } from '../../auth/slice/admin-slice'
 import ModelItem from './ModelItem'
 
 export default function ModelList() {
   const dispatch = useDispatch()
   const model = useSelector(state=> state.admin.modelListFilter)
   useEffect(() => {
-    dispatch(modelListAsync())
+    dispatch(colorListAsync());
+    dispatch(modelListAsync());
+    dispatch(bagTypeListAsync());
+    dispatch(productListAsync())
   },[]) 
 
   return (

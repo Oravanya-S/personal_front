@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { colorListAsync } from "../../auth/slice/admin-slice";
 
 export default function SelectColor({ valueId, onChange}) {
-  const dispatch = useDispatch();
   const color = useSelector((state) => state.admin.colorList);
-  useEffect(() => {
-    dispatch(colorListAsync());
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(colorListAsync());
+  // }, []);
 
   return (
     <div className="flex items-center gap-2">
@@ -23,7 +23,7 @@ export default function SelectColor({ valueId, onChange}) {
       >
         <option disabled hidden value={""}>Select color</option>
         {color.map((el) =>
-          el.id == valueId ? (
+          el.id === valueId ? (
             <option selected value={el.id} key={el.id}>
               {el.name}
             </option>

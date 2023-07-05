@@ -14,7 +14,7 @@ export default function Menu() {
 const location = useLocation()
 
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-12 flex-1 justify-center text-lg">
       {bagType.map((el) => (
         <MenuItem
           className="text-lg cursor-pointer hover:underline hover:underline-offset-8"

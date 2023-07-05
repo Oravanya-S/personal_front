@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { groupColorListAsync } from '../../auth/slice/admin-slice'
-import InputErrorMessage from '../../auth/components/InputErrorMessage'
+import InputErrorMessage from '../../auth/components/inputErrorMessage'
 
 export default function SelectGroupColor({valueId, onChangeGroup, error}) {
-    const dispatch = useDispatch()
-    const groupColor = useSelector(state=> state.admin.groupColorList)
-    useEffect(() => {
-      dispatch(groupColorListAsync())
-    },[]) 
+  const groupColor = useSelector(state=> state.admin.groupColorList)
+  // const dispatch = useDispatch()
+    // useEffect(() => {
+    //   dispatch(groupColorListAsync())
+    // },[]) 
   
   return (
     <div className='flex flex-col'>

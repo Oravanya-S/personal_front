@@ -4,14 +4,17 @@ import AddColor from './AddColor'
 import ColorList from './ColorList'
 import SearchValue from './SearchValue'
 import Loading from '../../../components/Loading'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Skeleton from '../../../components/Skeleton'
+import { groupColorListAsync } from '../../auth/slice/admin-slice'
+import { useEffect } from 'react'
 
 export default function ColorContainer() { 
-  const isLoading = useSelector((state) => state?.admin?.isLoading);
-//   console.log(isLoading)
-//   if (isLoading) {
-//     return <Skeleton /> }
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(groupColorListAsync())
+  },[]) 
 
   return (
     <div className='flex flex-col w-full gap-6 overflow-auto flex-1'>

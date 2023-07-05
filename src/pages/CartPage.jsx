@@ -33,8 +33,8 @@ export default function CartPage() {
 
   return (
     <div className='max-w-[1440px] mx-auto min-h-screen border'>
-    { (cart.length==0)? <div className='flex justify-center text-3xl text-gray-500 py-24'>No cart now</div> : 
-    <div className='flex border'>
+    { (cart.length==0)? <div className='flex justify-center text-xl text-gray-500 py-24'>No cart now</div> : 
+    <div className='flex'>
       <div className='w-[60%] items-center'>
         <div className='flex flex-col'>
           {cart.map(item => <div className='flex flex-col' key={item.id}><CartItem item={item}/></div>)}

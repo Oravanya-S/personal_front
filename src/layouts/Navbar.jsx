@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 import { FailIcon } from '../icons'
 import { useNavigate } from 'react-router-dom'
 
-export default function Navbar({bgColor = 'bg-transparent'}) {
+export default function Navbar({bgColor = 'bg-transparent', borderColor = "black"}) {
     
     const user = useSelector(state => state.auth.user);
     const navigate = useNavigate()
@@ -52,7 +52,7 @@ export default function Navbar({bgColor = 'bg-transparent'}) {
     return ( 
     <div>
       {(role==1)? <></> : <div className='max-w-[1440px] relative z-20 mx-auto'>
-        <div className={`sticky z-${(openSignIn || openSignUp)? 20: 30} border`}>
+        <div className={`sticky z-${(openSignIn || openSignUp)? 20: 30} border border-b-0 top-0`}>
           <nav className={`flex justify-between px-10 items-center bg-${bgColor} h-24`}>
               <div>
                 <Link to='/' className='text-5xl font-bold'>MARIETTA</Link>

@@ -91,7 +91,7 @@ export default function ModelForm({
                   </div>
                 </div>
                 <div className="w-full">
-                  <SelectBagType onChange={handleChangeInput} valueId={Number(input.bagTypeId)}/>
+                  <SelectBagType onChange={handleChangeInput} valueId={input.bagTypeId}/>
                   <div className='h-0 ml-[88px] pb-2'> 
                     {error.bagTypeId && (<InputErrorMessage message={error.bagTypeId} />)}
                   </div>

@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createProduct,
   updateProduct,
-  productListAsync,
-  modelListAsync,
 } from "../../auth/slice/admin-slice";
 import validateProduct from "../../auth/validators/validate-product";
 import InputErrorMessage from "../../auth/components/inputErrorMessage";
@@ -41,8 +39,6 @@ export default function ProductForm({
   const handleChangeImage = (e) => {
     setInput({ ...input, [e.target.name]: e.target.files[0] });
   };
-
-  console.log(error, input);
 
   const handleSubmit = async (e) => {
     try {

@@ -2,17 +2,21 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { colorListAsync } from '../../auth/slice/admin-slice'
 import ColorItem from './ColorItem';
-import Loading from "../../../components/Loading";
+import SkeletonColor from './SkeletonColor';
 
 export default function ColorList() {
   const dispatch = useDispatch()
   const color = useSelector(state=> state.admin.colorListFilter)
+  const isLoading = useSelector((state) => state?.admin?.isLoading);
+  console.log(isLoading)
   
   useEffect(() => {
     dispatch(colorListAsync())
   },[]) 
 
   
+  if (isLoading) {
+    return <SkeletonColor /> }
 
   return (
     <>

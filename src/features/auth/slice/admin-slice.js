@@ -197,7 +197,7 @@ const adminSlice = createSlice({
       })
 
       .addCase(colorListAsync.pending, (state) => {
-        // state.isLoading = true;
+        state.isLoading = true;
       })
       .addCase(colorListAsync.fulfilled, (state, action) => {
         state.colorList = action.payload;
@@ -362,7 +362,6 @@ export function createProduct(newProductObj) {
   return async (dispatch) => {
     try {
       const response = await adminService.createProduct(newProductObj);
-      console.log("after create", response.data)
       await dispatch(addProduct(response.data));
     } catch (error) {
       console.log(error);
