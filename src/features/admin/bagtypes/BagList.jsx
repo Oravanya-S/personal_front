@@ -10,7 +10,6 @@ export default function BagList() {
     useEffect(() => {
       dispatch(bagTypeListAsync())
     },[]) 
-    console.log(bagType)
     
   return (
     <>

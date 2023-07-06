@@ -4,10 +4,6 @@ import { colorListAsync } from "../../auth/slice/admin-slice";
 
 export default function SelectColor({ valueId, onChange}) {
   const color = useSelector((state) => state.admin.colorList);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(colorListAsync());
-  // }, []);
 
   return (
     <div className="flex items-center gap-2">

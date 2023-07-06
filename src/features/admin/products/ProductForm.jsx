@@ -10,6 +10,7 @@ import validateProduct from "../../auth/validators/validate-product";
 import InputErrorMessage from "../../auth/components/inputErrorMessage";
 import defaultImage from "../../../assets/default.jpg";
 import Loading from "../../../components/Loading";
+import { Clound } from "../../../icons";
 
 export default function ProductForm({
   textConFirm,
@@ -43,7 +44,10 @@ export default function ProductForm({
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const result = validateProduct(input);
+      let result;
+      if (input.image == "") result = validateProduct({...input, image: initialImage});
+      else result = validateProduct(input);
+      
       if (result) {
         return setError(result);
       }
@@ -92,14 +96,19 @@ export default function ProductForm({
         <div className="flex flex-col text-md rounded-3xl">
           <div className="flex flex-col gap-1">
             <div className={`flex flex-col gap-8 p-8`}>
-              <div className="grid grid-cols-2 gap-16">
+              <div className="grid grid-cols-2 gap-10">
                 <div>
                 <div
-                  className="flex flex-col border h-[350px] items-center justify-center overflow-hidden"
+                  className="flex flex-col h-[350px] items-center justify-center overflow-hidden bg-[#fcf4ec] cursor-pointer font-normal"
                   onClick={() => inputEl.current.click()}
                 >
-                  <div className="flex flex-col ">
-                    <input
+                  <div className="flex flex-col gap-3 items-center">
+                  <Clound />
+                  <p className="text-gray-500">Click to upload</p>
+                  <p className="text-gray-500 text-sm">SVG, PNG, JPG or GIF</p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <input 
                       type="file"
                       className="hidden"
                       name="image"
@@ -110,8 +119,8 @@ export default function ProductForm({
                         }
                       }}
                     />
-                    <div className="flex justify-end border">
-                      <img
+                    <div className="">
+                      <img className=" object-center"
                         src={
                           input.image
                             ? URL.createObjectURL(input.image)
@@ -119,10 +128,7 @@ export default function ProductForm({
                         }
                       />
                     </div>
-                  </div>
-                   
-                      
-                    
+                  </div>      
                 </div>
                 <div className="pt-2 h-2 flex justify-center">
                   {error.image && (
@@ -131,14 +137,14 @@ export default function ProductForm({
                 </div>
                 </div>
 
-                <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-4 w-full pl-10">
                   <div className="flex gap-4 w-full">
                     {oldProduct ? (
                       <div className="flex items-center gap-2">
                         <></>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 pt-8">
                         <p className="dark:text-white font-medium w-[60px]">
                           Model:
                         </p>
@@ -149,7 +155,7 @@ export default function ProductForm({
 
                   <div className="flex gap-4 w-full">
                     {oldProduct ? (
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-2 pt-8">
                         <p className="dark:text-white font-medium w-[60px]">
                           Color:
                         </p>

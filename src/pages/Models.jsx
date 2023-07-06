@@ -15,8 +15,8 @@ export default function Models() {
   const numProduct = product.length;
 
   return (
-    <div className="mb-4 ">
-      <div className="max-w-[1440px] min-h-screen mx-auto overflow-hidden border border-black border-t-0">
+    <div className="">
+      <div className="max-w-[1440px] min-h-[calc(100vh-98px)] mx-auto overflow-hidden border border-black border-y-0">
         <div className="h-16 border-y border-black">
           <div className="flex h-full items-center justify-start px-12 cursor-pointer gap-2">
             <p>Filter</p>
@@ -24,7 +24,7 @@ export default function Models() {
           </div>
         </div>
         {product.length > 0 ? (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  border-slate-600 overflow-auto">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  border-slate-600 overflow-auto border-spacing-0">
             {product.map((el) => (
               <ProductWithModel item={el} />
             ))}

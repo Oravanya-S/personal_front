@@ -4,10 +4,6 @@ import { bagTypeListAsync } from "../../auth/slice/admin-slice";
 
 export default function SelectBagType({ valueId, onChange }) {
   const bagType = useSelector((state) => state.admin.bagTypeList);
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch(bagTypeListAsync())
-  // },[])
 
   return (
     <div className="flex items-center gap-2">

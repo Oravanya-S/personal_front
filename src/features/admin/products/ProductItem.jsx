@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import ProductForm from './ProductForm';
-import { colorListAsync, deleteProduct, modelListAsync, productListAsync } from '../../auth/slice/admin-slice';
+import { deleteProduct } from '../../auth/slice/admin-slice';
 import ModalDeleteBox from '../../../components/ModalDeleteBox';
 
 export default function ProductItem({item, nameType}) {

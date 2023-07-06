@@ -57,7 +57,7 @@ export default function CartPage() {
       </div>
     </div>
     }
-      <div className='p-12 flex items-center gap-2 group cursor-pointer'>
+      <div className='px-12 py-6 flex items-center gap-2 group cursor-pointer'>
             <i className="fa-solid fa-arrow-left group-hover:-translate-x-2 duration-500"></i>
             <button type="button" className="group-hover" onClick={ ()=> navigate(-1)}>Continue Shopping</button> 
       </div> 

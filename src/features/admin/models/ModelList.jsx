@@ -7,10 +7,8 @@ export default function ModelList() {
   const dispatch = useDispatch()
   const model = useSelector(state=> state.admin.modelListFilter)
   useEffect(() => {
-    dispatch(colorListAsync());
     dispatch(modelListAsync());
-    dispatch(bagTypeListAsync());
-    dispatch(productListAsync())
+    dispatch(productListAsync());
   },[]) 
 
   return (

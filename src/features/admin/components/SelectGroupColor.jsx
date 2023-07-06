@@ -5,11 +5,7 @@ import InputErrorMessage from '../../auth/components/inputErrorMessage'
 
 export default function SelectGroupColor({valueId, onChangeGroup, error}) {
   const groupColor = useSelector(state=> state.admin.groupColorList)
-  // const dispatch = useDispatch()
-    // useEffect(() => {
-    //   dispatch(groupColorListAsync())
-    // },[]) 
-  
+
   return (
     <div className='flex flex-col'>
     <div className='flex items-end gap-2'>

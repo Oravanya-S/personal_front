@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModelInput from "./ModelInput";
 import { useDispatch } from "react-redux";
-import { createModel, modelListAsync, productListAsync, updateModel } from "../../auth/slice/admin-slice";
+import { createModel, updateModel } from "../../auth/slice/admin-slice";
 import SelectBagType from "../components/SelectBagType";
 import validateModel from '../../auth/validators/validate-model';
 import InputErrorMessage from '../../auth/components/inputErrorMessage';

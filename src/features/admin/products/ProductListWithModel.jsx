@@ -6,11 +6,6 @@ import ProductItem from './ProductItem'
 export default function ProductListWithModel({modelId}) {
   const product = useSelector(state=> state.admin.productList)
   const productWithModelId = product.filter((product) => product.Model?.id == modelId);
-  
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch(productListAsync())
-  // },[]) 
 
   return (
     <>

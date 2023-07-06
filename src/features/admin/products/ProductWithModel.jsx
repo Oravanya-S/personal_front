@@ -37,7 +37,7 @@ export default function ProductWithModel({ item }) {
   };
 
   return (
-    <div className="bg-red-50 flex justify-center items-center relative border-[0.5px] border-slate-600 border-collapse group cursor-pointer h-[500px]">
+    <div className="bg-red-50 flex justify-center items-center relative border border-black border-t-0 border-l-0 group cursor-pointer h-[500px]">
       <p className="absolute bottom-4 right-4 text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         ฿ {item?.price}
       </p>

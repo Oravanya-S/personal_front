@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '../pages/HomePage'
 import NotFound from '../pages/NotFound';
-import AdminHomePage from '../pages/AdminHomePage';
 import HistoryPage from '../pages/HistoryPage';
 import CartPage from '../pages/CartPage';
 import ProtectedRoute from '../features/auth/components/ProtectedRoute';
@@ -55,12 +54,6 @@ const router = createBrowserRouter([
             path: '/admin/order',
             element: (<ProtectedRoute>
                       <OrderPage />  
-                    </ProtectedRoute>)
-          },
-          {
-            path: '/admin',
-            element: (<ProtectedRoute>
-                      <AdminHomePage />  
                     </ProtectedRoute>)
           },
           {

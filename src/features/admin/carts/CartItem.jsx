@@ -33,16 +33,16 @@ export default function CartItem({item}) {
   return ( 
     <div className='flex border-[1px] gap-8 max-h-[400px]'>
       <div className='w-[35%] overflow-hidden'>
-        <img className='block' src="https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw70c09258/23E213BA001-3100-852_1_main.jpg?sw=475&sh=633&q=100" />
+        <img className='block' src={item?.Product?.image || "https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw70c09258/23E213BA001-3100-852_1_main.jpg?sw=475&sh=633&q=100"} />
       </div>
       <div className='flex flex-col w-[35%] justify-center gap-10'>
-        <div className='text-2xl font-medium'>{item.Product.Model.name}</div>
+        <div className='text-2xl font-medium'>{item?.Product?.Model?.name}</div>
         <div className="flex gap-2">
           <div
             className="w-7 h-7 rounded-full border"
-            style={{ backgroundColor: `${item.Product.Color.hexcode}` }}
+            style={{ backgroundColor: `${item?.Product?.Color?.hexcode}` }}
           ></div>
-          <div className='text-xl'>{item.Product.Color.name}</div>
+          <div className='text-xl'>{item?.Product?.Color?.name}</div>
         </div>
         <div>
             <div className='flex flex-col gap-5 items-start'>
@@ -54,15 +54,15 @@ export default function CartItem({item}) {
                         <input type="number" id="Quantity" value={count} style={{fontSize: '18px'}} className="h-8 w-10 text-xl border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"/>
                     <button type="button" className="w-10 h-8 text-lg font-semibold text-gray-600 transition hover:opacity-75" onClick={increase}>+</button>
                   </div>
-            <p className='text-base text-gray-500'>{item.Product.stock} pieces available</p>
+            <p className='text-base text-gray-500'>{item?.Product?.stock} pieces available</p>
           </div>
         </div>
       </div>
       <div className='flex flex-col flex-1 justify-between items-end py-12 pr-8'>
         <div className='underline cursor-pointer' onClick={handleClickDeleteBox}>Remove</div>
         <div className='flex flex-col items-end'>
-          <div className='text-2xl font-semibold'>฿ {item.Product.price*count}</div>
-          <div className='text-base text-gray-500'>฿ {item.Product.price} / piece</div>
+          <div className='text-2xl font-semibold'>฿ {item?.Product?.price*count}</div>
+          <div className='text-base text-gray-500'>฿ {item?.Product?.price} / piece</div>
         </div>
       </div>
     </div>
