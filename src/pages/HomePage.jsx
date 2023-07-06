@@ -2,6 +2,9 @@ import React from "react";
 import Carousel from "../components/Carousel";
 import Collection from "../components/Collection";
 import Footer from "../components/Footer";
+import { useDispatch } from "react-redux";
+import { groupColorListAsync } from "../features/auth/slice/admin-slice";
+import { useEffect } from "react";
 
 export default function HomePage() {
   const gallary = [
