@@ -23,7 +23,7 @@ export default function FilterList({numProduct}) {
     </div>
     {
       isFilter && 
-      <div className="h-16 border-y border-black">Hello</div>
+      <div className="h-16 border-y border-black"></div>
     }
     </>
   )
