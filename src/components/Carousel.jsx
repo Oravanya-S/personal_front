@@ -16,7 +16,7 @@ export default function Carousel({gallaryList}){
 
   return (
     <div className='block relative max-h-[500px] z-0'>
-      <div className='flex w-screen'>
+      <div className='flex'>
           <img className='block' src={gallary[picIdx]} alt="" />
       </div>
       <p onClick={prevPicture}><i className="fa-solid fa-chevron-left text-6xl absolute top-[45%] left-[2%] cursor-pointer" ></i></p>

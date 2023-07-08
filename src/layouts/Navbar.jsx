@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 import { FailIcon } from '../icons'
 import { useNavigate } from 'react-router-dom'
 
-export default function Navbar({bgColor = 'bg-transparent', borderColor = "black"}) {
+export default function Navbar({bgColor = 'white', borderColor = "black"}) {
     
     const user = useSelector(state => state.auth.user);
     const navigate = useNavigate()
@@ -50,19 +50,19 @@ export default function Navbar({bgColor = 'bg-transparent', borderColor = "black
     }
 
     return ( 
-    <div>
-      {(role==1)? <></> : <div className='max-w-[1440px] relative z-20 mx-auto'>
-        <div className={`sticky z-${(openSignIn || openSignUp)? 20: 30} border border-b-0 top-0`}>
-          <nav className={`flex justify-between px-10 items-center bg-${bgColor} h-24`}>
+    <div className='sticky top-0 z-20'>
+      {(role==1)? <></> : <div className='max-w-[1440px] relative mx-auto bg-white'>
+        <div className={`z-${(openSignIn || openSignUp)? 20: 30} border border-y-0`}>
+          <nav className={`px-10 flex justify-between items-center bg-${bgColor} h-[94px]`}>
               <div>
                 <Link to='/' className='text-5xl font-bold'>MARIETTA</Link>
               </div>
               <Menu />
               <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='20'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>
               <div className='flex gap-4 text-lg'>
-              {user? <Dropdown user={user}/> : <div className='cursor-pointer' onClick={handleSignIn}><i className="fa-regular fa-user text-2xl text-black p-2 hover:underline"></i>Sign in</div>}
-              <a className='cursor-pointer'><i className="fa-regular fa-heart text-2xl text-black p-2"></i>Favorites</a>
-              <div className='cursor-pointer' onClick={goToCart}><i className="fa-solid fa-bag-shopping text-2xl text-black p-2"></i>Cart</div>
+                {user? <Dropdown user={user}/> : <div className='cursor-pointer' onClick={handleSignIn}><i className="fa-regular fa-user text-2xl text-black p-2 hover:underline"></i>Sign in</div>}
+                <a className='cursor-pointer'><i className="fa-regular fa-heart text-2xl text-black p-2"></i>Favorites</a>
+                <div className='cursor-pointer' onClick={goToCart}><i className="fa-solid fa-bag-shopping text-2xl text-black p-2"></i>Cart</div>
               </div>
           </nav>
           <hr className='fixed w-full border-gray-300 top-0'/>

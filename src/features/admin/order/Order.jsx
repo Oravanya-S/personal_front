@@ -1,9 +1,10 @@
 import React from 'react'
 import PreorderItem from '../carts/PreorderItem'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 export default function Order({order}) {
-
+  const user = useSelector(state => state.auth.user)
   const [accordian, setAccordian] = useState(false)
   const orderItem = order.OrderItems
   let totolAmount, sumPrice;
@@ -19,7 +20,7 @@ export default function Order({order}) {
         },0)
     }
 
-    
+  console.log(order)
   return (
     <div className={`flex flex-col gap-4`}>
         <div className={`flex justify-between items-center`}>
@@ -60,10 +61,10 @@ export default function Order({order}) {
                   <p>{order.address}</p>
                 </div>
 
-                <div className='flex items-center justify-between '>
+                {user.role === 1? <div className='flex items-center justify-between '>
                   <p className='font-medium text-xl w-[100px]'>Receiver</p>
-                  <p>{order.User?.firstName} {order.User?.lastName}</p>
-                </div>
+                  <p>{order?.User?.firstName} {order?.User?.lastName}</p>
+                </div> : <></>}
               </div>
             </div>}
         <hr className="border-gray-400 my-2"/>

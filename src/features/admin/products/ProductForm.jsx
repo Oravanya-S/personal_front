@@ -103,11 +103,11 @@ export default function ProductForm({
                   onClick={() => inputEl.current.click()}
                 >
                   <div className="flex flex-col gap-3 items-center">
-                  <Clound />
-                  <p className="text-gray-500">Click to upload</p>
-                  <p className="text-gray-500 text-sm">SVG, PNG, JPG or GIF</p>
+                    <Clound />
+                    <p className="text-gray-500">Click to upload</p>
+                    <p className="text-gray-500 text-sm">SVG, PNG, JPG or GIF</p>
                   </div>
-                  <div className="flex flex-col items-center">
+                  
                     <input 
                       type="file"
                       className="hidden"
@@ -119,16 +119,16 @@ export default function ProductForm({
                         }
                       }}
                     />
-                    <div className="">
-                      <img className=" object-center"
+                    
+                      <img className="w-full object-cover object-bottom"
                         src={
                           input.image
                             ? URL.createObjectURL(input.image)
                             : initialImage
                         }
                       />
-                    </div>
-                  </div>      
+                   
+                      
                 </div>
                 <div className="pt-2 h-2 flex justify-center">
                   {error.image && (

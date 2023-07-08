@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
-export default function filterItem() {
+export default function FilterItem({ item, onClick }) {
+  console.log(item);
   return (
     <>
-        <button className='border w-[100px] rounded-md'></button>
+      <button
+        className="border px-3 text-left text-sm py-[2px]"
+        value={item.id}
+      >
+        {item.name}
+      </button>
     </>
-  )
+  );
 }

@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as modelService from '../../../api/model-api';
 
 const initialState = {
-    modelListWithBagType: []
+    modelListWithBagType: [],
+    isLoading: true
 };
 
 export const modelListWithBagTypeAsync = createAsyncThunk(
@@ -25,13 +26,16 @@ export const modelListWithBagTypeAsync = createAsyncThunk(
     },
     extraReducers: (builder) =>
       builder
+        .addCase(modelListWithBagTypeAsync.pending, (state) => {
+          state.isLoading = true;
+        })
         .addCase(modelListWithBagTypeAsync.fulfilled, (state, action) => {
           state.modelListWithBagType = action.payload;
-          // state.initialLoading = false;
+          state.isLoading = false;
         })
         .addCase(modelListWithBagTypeAsync.rejected, (state, action) => {
           state.error = action.payload;
-          // state.initialLoading = false;
+          state.isLoading = false;
         })
   });
   
