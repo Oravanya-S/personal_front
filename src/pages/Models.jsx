@@ -5,11 +5,16 @@ import { modelListWithBagTypeAsync } from "../features/auth/slice/model-slice";
 import ProductWithModel from "../features/admin/products/ProductWithModel";
 import FilterList from "../features/filter/filterList";
 import Loading from "../components/Loading";
+import { groupColorListAsync } from "../features/auth/slice/admin-slice";
 
 export default function Models() {
   const { modelId } = useParams();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(groupColorListAsync())
+  }, []);
+  
   useEffect(() => {
     dispatch(modelListWithBagTypeAsync(modelId));
   }, [modelId]);
