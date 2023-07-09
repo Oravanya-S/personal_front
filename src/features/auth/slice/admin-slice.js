@@ -166,10 +166,7 @@ const adminSlice = createSlice({
     },
     editProduct: (state, action) => {
       const updateProductObj  = action.payload;
-      console.log("update", updateProductObj)
-      console.log("updateId", updateProductObj?.id)
       const index = state.productList.findIndex((el) => el.id == updateProductObj.id);
-      console.log("index",index)
       state.productList[index] = updateProductObj;
     },
   },
@@ -178,9 +175,7 @@ const adminSlice = createSlice({
       .addCase(bagTypeListAsync.fulfilled, (state, action) => {
         state.bagTypeList = action.payload;
         if(state.searchBagTypeValue.trim() === "") state.bagTypeListFilter = state.bagTypeList
-        else {
-          state.bagTypeListFilter = action.payload.filter((bag) => bag.name.toLowerCase().includes(state.searchBagTypeValue.toLowerCase()))
-        }
+        else state.bagTypeListFilter = action.payload.filter((bag) => bag.name.toLowerCase().includes(state.searchBagTypeValue.toLowerCase()))
         state.isLoading = false;
       })
       .addCase(bagTypeListAsync.rejected, (state, action) => {
@@ -202,9 +197,7 @@ const adminSlice = createSlice({
       .addCase(colorListAsync.fulfilled, (state, action) => {
         state.colorList = action.payload;
         if(state.searchColorValue.trim() === "") state.colorListFilter = state.colorList
-        else {
-          state.colorListFilter = action.payload.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
-        }
+        else state.colorListFilter = action.payload.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
         state.isLoading = false;
       })
       .addCase(colorListAsync.rejected, (state, action) => {
@@ -214,9 +207,7 @@ const adminSlice = createSlice({
       .addCase(modelListAsync.fulfilled, (state, action) => {
         state.modelList = action.payload;
         if(state.searchModelValue.trim() === "") state.modelListFilter = state.modelList
-        else {
-          state.modelListFilter = action.payload.filter((model) => model.name.toLowerCase().includes(state.searchModelValue.toLowerCase()))
-        }
+        else state.modelListFilter = action.payload.filter((model) => model.name.toLowerCase().includes(state.searchModelValue.toLowerCase()))
         state.isLoading = false;
       })
       .addCase(modelListAsync.rejected, (state, action) => {
@@ -381,17 +372,10 @@ export function deleteProduct(productId, updateProductObj) {
   };
 }
 
-
 export function updateProduct(updateProductObj) {
   return async (dispatch) => {
     try {
       const response = await adminService.updateProduct(updateProductObj);
-      console.log("response data", response.data)
-      console.log("response", response)
-      console.log("updateProductObj", updateProductObj)
-      // const formDataObj = {};
-      // updateProductObj.forEach((value, key) => (formDataObj[key] = value));
-      // console.log("formDataObj", formDataObj)
       dispatch(editProduct(response.data));
     } catch (error) {
       console.log(error);

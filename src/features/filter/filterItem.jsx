@@ -1,17 +1,15 @@
 import React from "react";
 import { useState } from "react";
 
-export default function FilterItem({ item, onClick }) {
-  const [click, setClick] = useState(false)
-  const handleClickFilterColor = (e) => {
-    setClick(!click)
-  }
+export default function FilterItem({ item, status, onClick }) {
+
   return (
     <>
       <button
-        className={`border px-3 text-left text-sm py-[2px] hover:bg-gray-50 ${click? "border-black": ""}`}
+        className={`border px-3 text-left text-sm py-[2px] hover:bg-gray-50 ${status? "border-black": ""}`}
         value={item.id}
-        onClick={handleClickFilterColor}
+        name={item.name}
+        onClick={onClick}
       >
         {item.name}
       </button>

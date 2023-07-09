@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CloseIcon, SearchIcon } from "../../../icons";
 import { useDispatch, useSelector } from "react-redux";
 import { searchColor } from "../../auth/slice/admin-slice";

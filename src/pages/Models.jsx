@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { modelListWithBagTypeAsync } from "../features/auth/slice/model-slice";
+import { modelListWithBagTypeAsync, searchProduct, sortPrice } from "../features/auth/slice/model-slice";
 import ProductWithModel from "../features/admin/products/ProductWithModel";
 import FilterList from "../features/filter/filterList";
 import Loading from "../components/Loading";
@@ -11,17 +11,17 @@ export default function Models() {
   const { modelId } = useParams();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(groupColorListAsync())
-  }, []);
   
   useEffect(() => {
     dispatch(modelListWithBagTypeAsync(modelId));
+    dispatch(searchProduct({}))
+    dispatch(sortPrice(""))
   }, [modelId]);
-  
+
   const isLoading = useSelector((state) => state?.model?.isLoading);
-  const product = useSelector((state) => state.model.modelListWithBagType);
+  const product = useSelector((state) => state.model.modelListWithBagTypeFilter);
   const numProduct = product.length;
+
   if (isLoading) {
     return <Loading /> }
   return (
@@ -34,7 +34,7 @@ export default function Models() {
             ))}
           </div>
         ) : (
-          <div className="flex justify-center text-xl text-gray-500 py-24">
+          <div className="flex justify-center text-xl text-gray-500 pt-72">
             No products match your selection
           </div>
         )}
