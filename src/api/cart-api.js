@@ -8,5 +8,3 @@ export const checkout = async (checkoutObj) => await axios.post('/carts/checkout
 
 
 export const orderByUserId = async (id) => await axios.get(`/orders/${id}`);
-
-// export const updatePlusCart = async (updateCartObj) => await axios.patch('/carts', updateCartObj);

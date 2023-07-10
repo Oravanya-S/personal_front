@@ -13,14 +13,14 @@ export default function SelectAmphure({ provinceId = "", valueId, onChange }) {
           Amphoe:
         </label>
         <select
-          className="w-full text-center py-[1px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
+          className="w-full px-2 py-[2px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
           name="district"
           id="district"
           value={valueId}
           onChange={onChange}
         >
           <option disabled hidden value={""}>
-          ------- Select -------
+          -------- Select --------
           </option>
           {amphures.map((el) =>
             el.id === valueId? (

@@ -20,7 +20,7 @@ export default function SelectTambon({ amphureId, valueId, zipcode, onChange}) {
                 Tambon:
             </label>
             <select
-            className="w-full text-center py-[1px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
+            className="w-full px-2 py-[2px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
             name="subDistrict"
             id="subDistrict"
             value={valueId}
@@ -28,7 +28,7 @@ export default function SelectTambon({ amphureId, valueId, zipcode, onChange}) {
             onChange={onChange}
             >
             <option disabled hidden value={""}>
-                ------- Select -------
+                -------- Select --------
             </option>
             {tambons.map((el) =>
                 el.id === valueId? (
