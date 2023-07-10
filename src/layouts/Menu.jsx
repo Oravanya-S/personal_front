@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { bagTypeListAsync } from "../features/auth/slice/admin-slice";
 import MenuItem from "./MenuItem";
 import { useLocation } from "react-router-dom";
+import { setModelId } from "../features/auth/slice/model-slice";
 
 export default function Menu() {
   const bagType = useSelector((state) => state.admin.bagTypeList);
+  const modelId = useSelector((state) => state.model.modelId);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(bagTypeListAsync());
@@ -22,6 +24,7 @@ const location = useLocation()
           key={el.id}
           to={`/models/${el.id}`}
           active={location.pathname === `/models/${el.id}`}
+          onclick= {() => dispatch(setModelId(el.id))}
         />
       ))}
     </div>

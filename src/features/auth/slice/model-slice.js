@@ -3,6 +3,8 @@ import * as modelService from '../../../api/model-api';
 
 const initialState = {
     modelListWithBagType: [],
+    modelListWithBagTypeId: [],
+    modelId: "",
     modelListWithBagTypeFilter: [],
     groupColorFilter: {},
     priceFilter: "",
@@ -26,6 +28,13 @@ export const modelListWithBagTypeAsync = createAsyncThunk(
     name: "model",
     initialState,
     reducers: {
+      setModelId: (state, action) => {
+        const modelId = action.payload;
+        if(modelId != state.modelId) {
+          state.modelId = action.payload;
+          state.modelListWithBagTypeId = state.modelListWithBagType.filter(product => product?.Model?.bagTypeId === +modelId)
+        }
+      },
       searchProduct: (state, action) => {
         const groupColorFilter = action.payload
         state.groupColorFilter = action.payload;
@@ -72,6 +81,7 @@ export const modelListWithBagTypeAsync = createAsyncThunk(
   export default modelSlice.reducer;
 
   export const {
+    setModelId,
     searchProduct,
     sortPrice,
   } = modelSlice.actions;

@@ -9,6 +9,8 @@ export default function ModelList() {
   useEffect(() => {
     dispatch(modelListAsync());
     dispatch(productListAsync());
+    dispatch(bagTypeListAsync());
+    dispatch(colorListAsync());
   },[]) 
 
   return (

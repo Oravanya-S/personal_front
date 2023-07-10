@@ -16,7 +16,7 @@ export default function FilterList({numProduct}) {
       if (groupColor.length === 0) {
         dispatch(groupColorListAsync());
       }
-    }, [groupColor, dispatch]);
+    }, [groupColor]);
 
     const groupColorFilterId = Object.values(groupColorFilter)
     const [isFilter, setIsFilter] = useState(false)

@@ -10,6 +10,9 @@ dependencies:
   axios:
     specifier: ^1.4.0
     version: 1.4.0
+  country-state-city:
+    specifier: ^3.1.4
+    version: 3.1.4
   joi:
     specifier: ^17.9.2
     version: 17.9.2
@@ -991,6 +994,10 @@ packages:
   /convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
     dev: true
+
+  /country-state-city@3.1.4:
+    resolution: {integrity: sha512-gULjY6rojfdTbgBoPXYbcnmS0SSFzRJl+/jgS/IIxraI7l4YVbT/Jb53OFujJwrQP4d19YC7yWIDHyxtMxgHVQ==}
+    dev: false
 
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
