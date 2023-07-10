@@ -5,7 +5,7 @@ export default function PreorderItem({item}) {
     <>
     <div className='flex border-[1px] gap-6 max-h-[400px]'>
     <div className='w-[35%] overflow-hidden'>
-      <img className='block' src="https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw70c09258/23E213BA001-3100-852_1_main.jpg?sw=475&sh=633&q=100" />
+      <img className='block' src={item?.Product?.image} />
     </div>
     <div className='flex flex-col w-[30%] justify-center gap-5'>
       <div className='text-xl font-medium'>{item.Product.Model.name}</div>

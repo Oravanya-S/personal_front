@@ -9,18 +9,18 @@ export default function SelectAmphure({ provinceId = "", valueId, onChange }) {
 
   return (
     <div className="flex items-center gap-2">
-        <label htmlFor="province" className="dark:text-white font-medium">
-          District:
+        <label htmlFor="district" className="dark:text-white font-medium w-[110px]">
+          Amphoe:
         </label>
         <select
-          className="min-w-[100px] py-[1px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
+          className="w-full text-center py-[1px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
           name="district"
           id="district"
           value={valueId}
           onChange={onChange}
         >
           <option disabled hidden value={""}>
-            Select district
+          ------- Select -------
           </option>
           {amphures.map((el) =>
             el.id === valueId? (
@@ -28,7 +28,7 @@ export default function SelectAmphure({ provinceId = "", valueId, onChange }) {
                 {el.name_en}
               </option>
             ) : (
-              <option value={el.idn} key={el.id}>
+              <option value={el.id} key={el.id}>
                 {el.name_en}
               </option>
             )

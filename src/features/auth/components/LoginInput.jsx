@@ -2,6 +2,7 @@ import React from "react";
 import createClasses from '../../../utils/create-classes';
 
 export default function LoginInput({
+  type = 'text',
   placeholder,
   value,
   onChange,
@@ -18,7 +19,7 @@ export default function LoginInput({
     <div>
       {/* <p className="py-2 text-gray-400">{placeholder}</p> */}
       <input
-        type="text"
+        type={type}
         className={className}
         placeholder={placeholder}
         value={value}

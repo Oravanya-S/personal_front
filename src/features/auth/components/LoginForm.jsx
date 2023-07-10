@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginInput from './LoginInput';
 import { toast } from 'react-toastify';
+import { HiEye } from "react-icons/hi";
 import validateLogin from '../validators/validate-login';
 import InputErrorMessage from './inputErrorMessage';
 import { useState } from 'react';
@@ -16,8 +17,9 @@ const initialInput = {
 };
 
 
-export default function LoginForm({placeholder, value, onChange, name, isInvalid, open, onClose}) {
+export default function LoginForm({open, onClose}) {
   const navigate = useNavigate()
+  const [isView, setIsView] = useState(false)
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const user = useSelector(state => state.auth.user);
   const [input, setInput] = useState(initialInput);
@@ -26,7 +28,12 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
 
   const handleChangeInput = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
-};
+    setIsView(false)
+  };
+
+  const handleIsView = () => {
+    setIsView(!isView)
+  }
 
   const handleSubmitForm = async e => {
     try {
@@ -66,22 +73,26 @@ export default function LoginForm({placeholder, value, onChange, name, isInvalid
             name="email"
             value={input.email}
             onChange={handleChangeInput}
-            // isInvalid={error.emailOrMobile}
+            isInvalid={error.email}
           />
           <div className='h-8'>
             <InputErrorMessage message={error.email} />
           </div>
         </div>
-        <div>
+        <div className='relative'>
           <LoginInput
+            type={isView? 'text': 'password'}
             placeholder="Password"
             name="password"
             value={input.password}
             onChange={handleChangeInput}
-            // isInvalid={error.password}
+            isInvalid={error.password}
           />
           <div className='h-8'>
             <InputErrorMessage message={error.password} />
+          </div>
+          <div className='absolute top-3 right-5 text-xl cursor-pointer' onClick={handleIsView}>
+            <HiEye />
           </div>
         </div>
         </div>
