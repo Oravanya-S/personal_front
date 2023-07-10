@@ -1,6 +1,7 @@
 import createClasses from '../../../utils/create-classes';
 
 export default function RegisterInput({
+  type = "text",
   placeholder,
   value,
   onChange,
@@ -17,7 +18,7 @@ export default function RegisterInput({
     <div>
       {/* <p className="py-2 text-gray-400">{placeholder}</p> */}
       <input
-        type="text"
+        type={type}
         className={className}
         placeholder={placeholder}
         value={value}

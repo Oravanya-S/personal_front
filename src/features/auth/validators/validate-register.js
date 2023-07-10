@@ -8,7 +8,8 @@ const registerSchema = Joi.object({
     'string.empty': 'Last name is required.'
   }),
   email: Joi.string().email({ tlds: false }).messages({
-    'string.email': 'Must be a valid email'
+    'string.email': 'Must be a valid email',
+    'string.empty': 'Email is required.'
   }),
   password: Joi.string()
     .pattern(/^[a-zA-Z0-9]{6,30}$/)

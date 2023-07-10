@@ -7,6 +7,7 @@ import { registerAsync } from '../slice/auth-slice';
 import { FailIcon, SuccessIcon } from '../../../icons';
 import InputErrorMessage from './inputErrorMessage';
 import validateRegister from '../validators/validate-register';
+import { HiEye } from "react-icons/hi";
 
 const initialInput = {
     firstName: '',
@@ -15,16 +16,27 @@ const initialInput = {
     password: '',
     confirmPassword: ''
 };
-  
 
 export default function RegisterForm({open, onClose}) {
     const [input, setInput] = useState(initialInput);
     const [error, setError] = useState({});
+    const [isViewPassword, setIsViewPassword] = useState(false)
+    const [isViewMatch, setIsViewMatch] = useState(false)
     const dispatch = useDispatch();
 
     const handleChangeInput = e => {
         setInput({ ...input, [e.target.name]: e.target.value });
+        setIsViewPassword(false)
+        setIsViewMatch(false)
     };
+
+    const handleIsView = () => {
+        setIsViewPassword(!isViewPassword)
+    }
+
+    const handleIsViewMatch = () => {
+        setIsViewMatch(!isViewMatch)
+    }
 
     const handleSubmitForm = async e => {
         try {
@@ -68,7 +80,7 @@ export default function RegisterForm({open, onClose}) {
                         placeholder="Email address"
                         value={input.email}
                         onChange={handleChangeInput}
-                        // isInvalid={error.emailOrMobile}
+                        isInvalid={error.email}
                     />
                     <div className='h-8'> 
                         {error.email && (<InputErrorMessage message={error.email} />)}
@@ -77,29 +89,39 @@ export default function RegisterForm({open, onClose}) {
                     </div>
 
                     <div className='grid grid-cols-2 gap-12'>
-                        <div>
+                        <div className='relative'>
                             <RegisterInput
+                                type={isViewPassword? 'text': 'password'}
                                 name="password"
                                 placeholder="Password"
                                 value={input.password}
                                 onChange={handleChangeInput}
-                                // isInvalid={error.password}
+                                isInvalid={error.password}
                             />
                             <div className='h-8'> 
                                 {error.password && <InputErrorMessage message={error.password} />}
                             </div>  
+                            {input.password.length > 0 ?
+                                <div className='absolute top-3 right-2 text-lg cursor-pointer' onClick={handleIsView}>
+                                    <HiEye />
+                                </div> : <></>}
                         </div>
-                        <div>
+                        <div className='relative'>
                             <RegisterInput
+                                type={isViewMatch? 'text': 'password'}
                                 name="confirmPassword"
                                 placeholder="Confirm password"
                                 value={input.confirmPassword}
                                 onChange={handleChangeInput}
-                                // isInvalid={error.confirmPassword}
+                                isInvalid={error.confirmPassword}
                             />
                             <div className='h-8'> 
                                 {error.confirmPassword && (<InputErrorMessage message={error.confirmPassword} />)}
                             </div>
+                            {input.confirmPassword.length > 0 ?
+                                <div className='absolute top-3 right-2 text-lg cursor-pointer' onClick={handleIsViewMatch}>
+                                    <HiEye />
+                                </div> : <></>}
                         </div>
                     </div> 
 
@@ -110,7 +132,7 @@ export default function RegisterForm({open, onClose}) {
                                 placeholder="First name"
                                 value={input.firstName}
                                 onChange={handleChangeInput}
-                                // isInvalid={error.firstName}
+                                isInvalid={error.firstName}
                             />
                             <div className='h-8'> 
                                 {error.firstName && <InputErrorMessage message={error.firstName} />}
@@ -122,7 +144,7 @@ export default function RegisterForm({open, onClose}) {
                             placeholder="Last name"
                             value={input.lastName}
                             onChange={handleChangeInput}
-                            // isInvalid={error.lastName}
+                            isInvalid={error.lastName}
                             />
                             <div className='h-8'> 
                                 {error.lastName && <InputErrorMessage message={error.lastName} />}

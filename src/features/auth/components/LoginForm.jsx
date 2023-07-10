@@ -91,9 +91,10 @@ export default function LoginForm({open, onClose}) {
           <div className='h-8'>
             <InputErrorMessage message={error.password} />
           </div>
+          {input.password.length > 0 ?
           <div className='absolute top-3 right-5 text-xl cursor-pointer' onClick={handleIsView}>
             <HiEye />
-          </div>
+          </div> : <></>}
         </div>
         </div>
         <button type='submit' className='p-3 text-white text-lg bg-black'>Login</button>
