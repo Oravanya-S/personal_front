@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { bagTypeListAsync } from "../../auth/slice/admin-slice";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function SelectBagType({ valueId, onChange }) {
   const bagType = useSelector((state) => state.admin.bagTypeList);

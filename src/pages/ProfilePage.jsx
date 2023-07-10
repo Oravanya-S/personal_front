@@ -28,7 +28,7 @@ export default function ProfilePage() {
               </Link>
             </div>
           </div>
-          <div className="max-w-[600px] flex flex-col flex-1 my-3 gap-6">
+          <div className="max-w-[750px] flex flex-col flex-1 my-3 gap-6">
             <div className="flex flex-col flex-1 gap-6">
               <div className="flex justify-between items-end">
                 <p>{user.email}</p>
@@ -107,11 +107,3 @@ export default function ProfilePage() {
   );
 }
 
-// <button
-//                   type="submit"
-//                   className="text-white bg-black p-4 my-8 text-center text-lg"
-//                   role="button"
-//                   onClick={()=> setIsEditMode(true)}
-//                 >
-//                   Edit
-//                 </button>

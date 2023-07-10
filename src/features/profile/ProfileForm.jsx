@@ -6,13 +6,20 @@ import { FailIcon, SuccessIcon } from '../../icons';
 import InputErrorMessage from '../auth/components/inputErrorMessage';
 import validateProfile from '../../features/auth/validators/validate-profile'
 import ProfileInput from './ProfileInput';
+import SelectProvince from './SelectProvince';
+import SelectAmphure from './SelectAmphure';
+import SelectTambon from './SelectTambon';
   
 export default function ProfileForm({open, onClose, user}) {
     
     const initialInput = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        address: user.address || '',
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        addressLine: user?.addressLine || '85-87',
+        province: user?.province || '',
+        district: user?.district || '',
+        subDistrict: user?.subDistrict || '',
+        zipcode: user?.zipcode || '',
     };
     
     const [input, setInput] = useState(initialInput);
@@ -22,6 +29,7 @@ export default function ProfileForm({open, onClose, user}) {
     const handleChangeInput = e => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
+    console.log(error)
 
     const handleSubmitForm = async e => {
         try {
@@ -54,7 +62,7 @@ export default function ProfileForm({open, onClose, user}) {
                                 placeholder="First name"
                                 value={input.firstName}
                                 onChange={handleChangeInput}
-                                // isInvalid={error.firstName}
+                                isInvalid={error.firstName}
                             />
                             <div className='h-8'> 
                                 {error.firstName && <InputErrorMessage message={error.firstName} />}
@@ -66,7 +74,7 @@ export default function ProfileForm({open, onClose, user}) {
                             placeholder="Last name"
                             value={input.lastName}
                             onChange={handleChangeInput}
-                            // isInvalid={error.lastName}
+                            isInvalid={error.lastName}
                             />
                             <div className='h-8'> 
                                 {error.lastName && <InputErrorMessage message={error.lastName} />}
@@ -78,16 +86,19 @@ export default function ProfileForm({open, onClose, user}) {
                         <div>
                             <ProfileInput
                                 name="address"
-                                placeholder="Address"
-                                value={input.address}
+                                placeholder="Address Line"
+                                value={input.addressLine}
                                 onChange={handleChangeInput}
-                                // isInvalid={error.password}
+                                isInvalid={error.addressLine}
                             />
                             <div className='h-8'> 
-                                {error.address && <InputErrorMessage message={error.address} />}
+                                {error.addressLine && <InputErrorMessage message={error.addressLine} />}
                             </div>  
                         </div>
                     </div> 
+                    <SelectProvince valueId={input.province} onChange={handleChangeInput}/>
+                    <SelectAmphure provinceId={input.province || ''} valueId={input.district} onChange={handleChangeInput}/>
+                    <SelectTambon amphureId={input.district || ''} valueId={input.subDistrict} onChange={handleChangeInput}/>
                     <button type='submit' className='text-white bg-black p-4  text-center text-lg'>SAVE</button>
                     <hr className="my-3 border-black"/>
                 </div>  
@@ -95,17 +106,3 @@ export default function ProfileForm({open, onClose, user}) {
     </form>
   )
 }
-
-
-{/* <div>
-                            <ProfileInput
-                                name="password"
-                                placeholder="Password"
-                                value={input.password}
-                                onChange={handleChangeInput}
-                                // isInvalid={error.password}
-                            />
-                            <div className='h-8'> 
-                                {error.password && <InputErrorMessage message={error.password} />}
-                            </div>  
-                        </div> */}

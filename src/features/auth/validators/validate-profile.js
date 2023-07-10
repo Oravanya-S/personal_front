@@ -10,7 +10,15 @@ const profileSchema = Joi.object({
   email: Joi.string().email({ tlds: false }).messages({
     'string.email': 'Must be a valid email'
   }),
-  address: Joi.string().trim().optional().allow('').messages({
+  addressLine: Joi.string().trim().optional().allow('').messages({
+  }),
+  province: Joi.string().trim().optional().allow('').messages({
+  }),
+  district: Joi.string().trim().optional().allow('').messages({
+  }),
+  subDistrict: Joi.string().trim().optional().allow('').messages({
+  }),
+  zipcode: Joi.string().trim().optional().allow('').messages({
   }),
 });
 
