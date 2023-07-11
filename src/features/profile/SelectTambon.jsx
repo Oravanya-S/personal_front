@@ -1,31 +1,33 @@
 import React from 'react'
 import thai_tambon from '../../dataThailand/thai_tambons.json'
-import { useState } from 'react';
 
-export default function SelectTambon({ amphureId, valueId, zipcode, onChange}) {
-    console.log("ddddddddd", thai_tambon)
+export default function SelectTambon({ amphureId, valueId, zipcode, input, setInput, onChange}) {
 
     let tambons;
     if(amphureId) { 
         tambons = thai_tambon.filter(item => item?.amphure_id === +amphureId)
-        // setInput({...input, zipcode: tambons[0]?.zip_code})
     }
+
     else tambons = []
-    console.log("thaitambons", tambons)
+
+    const handleChange = e => {
+        const selectedTambon = tambons.find(el => el.id == e.target.value)
+        onChange(e.target.value, selectedTambon.zip_code)
+    }
 
   return (
     <>
         <div className="flex items-center gap-2">
-            <label htmlFor="subDistrict" className="dark:text-white font-medium">
+            <label htmlFor="tambon" className="dark:text-white font-medium">
                 Tambon:
             </label>
             <select
             className="w-full px-2 py-[2px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
-            name="subDistrict"
-            id="subDistrict"
+            name="tambon"
+            id="tambon"
             value={valueId}
             zipcode={zipcode}
-            onChange={onChange}
+            onChange={handleChange}
             >
             <option disabled hidden value={""}>
                 -------- Select --------
@@ -47,23 +49,10 @@ export default function SelectTambon({ amphureId, valueId, zipcode, onChange}) {
             <label htmlFor="zipcode" className="dark:text-white font-medium w-[110px]">
                 Zipcode:
             </label>
-            <input
-                type="text"
-                className="w-full block border-b outline-none"
-                disabled={true}
-                placeholder=""
-                value={zipcode}
-                onChange={onChange}
-                name="zipcode"
-            />
+            <div className='border-b w-full h-7 px-3'>
+                {zipcode}
+            </div>
         </div>
     </>
   )
 }
-
-
-// if(tambonId) {
-//     const index = thai_tambon.findIndex(item => item?.id === +tambonId)
-//     const zip = thai_tambon[index].zip_code
-//     setInput({...input, zipcode: zip})
-// } 

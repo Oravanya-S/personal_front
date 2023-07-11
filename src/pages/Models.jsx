@@ -27,7 +27,7 @@ export default function Models() {
       <div className="max-w-[1440px] min-h-[calc(100vh-100px)] mx-auto overflow-hidden border border-black border-y-0">
           <FilterList numProduct={numProduct}/>
         {product.length > 0 ? (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 border-slate-600 overflow-auto border-spacing-0">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 border-slate-600 overflow-auto">
             {product.map((el) => (
               <ProductWithModel item={el} />
             ))}

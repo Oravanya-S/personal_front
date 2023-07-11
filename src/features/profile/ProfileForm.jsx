@@ -9,17 +9,16 @@ import ProfileInput from './ProfileInput';
 import SelectProvince from './SelectProvince';
 import SelectAmphure from './SelectAmphure';
 import SelectTambon from './SelectTambon';
-import thai_tambon from '../../dataThailand/thai_tambons.json'
   
 export default function ProfileForm({open, onClose, user}) {
     
     const initialInput = {
         firstName: user?.firstName,
         lastName: user?.lastName,
-        addressLine: user?.addressLine || '85-87',
+        addressLine: user?.addressLine || '',
         province: user?.province || '',
-        district: user?.district || '',
-        subDistrict: user?.subDistrict || '',
+        amphoe: user?.amphoe || '',
+        tambon: user?.tambon || '',
         zipcode: user?.zipcode || '',
     };
     
@@ -31,8 +30,9 @@ export default function ProfileForm({open, onClose, user}) {
     const handleChangeInput = e => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
-    const handleChangeTambon = e => {
-        setInput({ ...input, [e.target.name]: e.target.value, zipcode: e.target.zipcode });
+    const handleChangeTambon = (id, zipcode) => {
+
+        setInput({ ...input, tambon: id, zipcode: zipcode });
     };
     console.log(error)
 
@@ -89,7 +89,7 @@ export default function ProfileForm({open, onClose, user}) {
                     <div className='grid'>
                         <div>
                             <ProfileInput
-                                name="address"
+                                name="addressLine"
                                 placeholder="Address Line"
                                 value={input.addressLine}
                                 onChange={handleChangeInput}
@@ -103,10 +103,10 @@ export default function ProfileForm({open, onClose, user}) {
                     <div className='flex flex-col gap-8'>
                         <div className='grid grid-cols-2 gap-12'>
                             <SelectProvince valueId={input.province} onChange={handleChangeInput}/>
-                            <SelectAmphure provinceId={input.province || ''} valueId={input.district} onChange={handleChangeInput}/>
+                            <SelectAmphure provinceId={input.province || ''} valueId={input.amphoe} onChange={handleChangeInput}/>
                         </div>
                         <div className='grid grid-cols-2 gap-12'>
-                            <SelectTambon amphureId={input.district || ''} valueId={input.subDistrict} zipcode={input.zipcode} input={input} setInput={setInput} onChange={handleChangeTambon}/>
+                            <SelectTambon amphureId={input.amphoe || ''} valueId={input.tambon} zipcode={input.zipcode} input={input} setInput={setInput} onChange={handleChangeTambon}/>
                         </div>
                         <button type='submit' className='text-white bg-black p-4  text-center text-lg'>SAVE</button>
                         </div>
