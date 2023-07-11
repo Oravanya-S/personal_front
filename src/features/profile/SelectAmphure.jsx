@@ -5,12 +5,11 @@ export default function SelectAmphure({ provinceId = "", valueId, onChange }) {
     let amphures;
     if(provinceId) amphures = thai_amphures.filter(item => item.province_id === +provinceId)
     else amphures = []
-    console.log("thaiampures", thai_amphures)
 
   return (
     <div className="flex items-center gap-2">
-        <label htmlFor="amphoe" className="dark:text-white font-medium w-[110px]">
-          Amphoe:
+        <label htmlFor="amphoe" className="w-[160px]">
+          District/Area:
         </label>
         <select
           className="w-full px-2 py-[2px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
@@ -18,9 +17,10 @@ export default function SelectAmphure({ provinceId = "", valueId, onChange }) {
           id="amphoe"
           value={valueId}
           onChange={onChange}
+          
         >
           <option disabled hidden value={""}>
-          -------- Select --------
+          ------- Select -------
           </option>
           {amphures.map((el) =>
             el.id === valueId? (

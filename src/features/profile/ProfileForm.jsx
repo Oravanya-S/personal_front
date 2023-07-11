@@ -1,7 +1,7 @@
 import React from 'react'
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FailIcon, SuccessIcon } from '../../icons';
 import InputErrorMessage from '../auth/components/inputErrorMessage';
 import validateProfile from '../../features/auth/validators/validate-profile'
@@ -9,9 +9,11 @@ import ProfileInput from './ProfileInput';
 import SelectProvince from './SelectProvince';
 import SelectAmphure from './SelectAmphure';
 import SelectTambon from './SelectTambon';
+import { updateUser } from '../../api/user-api';
+import { fetchMe } from '../../features/auth/slice/auth-slice'
   
-export default function ProfileForm({open, onClose, user}) {
-    
+export default function ProfileForm({open, onClose}) {
+    const user = useSelector((state) => state?.auth?.user);
     const initialInput = {
         firstName: user?.firstName,
         lastName: user?.lastName,
@@ -28,11 +30,18 @@ export default function ProfileForm({open, onClose, user}) {
 
     console.log(input)
     const handleChangeInput = e => {
-        setInput({ ...input, [e.target.name]: e.target.value });
+        if(e.target.name === 'province') {
+            setInput({ ...input, [e.target.name]: e.target.value, amphoe: '', tambon: '', zipcode: '' });
+        }
+        else if(e.target.name === 'amphoe') {
+            setInput({ ...input, [e.target.name]: e.target.value, tambon: '', zipcode: '' });
+        }
+        else {
+            setInput({ ...input, [e.target.name]: e.target.value});
+        }
     };
     const handleChangeTambon = (id, zipcode) => {
-
-        setInput({ ...input, tambon: id, zipcode: zipcode });
+        setInput({ ...input, tambon: id, zipcode: String(zipcode) });
     };
     console.log(error)
 
@@ -45,7 +54,14 @@ export default function ProfileForm({open, onClose, user}) {
           }
           setError({});
 
-          onClose()
+          if (result) {
+            return setError(result);
+        }
+        setError({});
+
+        // onClose(false)
+        await dispatch(updateUser(input)).unwrap()
+        await dispatch(fetchMe()).unwrap()
 
         } catch (err) {
           toast.error(err,{
@@ -106,9 +122,9 @@ export default function ProfileForm({open, onClose, user}) {
                             <SelectAmphure provinceId={input.province || ''} valueId={input.amphoe} onChange={handleChangeInput}/>
                         </div>
                         <div className='grid grid-cols-2 gap-12'>
-                            <SelectTambon amphureId={input.amphoe || ''} valueId={input.tambon} zipcode={input.zipcode} input={input} setInput={setInput} onChange={handleChangeTambon}/>
+                            <SelectTambon amphureId={input.amphoe || ''} valueId={input.tambon} zipcode={input.zipcode} onChange={handleChangeTambon}/>
                         </div>
-                        <button type='submit' className='text-white bg-black p-4  text-center text-lg'>SAVE</button>
+                        <button type='submit' className='text-white bg-black p-4  text-center text-lg my-3'>SAVE</button>
                         </div>
                     <hr className="my-3 border-black"/>
                 </div>  

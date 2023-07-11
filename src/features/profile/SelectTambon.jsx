@@ -1,7 +1,7 @@
 import React from 'react'
 import thai_tambon from '../../dataThailand/thai_tambons.json'
 
-export default function SelectTambon({ amphureId, valueId, zipcode, input, setInput, onChange}) {
+export default function SelectTambon({ amphureId, valueId, zipcode, onChange}) {
 
     let tambons;
     if(amphureId) { 
@@ -18,8 +18,8 @@ export default function SelectTambon({ amphureId, valueId, zipcode, input, setIn
   return (
     <>
         <div className="flex items-center gap-2">
-            <label htmlFor="tambon" className="dark:text-white font-medium">
-                Tambon:
+            <label htmlFor="tambon" className="w-[170px]">
+                Sub-district:
             </label>
             <select
             className="w-full px-2 py-[2px] m-0 text-lg rounded-lg border border-gray-400 text-gray-700"
@@ -30,7 +30,7 @@ export default function SelectTambon({ amphureId, valueId, zipcode, input, setIn
             onChange={handleChange}
             >
             <option disabled hidden value={""}>
-                -------- Select --------
+                ------- Select -------
             </option>
             {tambons.map((el) =>
                 el.id === valueId? (
@@ -46,8 +46,8 @@ export default function SelectTambon({ amphureId, valueId, zipcode, input, setIn
             </select>
         </div>
         <div className='flex items-center gap-2'>
-            <label htmlFor="zipcode" className="dark:text-white font-medium w-[110px]">
-                Zipcode:
+            <label htmlFor="zipcode" className="w-[180px]">
+                Postal Code:
             </label>
             <div className='border-b w-full h-7 px-3'>
                 {zipcode}

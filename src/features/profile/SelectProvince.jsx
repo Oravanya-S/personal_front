@@ -2,10 +2,10 @@ import React from 'react'
 import thai_provinces from '../../dataThailand/thai_provinces.json'
 
 export default function SelectProvince({ valueId, onChange }) {
-    console.log(thai_provinces)
+
   return (
     <div className="flex items-center gap-2">
-        <label htmlFor="province" className="dark:text-white font-medium w-[85px]">
+        <label htmlFor="province" className="w-[170px]">
           Province:
         </label>
         <select
@@ -16,7 +16,7 @@ export default function SelectProvince({ valueId, onChange }) {
           onChange={onChange}
         >
           <option disabled hidden value={""}>
-          --------  Select  --------
+          -------  Select  -------
           </option>
           {thai_provinces.map((el) =>
             el.name_en === valueId ? (

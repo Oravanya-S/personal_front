@@ -14,9 +14,9 @@ const profileSchema = Joi.object({
   }),
   province: Joi.string().trim().optional().allow('').messages({
   }),
-  district: Joi.string().trim().optional().allow('').messages({
+  amphoe: Joi.string().trim().optional().allow('').messages({
   }),
-  subDistrict: Joi.string().trim().optional().allow('').messages({
+  tambon: Joi.string().trim().optional().allow('').messages({
   }),
   zipcode: Joi.string().trim().optional().allow('').messages({
   }),
