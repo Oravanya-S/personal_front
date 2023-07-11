@@ -4,7 +4,7 @@ import adminReducer from '../features/auth/slice/admin-slice';
 import modelReducer from '../features/auth/slice/model-slice';
 import cartReducer from '../features/auth/slice/cart-slice';
 import orderReducer from '../features/auth/slice/order-slice';
-import favoriteReducer from '../features/auth/slice/favorite-slice';
+import wishlistReducer from '../features/auth/slice/wishlist-slice';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +13,7 @@ const store = configureStore({
     model: modelReducer,
     cart: cartReducer,
     order: orderReducer,
-    favorite: favoriteReducer,
+    wishlist: wishlistReducer,
   }
 });
 

@@ -15,6 +15,7 @@ import AddColorPage from '../pages/AddColorPage';
 import AddBagtypePage from '../pages/AddBagtypePage';
 import OrderPage from '../pages/OrderPage';
 import DashboardPage from '../pages/DashboardPage';
+import FavoritePage from '../pages/FavoritePage';
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
           {
             path: '/orders/:id',
             element: <HistoryPage />
+          },
+          {
+            path: '/wishlist/:id',
+            element: <FavoritePage />
           },
           {
             path: '/carts/:id',

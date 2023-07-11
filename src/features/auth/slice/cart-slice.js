@@ -96,7 +96,6 @@ export function checkout(checkoutObj) {
   return async (dispatch) => {
     try {
       const response = await cartService.checkout(checkoutObj);
-      // dispatch(removeCart(id));
     } catch (error) {
       console.log(error);
     }

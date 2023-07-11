@@ -49,6 +49,18 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
       }
     }
 
+    const goToWishlist = () => {
+      if(!user) {
+        toast.error('Login before adding to wishlist',{
+          icon: <FailIcon />,
+          position: 'top-center',
+          className: "top-[96px]"
+        });
+      } else {
+        navigate(`/wishlist/${id}`)
+      }
+    }
+
     return ( 
     <div className='sticky top-0 z-20'>
       {(role==1)? <></> : <div className='max-w-[1440px] relative mx-auto bg-white'>
@@ -61,7 +73,7 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
               <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='20'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>
               <div className='flex gap-4 text-lg'>
                 {user? <Dropdown user={user}/> : <div className='cursor-pointer' onClick={handleSignIn}><i className="fa-regular fa-user text-2xl text-black p-2 hover:underline"></i>Sign in</div>}
-                <a className='cursor-pointer'><i className="fa-regular fa-heart text-2xl text-black p-2"></i>Favorites</a>
+                <div className='cursor-pointer' onClick={goToWishlist}><i className="fa-regular fa-heart text-2xl text-black p-2"></i>Wishlist</div>
                 <div className='cursor-pointer' onClick={goToCart}><i className="fa-solid fa-bag-shopping text-2xl text-black p-2"></i>Cart</div>
               </div>
           </nav>

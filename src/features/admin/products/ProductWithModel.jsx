@@ -4,8 +4,10 @@ import ProductDetail from "./ProductDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addCart } from "../../auth/slice/cart-slice";
+import { addFavorite } from "../../auth/slice/wishlist-slice";
 
-export default function ProductWithModel({ item }) {
+export default function ProductWithModel({ item, wish }) {
+  console.log(wish)
   const dispatch = useDispatch()
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   const user = useSelector(state => state.auth.user)
@@ -13,14 +15,33 @@ export default function ProductWithModel({ item }) {
   if (isAuthenticated) {
     user_id = user?.id
   }
-  const [detail, setDetail] = useState(false);
-  const handleDetail = () => {
-    setDetail(!detail);
-  };
+  // const [detail, setDetail] = useState(false);
+    // const [love, setLove] = useState(false)
 
-  const handleCloseDetail = () => {
-    setDetail(false);
-  };
+    // const handleLove = (e) => {
+    //   setLove(!love)
+    // }
+    // let fulfilLove = (love)? 'solid':'regular'
+    
+  // const handleDetail = () => {
+  //   setDetail(!detail);
+  // };
+
+  // const handleCloseDetail = () => {
+  //   setDetail(false);
+  // };
+  const handleClickFavorite = () => {
+    if(!isAuthenticated) {
+      toast.error('Login before adding to wishlist',{
+        icon: <FailIcon />,
+        position: 'top-center',
+        className: "top-[96px]"
+      });
+    }
+    else {
+      dispatch(addFavorite({"userId": user_id, "productId": item.id}))
+    }
+  }
 
   const handleClickBasket = () => {
     if(!isAuthenticated) {
@@ -33,7 +54,6 @@ export default function ProductWithModel({ item }) {
     else {
       dispatch(addCart({"userId": user_id, "productId": item.id, "Product": item  }))
     }
-
   };
 
   return (
@@ -55,6 +75,12 @@ export default function ProductWithModel({ item }) {
         <BasketIcon />
       </div>
       <div
+        className="absolute top-[18px] left-4 underline underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 cursor-pointer"
+        onClick={handleClickFavorite}
+      >
+        <i className={`${wish? "fa-solid":"fa-regular"} fa-heart text-3xl`}></i>
+      </div>
+      {/* <div
         className="absolute top-5 left-4 underline underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 cursor-pointer"
         onClick={handleDetail}
       >
@@ -70,7 +96,7 @@ export default function ProductWithModel({ item }) {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       <img
         className="object-cover h-full block"
@@ -83,12 +109,6 @@ export default function ProductWithModel({ item }) {
 
 
 
-  //   const [love, setLove] = useState(false)
-  //   const handleLove = (e) => {
-  //     setLove(!love)
-  //     console.log(e.target.value)
-  //   }
-  //   let fulfilLove = (love)? 'solid':'regular'
-{
-  /* <i className={`fa-${fulfilLove} fa-heart text-3xl `} onClick={handleLove}></i> */
-}
+  
+
+// fa-${fulfilLove} 

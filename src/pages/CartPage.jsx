@@ -29,6 +29,8 @@ export default function CartPage() {
       return acc
     },0)
   }
+
+  
   
 
   return (

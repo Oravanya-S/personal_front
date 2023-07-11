@@ -1,22 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { modelListWithBagTypeAsync, searchProduct, setModelId, sortPrice } from "../features/auth/slice/model-slice";
+import { modelListWithBagTypeAsync, searchProduct, sortPrice } from "../features/auth/slice/model-slice";
 import ProductWithModel from "../features/admin/products/ProductWithModel";
 import FilterList from "../features/filter/filterList";
 import Loading from "../components/Loading";
+import { wishlistAllProductIdAsync } from "../features/auth/slice/wishlist-slice";
 
 export default function Models() {
   const { modelId } = useParams();
   const dispatch = useDispatch();
   
   const product = useSelector((state) => state.model.modelListWithBagTypeFilter);
+  const user = useSelector((state) => state.auth.user);
+  const wishProductId = useSelector((state) => state.wishlist.productIdWishlist);
+  console.log("pdId", wishProductId)
   
   useEffect(() => {
       dispatch(modelListWithBagTypeAsync(modelId));
       dispatch(searchProduct({}))
       dispatch(sortPrice(""))
+      if(user) dispatch(wishlistAllProductIdAsync(user.id))
   }, [modelId]);
+  
 
   const isLoading = useSelector((state) => state?.model?.isLoading);
   const numProduct = product.length;
@@ -29,7 +35,7 @@ export default function Models() {
         {product.length > 0 ? (
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 border-slate-600 overflow-auto">
             {product.map((el) => (
-              <ProductWithModel item={el} />
+              <ProductWithModel item={el} wish={user && wishProductId.includes(el.id)}/>
             ))}
           </div>
         ) : (
