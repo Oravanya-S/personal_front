@@ -1,18 +1,20 @@
 import React from "react";
 import { useState } from "react";
 
-export default function FilterItem({ item, status, onClick }) {
-
+export default function FilterItem({ item, status, onClick, width = "120px" }) {
   return (
     <>
-      <button
-        className={`border px-3 text-left text-sm py-[2px] hover:bg-gray-50 ${status? "border-black": ""}`}
-        value={item.id}
-        name={item.name}
-        onClick={onClick}
-      >
-        {item.name}
-      </button>
+      <div className={`flex items-center border pl-2 hover:bg-gray-50 cursor-pointer ${status? "border-black": ""}`}>
+        {item.hexcode ? <div className="w-[13px] h-3 rounded-full border" style={{backgroundColor: `${item.hexcode}`}}></div> : <></>}
+        <button
+          className={`pl-2 text-left text-sm py-[2px] w-[${width}]`}
+          value={item.id}
+          name={item.name}
+          onClick={onClick}
+        >
+          {item.name}
+        </button>
+      </div>
     </>
   );
 }

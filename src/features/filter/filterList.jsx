@@ -61,7 +61,7 @@ export default function FilterList({numProduct}) {
           <div className='border-b border-black grid grid-cols-2'>
             <div className='border-r border-black px-10 py-6'>
               <p className='pb-2 text-sm'>COLOR</p>
-              <div className="grid grid-cols-4 gap-[6px]">
+              <div className="grid grid-cols-4 gap-[6px] gap-x-8">
                 {groupColor.map( item => <FilterItem key={item.id} item={item} status={groupColorFilterId.includes(String(item.id))} onClick={handleChangeChooseColor}/>)}
               </div>
             </div>
@@ -69,7 +69,7 @@ export default function FilterList({numProduct}) {
               <div className='px-10'>
                 <p className='pb-2'>SORT BY</p>
                 <div className="grid grid-cols-3 gap-[6px]">
-                {priceFilter.map( item => <FilterItem key={item.id} item={item} status={sortPriceFilter==item.id} onClick={onClickFilterPrice}/>)}
+                {priceFilter.map( item => <FilterItem key={item.id} item={item} status={sortPriceFilter==item.id} onClick={onClickFilterPrice} width='180px'/>)}
                 </div>
               </div>
               <div className="grid grid-cols-2 border-t border-black">
