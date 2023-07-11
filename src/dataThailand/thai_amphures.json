@@ -11,7 +11,7 @@
       {
         "id": 1001,
         "name_th": "เขตพระนคร",
-        "name_en": "Khet Phra Nakhon",
+        "name_en": "Phra Nakhon",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -20,7 +20,7 @@
       {
         "id": 1002,
         "name_th": "เขตดุสิต",
-        "name_en": "Khet Dusit",
+        "name_en": "Dusit",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -29,7 +29,7 @@
       {
         "id": 1003,
         "name_th": "เขตหนองจอก",
-        "name_en": "Khet Nong Chok",
+        "name_en": "Nong Chok",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -38,7 +38,7 @@
       {
         "id": 1004,
         "name_th": "เขตบางรัก",
-        "name_en": "Khet Bang Rak",
+        "name_en": "Bang Rak",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -47,7 +47,7 @@
       {
         "id": 1005,
         "name_th": "เขตบางเขน",
-        "name_en": "Khet Bang Khen",
+        "name_en": "Bang Khen",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -56,7 +56,7 @@
       {
         "id": 1006,
         "name_th": "เขตบางกะปิ",
-        "name_en": "Khet Bang Kapi",
+        "name_en": "Bang Kapi",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -65,7 +65,7 @@
       {
         "id": 1007,
         "name_th": "เขตปทุมวัน",
-        "name_en": "Khet Pathum Wan",
+        "name_en": "Pathum Wan",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -74,7 +74,7 @@
       {
         "id": 1008,
         "name_th": "เขตป้อมปราบศัตรูพ่าย",
-        "name_en": "Khet Pom Prap Sattru Phai",
+        "name_en": "Pom Prap Sattru Phai",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -83,7 +83,7 @@
       {
         "id": 1009,
         "name_th": "เขตพระโขนง",
-        "name_en": "Khet Phra Khanong",
+        "name_en": "Phra Khanong",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -92,7 +92,7 @@
       {
         "id": 1010,
         "name_th": "เขตมีนบุรี",
-        "name_en": "Khet Min Buri",
+        "name_en": "Min Buri",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -101,7 +101,7 @@
       {
         "id": 1011,
         "name_th": "เขตลาดกระบัง",
-        "name_en": "Khet Lat Krabang",
+        "name_en": "Lat Krabang",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -110,7 +110,7 @@
       {
         "id": 1012,
         "name_th": "เขตยานนาวา",
-        "name_en": "Khet Yan Nawa",
+        "name_en": "Yan Nawa",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -119,7 +119,7 @@
       {
         "id": 1013,
         "name_th": "เขตสัมพันธวงศ์",
-        "name_en": "Khet Samphanthawong",
+        "name_en": "Samphanthawong",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -128,7 +128,7 @@
       {
         "id": 1014,
         "name_th": "เขตพญาไท",
-        "name_en": "Khet Phaya Thai",
+        "name_en": "Phaya Thai",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -137,7 +137,7 @@
       {
         "id": 1015,
         "name_th": "เขตธนบุรี",
-        "name_en": "Khet Thon Buri",
+        "name_en": "Thon Buri",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -146,7 +146,7 @@
       {
         "id": 1016,
         "name_th": "เขตบางกอกใหญ่",
-        "name_en": "Khet Bangkok Yai",
+        "name_en": "Bangkok Yai",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -155,7 +155,7 @@
       {
         "id": 1017,
         "name_th": "เขตห้วยขวาง",
-        "name_en": "Khet Huai Khwang",
+        "name_en": "Huai Khwang",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -164,7 +164,7 @@
       {
         "id": 1018,
         "name_th": "เขตคลองสาน",
-        "name_en": "Khet Khlong San",
+        "name_en": "Khlong San",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -173,7 +173,7 @@
       {
         "id": 1019,
         "name_th": "เขตตลิ่งชัน",
-        "name_en": "Khet Taling Chan",
+        "name_en": "Taling Chan",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -182,7 +182,7 @@
       {
         "id": 1020,
         "name_th": "เขตบางกอกน้อย",
-        "name_en": "Khet Bangkok Noi",
+        "name_en": "Bangkok Noi",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -191,7 +191,7 @@
       {
         "id": 1021,
         "name_th": "เขตบางขุนเทียน",
-        "name_en": "Khet Bang Khun Thian",
+        "name_en": "Bang Khun Thian",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -200,7 +200,7 @@
       {
         "id": 1022,
         "name_th": "เขตภาษีเจริญ",
-        "name_en": "Khet Phasi Charoen",
+        "name_en": "Phasi Charoen",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -209,7 +209,7 @@
       {
         "id": 1023,
         "name_th": "เขตหนองแขม",
-        "name_en": "Khet Nong Khaem",
+        "name_en": "Nong Khaem",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -218,7 +218,7 @@
       {
         "id": 1024,
         "name_th": "เขตราษฎร์บูรณะ",
-        "name_en": "Khet Rat Burana",
+        "name_en": "Rat Burana",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -227,7 +227,7 @@
       {
         "id": 1025,
         "name_th": "เขตบางพลัด",
-        "name_en": "Khet Bang Phlat",
+        "name_en": "Bang Phlat",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -236,7 +236,7 @@
       {
         "id": 1026,
         "name_th": "เขตดินแดง",
-        "name_en": "Khet Din Daeng",
+        "name_en": "Din Daeng",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -245,7 +245,7 @@
       {
         "id": 1027,
         "name_th": "เขตบึงกุ่ม",
-        "name_en": "Khet Bueng Kum",
+        "name_en": "Bueng Kum",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -254,7 +254,7 @@
       {
         "id": 1028,
         "name_th": "เขตสาทร",
-        "name_en": "Khet Sathon",
+        "name_en": "Sathon",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -263,7 +263,7 @@
       {
         "id": 1029,
         "name_th": "เขตบางซื่อ",
-        "name_en": "Khet Bang Sue",
+        "name_en": "Bang Sue",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -272,7 +272,7 @@
       {
         "id": 1030,
         "name_th": "เขตจตุจักร",
-        "name_en": "Khet Chatuchak",
+        "name_en": "Chatuchak",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -281,7 +281,7 @@
       {
         "id": 1031,
         "name_th": "เขตบางคอแหลม",
-        "name_en": "Khet Bang Kho Laem",
+        "name_en": "Bang Kho Laem",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -290,7 +290,7 @@
       {
         "id": 1032,
         "name_th": "เขตประเวศ",
-        "name_en": "Khet Prawet",
+        "name_en": "Prawet",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -299,7 +299,7 @@
       {
         "id": 1033,
         "name_th": "เขตคลองเตย",
-        "name_en": "Khet Khlong Toei",
+        "name_en": "Khlong Toei",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -308,7 +308,7 @@
       {
         "id": 1034,
         "name_th": "เขตสวนหลวง",
-        "name_en": "Khet Suan Luang",
+        "name_en": "Suan Luang",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -317,7 +317,7 @@
       {
         "id": 1035,
         "name_th": "เขตจอมทอง",
-        "name_en": "Khet Chom Thong",
+        "name_en": "Chom Thong",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -326,7 +326,7 @@
       {
         "id": 1036,
         "name_th": "เขตดอนเมือง",
-        "name_en": "Khet Don Mueang",
+        "name_en": "Don Mueang",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -335,7 +335,7 @@
       {
         "id": 1037,
         "name_th": "เขตราชเทวี",
-        "name_en": "Khet Ratchathewi",
+        "name_en": "Ratchathewi",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -344,7 +344,7 @@
       {
         "id": 1038,
         "name_th": "เขตลาดพร้าว",
-        "name_en": "Khet Lat Phrao",
+        "name_en": "Lat Phrao",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -353,7 +353,7 @@
       {
         "id": 1039,
         "name_th": "เขตวัฒนา",
-        "name_en": "Khet Watthana",
+        "name_en": "Watthana",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -362,7 +362,7 @@
       {
         "id": 1040,
         "name_th": "เขตบางแค",
-        "name_en": "Khet Bang Khae",
+        "name_en": "Bang Khae",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -371,7 +371,7 @@
       {
         "id": 1041,
         "name_th": "เขตหลักสี่",
-        "name_en": "Khet Lak Si",
+        "name_en": "Lak Si",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -380,7 +380,7 @@
       {
         "id": 1042,
         "name_th": "เขตสายไหม",
-        "name_en": "Khet Sai Mai",
+        "name_en": "Sai Mai",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -389,7 +389,7 @@
       {
         "id": 1043,
         "name_th": "เขตคันนายาว",
-        "name_en": "Khet Khan Na Yao",
+        "name_en": "Khan Na Yao",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -398,7 +398,7 @@
       {
         "id": 1044,
         "name_th": "เขตสะพานสูง",
-        "name_en": "Khet Saphan Sung",
+        "name_en": "Saphan Sung",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -407,7 +407,7 @@
       {
         "id": 1045,
         "name_th": "เขตวังทองหลาง",
-        "name_en": "Khet Wang Thonglang",
+        "name_en": "Wang Thonglang",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -416,7 +416,7 @@
       {
         "id": 1046,
         "name_th": "เขตคลองสามวา",
-        "name_en": "Khet Khlong Sam Wa",
+        "name_en": "Khlong Sam Wa",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -425,7 +425,7 @@
       {
         "id": 1047,
         "name_th": "เขตบางนา",
-        "name_en": "Khet Bang Na",
+        "name_en": "Bang Na",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -434,7 +434,7 @@
       {
         "id": 1048,
         "name_th": "เขตทวีวัฒนา",
-        "name_en": "Khet Thawi Watthana",
+        "name_en": "Thawi Watthana",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -443,7 +443,7 @@
       {
         "id": 1049,
         "name_th": "เขตทุ่งครุ",
-        "name_en": "Khet Thung Khru",
+        "name_en": "Thung Khru",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",
@@ -452,7 +452,7 @@
       {
         "id": 1050,
         "name_th": "เขตบางบอน",
-        "name_en": "Khet Bang Bon",
+        "name_en": "Bang Bon",
         "province_id": 1,
         "created_at": "9/8/2019 03:33:09",
         "updated_at": "16/5/2022 06:31:26.606456",

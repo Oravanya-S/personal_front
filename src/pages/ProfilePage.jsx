@@ -20,10 +20,19 @@ export default function ProfilePage() {
   //   dispatch(fetchMe())
   // },[])
 
-  let province, amphure, tambon;
+  let province, amphure, tambon, zip;
   if (user.province) {
     const selectedProvince = thai_provinces.find(el => el.id == user.province)
     province = selectedProvince.name_en
+  }
+  if (user.amphoe) {
+    const selectedAmphoe = thai_amphures.find(el => el.id == user.amphoe)
+    amphure = selectedAmphoe.name_en
+  }
+  if (user.tambon) {
+    const selectedTambon = thai_tambons.find(el => el.id == user.tambon)
+    tambon = selectedTambon.name_en
+    zip = selectedTambon.zip_code
   }
 
   const handleClose = () => {
@@ -76,10 +85,16 @@ export default function ProfilePage() {
                     <p>{user.firstName}</p>
                     <p>{user.lastName}</p>
                   </div>
-                  <div className="text-base">
-                    {user.addressLine && user.province ? (
-                      <div>
-                        {province}
+                  <div className="text-base mt-3">
+                    {user.addressLine || user.province ? (
+                      <div className="flex flex-col gap-2">
+                        <div>{user.addressLine}</div>
+                        <div className="flex gap-2">
+                          <div>{tambon}</div>
+                          <div>{amphure}</div>
+                          <div>{province}</div>
+                          <div>{zip}</div>
+                        </div>
                       </div>
                     ) : (
                       <p className="text-gray-500">No address specified</p>
@@ -90,7 +105,6 @@ export default function ProfilePage() {
               ) : (
                 <ProfileForm
                   onClose={() => setIsEditDetailMode(!isEditDetailMode)}
-                  user={user}
                 />
               )}
             </div>
@@ -112,7 +126,7 @@ export default function ProfilePage() {
                       setIsEditDetailMode(false);
                     }}
                   >
-                    Edit password
+                    Change password
                   </div>
                 )}
               </div>

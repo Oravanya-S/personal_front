@@ -9,8 +9,8 @@ import ProfileInput from './ProfileInput';
 import SelectProvince from './SelectProvince';
 import SelectAmphure from './SelectAmphure';
 import SelectTambon from './SelectTambon';
-import { updateUser } from '../../api/user-api';
-import { fetchMe } from '../../features/auth/slice/auth-slice'
+import { updateUser } from '../auth/slice/auth-slice';
+
   
 export default function ProfileForm({open, onClose}) {
     const user = useSelector((state) => state?.auth?.user);
@@ -58,10 +58,8 @@ export default function ProfileForm({open, onClose}) {
             return setError(result);
         }
         setError({});
-
-        // onClose(false)
-        await dispatch(updateUser(input)).unwrap()
-        await dispatch(fetchMe()).unwrap()
+        await dispatch(updateUser(input))
+        onClose()
 
         } catch (err) {
           toast.error(err,{
@@ -74,7 +72,7 @@ export default function ProfileForm({open, onClose}) {
 
     <form onSubmit={handleSubmitForm}>
         <div className='flex flex-col gap-12 w-full'>
-                <div className='flex flex-col gap-4 text-lg '>
+                <div className='flex flex-col gap-2 text-lg '>
                     <div className='grid grid-cols-2 gap-12'>
                         <div>
                             <ProfileInput

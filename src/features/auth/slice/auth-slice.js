@@ -51,6 +51,12 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   const authSlice = createSlice({
     name: 'auth',
     initialState,
+    reducers: {
+      editUser: (state, action) => {
+        const { updateUserObj } = action.payload;
+        state.user = {...state.user, ...updateUserObj}
+      },
+    },
     extraReducers: builder =>
       builder
         .addCase(logout.fulfilled, state => {
@@ -88,3 +94,18 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   });
 
 export default authSlice.reducer;
+
+export const {
+  editUser
+} = authSlice.actions;
+
+export function updateUser(updateUserObj) {
+  return async (dispatch) => {
+    try {
+      const response = await authService.updateUser(updateUserObj);
+      dispatch(editUser({ updateUserObj }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

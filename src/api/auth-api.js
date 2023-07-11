@@ -5,3 +5,6 @@ export const register = input => {
 }
 export const login = input => axios.post('/auth/login', input);
 export const fetchMe = () => axios.get('/auth/me');
+
+
+export const updateUser = async (updateUserObj) => await axios.put('/user/profile', updateUserObj);

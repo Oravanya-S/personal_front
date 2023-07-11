@@ -16,7 +16,6 @@ export default function ProfileInput({
       <input
         type="text"
         className={className}
-        placeholder={placeholder}
         value={value}
         onChange={onChange}
         name={name}
