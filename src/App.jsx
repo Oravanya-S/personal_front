@@ -12,7 +12,7 @@ function App() {
   return (
     <div>  
         <Router />
-        <ToastContainer position="top-right" theme="light" style={{ width: "400px"}} progressStyle={{ background: '#000000'}} bodyClassName={() => "flex text-md p-3 items-center font-pop"} autoClose={3000} />
+        <ToastContainer position="top-right" style={{ width: "400px"}} progressStyle={{ background: '#fff'}} bodyClassName={() => "flex text-md p-3 items-center font-pop"} autoClose={1500} />
     </div>
   )
 }

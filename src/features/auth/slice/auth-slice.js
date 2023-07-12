@@ -44,6 +44,15 @@ export const fetchMe = createAsyncThunk('auth/fetchMe', async (_, thunkApi) => {
     }
   });
 
+export const updatePassword = createAsyncThunk('auth/updatePassword', async (updateUserObj, thunkApi) => {
+    try {
+      const res = await authService.updatePassword(updateUserObj);
+      return res.data.user;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  });
+
 export const logout = createAsyncThunk('auth/logout', async () => {
   removeAccessToken();
 });
@@ -72,6 +81,16 @@ export const logout = createAsyncThunk('auth/logout', async () => {
           state.user = action.payload;
         })
         .addCase(registerAsync.rejected, (state, action) => {
+          state.error = action.payload;
+          state.loading = false;
+        })
+        .addCase(updatePassword.pending, state => {
+          state.loading = true;
+        })
+        .addCase(updatePassword.fulfilled, (state, action) => {
+          state.loading = false;
+        })
+        .addCase(updatePassword.rejected, (state, action) => {
           state.error = action.payload;
           state.loading = false;
         })
@@ -110,13 +129,3 @@ export function updateUser(updateUserObj) {
   };
 }
 
-export function updatePassword(updateUserObj) {
-  return async (dispatch) => {
-    try {
-      const response = await authService.updatePassword(updateUserObj);
-      // dispatch(editPassword({ updateUserObj }));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}

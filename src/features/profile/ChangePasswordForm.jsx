@@ -4,8 +4,11 @@ import InputErrorMessage from "../auth/components/inputErrorMessage";
 import validatePassword from '../../features/auth/validators/validate-password'
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { FailIcon, SuccessIcon } from "../../icons";
+import { updatePassword } from "../auth/slice/auth-slice";
 
-export default function ChangePasswordForm() {
+export default function ChangePasswordForm({open, onClose}) {
     const initialInput = {
         currentPassword: '',
         newPassword: '',
@@ -20,6 +23,8 @@ export default function ChangePasswordForm() {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
 
+    console.log(input, error)
+
     const handleSubmitForm = async e => {
         try {
           e.preventDefault();
@@ -29,25 +34,31 @@ export default function ChangePasswordForm() {
           }
           setError({});
 
+          await dispatch(updatePassword(input)).unwrap()
+          toast.success('change password successfully', {
+            icon: <SuccessIcon />,
+            className: "top-[96px]"
+          });
           onClose()
-
         } catch (err) {
+          console.log(err)
           toast.error(err,{
-            icon: <FailIcon />
+            icon: <FailIcon />,
+            className: "top-[96px]"
         });
         }
     };
 
   return (
     <form onSubmit={handleSubmitForm}>
-    <div className="flex flex-col gap-6 ">
+    <div className="flex flex-col gap-3">
         <div>
           <ProfileInput
             name="currentPassword"
             placeholder="Current Password"
             value={input.currentPassword}
             onChange={handleChangeInput}
-            // isInvalid={error.firstName}
+            isInvalid={error.currentPassword}
           />
           <div className="h-8">
             {error.currentPassword && <InputErrorMessage message={error.currentPassword} />}
@@ -60,9 +71,9 @@ export default function ChangePasswordForm() {
             placeholder="New Password"
             value={input.newPassword}
             onChange={handleChangeInput}
-            // isInvalid={error.firstName}
+            isInvalid={error.newPassword}
           />
-          <div className="">
+          <div>
             {error.newPassword && <InputErrorMessage message={error.newPassword} />}
           </div>
         </div>
@@ -72,7 +83,7 @@ export default function ChangePasswordForm() {
             placeholder="Confirm Password"
             value={input.confirmPassword}
             onChange={handleChangeInput}
-            // isInvalid={error.lastName}
+            isInvalid={error.confirmPassword}
           />
           <div className="h-8">
             {error.confirmPassword && <InputErrorMessage message={error.confirmPassword} />}
@@ -81,7 +92,7 @@ export default function ChangePasswordForm() {
       </div>
       <button
         type="submit"
-        className="text-white bg-black p-4  text-center text-lg"
+        className="text-white bg-black p-4 text-center text-lg"
       >
         CHANGE PASSWORD
       </button>

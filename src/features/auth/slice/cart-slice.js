@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as cartService from '../../../api/cart-api';
 
 const initialState = {
-    cartList: []
+    cartList: [],
+    isLoading: true
 };
 
 export const cartListAsync = createAsyncThunk(
@@ -42,11 +43,16 @@ const cartSlice = createSlice({
     },
     extraReducers: builder =>
       builder
+        .addCase(cartListAsync.pending, (state) => {
+          state.isLoading = true;
+        })
         .addCase(cartListAsync.fulfilled, (state, action) => {
           state.cartList = action.payload;
+          state.isLoading = false;
         })
         .addCase(cartListAsync.rejected, (state, action) => {
           state.error = action.payload;
+          state.isLoading = false;
         })
   });
 

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { cartListAsync } from '../features/auth/slice/cart-slice';
 import CartItem from '../features/admin/carts/CartItem'
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 export default function CartPage() {
   const { id } = useParams();
@@ -17,6 +18,7 @@ export default function CartPage() {
   let totolAmount, sumPrice;
 
   const cart = useSelector(state=> state.cart.cartList)
+  const isLoading = useSelector((state) => state?.cart?.isLoading);
 
   if(cart.length > 0) {
     totolAmount = cart.reduce((acc,el)=>{
@@ -30,9 +32,8 @@ export default function CartPage() {
     },0)
   }
 
-  
-  
-
+  if (isLoading) {
+    return <Loading /> }
   return (
     <div className='max-w-[1440px] mx-auto min-h-screen border'>
     { (cart.length==0)? <div className='flex justify-center text-xl text-gray-500 py-24'>No cart now</div> : 

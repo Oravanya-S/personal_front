@@ -7,7 +7,6 @@ import { addCart } from "../../auth/slice/cart-slice";
 import { addFavorite } from "../../auth/slice/wishlist-slice";
 
 export default function ProductWithModel({ item, wish }) {
-  console.log(wish)
   const dispatch = useDispatch()
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   const user = useSelector(state => state.auth.user)

@@ -36,12 +36,12 @@ export default function ProfilePage() {
   }
 
   const handleClose = () => {
-    setIsEditDetailMode(!isEditDetailMode)
+    setIsEditPasswordMode(!isEditPasswordMode)
   }
 
   return (
-    <div className="max-w-[1440px] mx-auto h-[calc(100vh-98px)] border">
-      <div className="p-12">
+    <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-94px)] border border-b-0">
+      <div className="p-12 pb-0">
         <div className="flex">
           <div className="w-1/5 text-xl font-medium">Hello,</div>
           <div className="w-4/5 text-xl font-medium">Personal details</div>
@@ -135,7 +135,7 @@ export default function ProfilePage() {
                   <p className="text-3xl text-gray-500">{"•".repeat(12)}</p>
                 ) : (
                   <ChangePasswordForm
-                    onClose={handleClose}
+                    onClose={() => setIsEditPasswordMode(!isEditPasswordMode)}
                     user={user}
                   />
                 )}
