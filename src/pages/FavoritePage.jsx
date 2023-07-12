@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import { wishlistAsync } from '../features/auth/slice/wishlist-slice';
 import { useEffect } from 'react';
 import Loading from '../components/Loading';
-import FilterList from '../features/filter/filterList';
 import ProductWithModel from '../features/admin/products/ProductWithModel';
+import FilterListWishlist from '../features/filter/FilterListWishlist';
 
 export default function FavoritePage() {
   const { id } = useParams();
@@ -17,15 +17,16 @@ export default function FavoritePage() {
   },[]) 
 
   const isLoading = useSelector(state=> state.wishlist.isLoading)
-  const wish = useSelector(state=> state.wishlist.wishlist)
+  const wish = useSelector(state=> state.wishlist.wishlistFilter)
   const numWish = wish.length;
+
 
   if (isLoading) {
     return <Loading /> }
 
   return (
     <div className='max-w-[1440px] min-h-[calc(100vh-100px)] mx-auto overflow-hidden border border-black border-y-0'>
-        <FilterList numProduct={numWish}/>
+        <FilterListWishlist numProduct={numWish}/>
         {wish.length > 0 ? (
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 border-slate-600 overflow-auto">
                 {wish.map((el) => (

@@ -14,7 +14,6 @@ export default function Models() {
   const product = useSelector((state) => state.model.modelListWithBagTypeFilter);
   const user = useSelector((state) => state.auth.user);
   const wishProductId = useSelector((state) => state.wishlist.productIdWishlist);
-  console.log("pdId", wishProductId)
   
   useEffect(() => {
       dispatch(modelListWithBagTypeAsync(modelId));

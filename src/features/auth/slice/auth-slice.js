@@ -109,3 +109,14 @@ export function updateUser(updateUserObj) {
     }
   };
 }
+
+export function updatePassword(updateUserObj) {
+  return async (dispatch) => {
+    try {
+      const response = await authService.updatePassword(updateUserObj);
+      // dispatch(editPassword({ updateUserObj }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

@@ -88,7 +88,6 @@ const adminSlice = createSlice({
     },
     addBagType: (state, action) => {
       const newBagType = action.payload;
-      console.log(newBagType)
       state.bagTypeList.unshift(newBagType);
       state.bagTypeListFilter = state.bagTypeList.filter((bag) => bag.name.toLowerCase().includes(state.searchBagTypeValue.toLowerCase()))
     },
