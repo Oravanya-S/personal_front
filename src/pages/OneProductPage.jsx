@@ -3,17 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading';
 import { useEffect } from 'react';
+import { productAsync } from '../features/auth/slice/model-slice';
+import ProductWithModel from '../features/admin/products/ProductWithModel';
+import { wishlistAllProductIdAsync } from '../features/auth/slice/wishlist-slice';
 
 export default function OneProductPage() {
     const { id } = useParams();
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const user = useSelector((state) => state.auth.user);
+    const wishProductId = useSelector((state) => state.wishlist.productIdWishlist);
+
     useEffect(() => {
-        // dispatch(productAsync(id))
+        dispatch(productAsync(id))
+        if(user) dispatch(wishlistAllProductIdAsync(user.id))
     },[]) 
 
     const product = useSelector(state=> state.model.product)
     const isLoading = useSelector((state) => state?.model?.isLoading);
+
+    console.log(product)
 
     if (isLoading) {
         return <Loading /> }
@@ -21,8 +29,7 @@ export default function OneProductPage() {
   return (
     <>
         <div className='max-w-[1440px] mx-auto min-h-[calc(100vh-94px)] border border-b-0'>
-            <div>OneProductPage</div>
-            <div>{id}</div>
+            <ProductWithModel item={product} wish={user && wishProductId.includes(product.id)}/>
         </div>
     </>
   )
