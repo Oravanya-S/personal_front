@@ -14,11 +14,6 @@ export default function ProfilePage() {
   const user = useSelector((state) => state.auth.user);
   const [isEditDetailMode, setIsEditDetailMode] = useState(false);
   const [isEditPasswordMode, setIsEditPasswordMode] = useState(false);
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchMe())
-  // },[])
 
   let province, amphure, tambon, zip;
   if (user.province) {
@@ -33,10 +28,6 @@ export default function ProfilePage() {
     const selectedTambon = thai_tambons.find(el => el.id == user.tambon)
     tambon = selectedTambon.name_en
     zip = selectedTambon.zip_code
-  }
-
-  const handleClose = () => {
-    setIsEditPasswordMode(!isEditPasswordMode)
   }
 
   return (

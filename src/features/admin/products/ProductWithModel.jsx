@@ -5,30 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addCart } from "../../auth/slice/cart-slice";
 import { addFavorite } from "../../auth/slice/wishlist-slice";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductWithModel({ item, wish }) {
   const dispatch = useDispatch()
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   const user = useSelector(state => state.auth.user)
+  const navigate = useNavigate()
   let user_id;
   if (isAuthenticated) {
     user_id = user?.id
   }
-  // const [detail, setDetail] = useState(false);
-    // const [love, setLove] = useState(false)
 
-    // const handleLove = (e) => {
-    //   setLove(!love)
-    // }
-    // let fulfilLove = (love)? 'solid':'regular'
-    
-  // const handleDetail = () => {
-  //   setDetail(!detail);
-  // };
-
-  // const handleCloseDetail = () => {
-  //   setDetail(false);
-  // };
   const handleClickFavorite = () => {
     if(!isAuthenticated) {
       toast.error('Login before adding to wishlist',{
@@ -56,7 +44,7 @@ export default function ProductWithModel({ item, wish }) {
   };
 
   return (
-    <div className="bg-red-50 flex justify-center items-center relative border border-black border-t-0 border-l-0 group cursor-pointer h-[500px]">
+    <div className="flex justify-center items-center relative border border-black border-t-0 border-l-0 group cursor-pointer h-[500px]">
       <p className="absolute bottom-4 right-4 text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         ฿ {item?.price}
       </p>
@@ -79,35 +67,14 @@ export default function ProductWithModel({ item, wish }) {
       >
         <i className={`${wish? "fa-solid":"fa-regular"} fa-heart text-3xl`}></i>
       </div>
-      {/* <div
-        className="absolute top-5 left-4 underline underline-offset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 cursor-pointer"
-        onClick={handleDetail}
-      >
-      <div className="relative">
-        See detail
-      </div>
-      </div>
-      {detail ? (
-        <div className="absolute bg-white opacity-75 h-[70%] w-[75%]">
-            <>
-                <ProductDetail item={item?.Model} onClose={handleCloseDetail}/>
-            </>
-        </div>
-      ) : (
-        ""
-      )} */}
+      
 
       <img
         className="object-cover h-full block"
         src={item?.image || "https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw70c09258/23E213BA001-3100-852_1_main.jpg?sw=475&sh=633&q=100"}
         alt="Bag"
+        onClick={() => navigate(`/product/${item.id}`)}
       />
     </div>
   );
 }
-
-
-
-  
-
-// fa-${fulfilLove} 

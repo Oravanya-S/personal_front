@@ -16,6 +16,7 @@ import AddBagtypePage from '../pages/AddBagtypePage';
 import OrderPage from '../pages/OrderPage';
 import DashboardPage from '../pages/DashboardPage';
 import FavoritePage from '../pages/FavoritePage';
+import OneProductPage from '../pages/OneProductPage';
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
           {
             path: '/models/:modelId',
             element: <Models />
+          },
+          {
+            path: '/product/:id',
+            element: <OneProductPage />
           },
           {
             path: '/orders/:id',
