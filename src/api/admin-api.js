@@ -6,6 +6,7 @@ export const getColor = () => axios.get('/admin/colors');
 export const getBagType = () => axios.get('/admin/bagtypes');
 export const getModel = () => axios.get('/admin/models');
 export const getProduct = () => axios.get('/admin/products');
+export const getDashboard = async () => axios.get(`/admin/dashboard`);
 
 export const deleteBagtype = async (bagTypeId) => await axios.delete(`/admin/bagtype/${bagTypeId}`);
 export const deleteColor = async (colorId) => await axios.delete(`/admin/color/${colorId}`);
@@ -23,7 +24,7 @@ export const updateModel = async (modelId, updateModelObj) => await axios.put(`/
 export const updateProduct = async (updateProductObj) => await axios.put(`/admin/product`, updateProductObj);
 
 
-//add product
+
 
 
 

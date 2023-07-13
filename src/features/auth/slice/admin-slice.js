@@ -13,6 +13,7 @@ const initialState = {
   modelList: [],
   modelListFilter: [],
   productList: [],
+  dashboard:[],
   error: null,
   isLoading: true,
 };
@@ -70,6 +71,18 @@ export const productListAsync = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const res = await adminService.getProduct();
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const dashboardAsync = createAsyncThunk(
+  "admin/dashboardAsync",
+  async (_, thunkApi) => {
+    try {
+      const res = await adminService.getDashboard();
       return res.data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.response.data.message);
@@ -171,6 +184,9 @@ const adminSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
+      .addCase(bagTypeListAsync.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(bagTypeListAsync.fulfilled, (state, action) => {
         state.bagTypeList = action.payload;
         if(state.searchBagTypeValue.trim() === "") state.bagTypeListFilter = state.bagTypeList
@@ -203,6 +219,9 @@ const adminSlice = createSlice({
         state.error = action.payload;
         state.isLoading = false;
       })
+      .addCase(modelListAsync.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(modelListAsync.fulfilled, (state, action) => {
         state.modelList = action.payload;
         if(state.searchModelValue.trim() === "") state.modelListFilter = state.modelList
@@ -213,11 +232,25 @@ const adminSlice = createSlice({
         state.error = action.payload;
         state.isLoading = false;
       })
+      .addCase(productListAsync.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(productListAsync.fulfilled, (state, action) => {
         state.productList = action.payload;
         state.isLoading = false;
       })
       .addCase(productListAsync.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(dashboardAsync.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(dashboardAsync.fulfilled, (state, action) => {
+        state.dashboard = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(dashboardAsync.rejected, (state, action) => {
         state.error = action.payload;
         state.isLoading = false;
       })

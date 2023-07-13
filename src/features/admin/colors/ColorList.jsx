@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { colorListAsync } from '../../auth/slice/admin-slice'
 import ColorItem from './ColorItem';
 import SkeletonColor from './SkeletonColor';
+import LoadingAdmin from '../../../components/LoadingAdmin';
 
 export default function ColorList() {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ export default function ColorList() {
 
   
   if (isLoading) {
-    return <SkeletonColor /> }
+    return <LoadingAdmin /> }
 
   return (
     <>

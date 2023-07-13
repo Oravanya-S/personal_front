@@ -2,14 +2,19 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BagItem from './BagItem'
 import { bagTypeListAsync } from '../../auth/slice/admin-slice'
+import LoadingAdmin from '../../../components/LoadingAdmin'
 
 export default function BagList() {
 
     const dispatch = useDispatch()
     const bagType = useSelector(state=> state.admin.bagTypeListFilter)
+    const isLoading = useSelector((state) => state?.admin?.isLoading);
     useEffect(() => {
       dispatch(bagTypeListAsync())
     },[]) 
+
+    if (isLoading) {
+      return <LoadingAdmin /> }
     
   return (
     <>

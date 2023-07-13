@@ -1,6 +1,7 @@
 import React from 'react'
 import HeaderAdmin from '../features/admin/components/HeaderAdmin'
 import SideBar from '../features/admin/layouts/SideBar'
+import DashboardContainer from '../features/admin/dashboard/DashboardContainer'
 
 export default function DashboardPage() {
   return (
@@ -10,6 +11,7 @@ export default function DashboardPage() {
       </div>
       <div className='flex flex-col w-full gap-6 flex-1 max-h-screen overflow-hidden'>
         <HeaderAdmin topic="Dashboard"/>
+        <DashboardContainer />
       </div>
     </div>
   ) 

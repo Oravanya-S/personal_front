@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import ShippingInput from "./ShippingInput";
 import { FailIcon, SuccessIcon } from "../../../icons";
-import { checkout } from "../../auth/slice/cart-slice";
+import { cartListAsync, checkout } from "../../auth/slice/cart-slice";
 import { useNavigate } from "react-router-dom";
 
 const initialInput = {
@@ -46,7 +46,8 @@ export default function ShippingForm({ item, user, totalPrice }) {
           address: input.address,
         })
       );
-          navigate(`/orders/${user.id}`)
+      await dispatch(cartListAsync(user?.id)).unwrap();
+        navigate(`/orders/${user.id}`)
         
 
       // toast.success('Order successfully', {

@@ -121,7 +121,7 @@ export default function OneProductPage() {
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-end">
                   <div className="text-3xl font-semibold">
-                    {item.Model.name}
+                    {item?.Model?.name}
                   </div>
                   <div className="text-3xl font-semibold">฿ {item?.price}</div>
                 </div>
