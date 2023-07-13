@@ -86,7 +86,7 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
                 <div className='cursor-pointer' onClick={goToCart}>
                   <div className='flex items-center relative'>
                     <i className="fa-solid fa-bag-shopping text-2xl text-black p-2"></i>
-                    { cart.length > 0 && <div className='absolute -right-5 top-[16px] w-4 h-4 bg-red-600 rounded-full text-white text-[7px] flex items-center justify-center'>{cart.length}</div>}
+                    { cart.length > 0 && user && <div className='absolute -right-5 top-[16px] w-4 h-4 bg-red-600 rounded-full text-white text-[7px] flex items-center justify-center'>{cart.length}</div>}
                     <div className='pt-2'>Cart</div>
                   </div>
                 </div>

@@ -66,7 +66,9 @@ const router = createBrowserRouter([
           },
           {
             path: '/models/:modelId',
-            element: <Models />
+            element: (<RedirectedAdmin>
+              <Models />
+              </RedirectedAdmin>)
           },
           {
             path: '/product/:id',
