@@ -80,9 +80,9 @@ export const productListAsync = createAsyncThunk(
 
 export const dashboardAsync = createAsyncThunk(
   "admin/dashboardAsync",
-  async (_, thunkApi) => {
+  async (date, thunkApi) => {
     try {
-      const res = await adminService.getDashboard();
+      const res = await adminService.getDashboard(date);
       return res.data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.response.data.message);
