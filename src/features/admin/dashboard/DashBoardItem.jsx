@@ -8,7 +8,7 @@ export default function DashboardItem({
 }) {
   return (
     <div className="bg-white rounded-md w-full">
-      <div className="flex gap-3 max-w-sm py-2 px-4 border-gray-200 rounded-lg shadow hover:bg-gray-50">
+      <div className="flex gap-3 max-w-sm py-2 px-4 border-[1px] border-gray-100 rounded-lg shadow hover:border hover:border-black">
         <div
           className={`rounded-sm w-[70px] h-[70px] flex justify-center items-center bg-${bgColor}`}
         >
