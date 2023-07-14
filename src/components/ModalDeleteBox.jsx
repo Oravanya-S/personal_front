@@ -11,6 +11,7 @@ export default function ModalDeleteBox({children, width = 28, open, onClose, con
           <div className="fixed inset-0 bg-white opacity-70 z-20"></div>
           <div className="fixed inset-0 z-30" onMouseUp={onClose}>
             <div className="flex justify-center items-center min-h-full p-4">
+              <div className='w-[350px]'></div>
               <div
                 style={{ maxWidth: `${width}rem` }}
                 className="bg-white rounded-lg w-full shadow-[0_0_15px_rgb(0_0_0_/0.2)] flex flex-col overflow-hidden max-h-[calc(100vh-2rem)]"

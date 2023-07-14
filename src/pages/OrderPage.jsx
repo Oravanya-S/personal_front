@@ -40,7 +40,7 @@ export default function OrderPage() {
             No order
             </div>
         ) :(
-            <div className="px-6 max-h-[700px] overflow-auto">
+            <div className="px-6 max-h-[780px] overflow-auto">
             <div className="flex justify-end gap-3">
             <div className="text-xl font-medium">
                 Total:
@@ -52,7 +52,7 @@ export default function OrderPage() {
             <hr className="border-black my-6"/>
             <div className="flex text-lg">
             <div className="flex flex-col gap-4 w-full my-3"> 
-                {orderAll.map(el => <Order key={el.id} order={el}/>)}
+                {orderAll.map(el => <Order key={el.id} order={el} user={el.User}/>)}
             </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Order from "../features/admin/order/Order";
 import { Link } from "react-router-dom";
 
+
 export default function HistoryPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -15,6 +16,9 @@ export default function HistoryPage() {
   }, []);
 
   const order = useSelector((state) => state.order.orderList);
+  const user = useSelector((state) => state.auth.user);
+
+  console.log("orderrrr")
 
   return (
     <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-98px)] border">

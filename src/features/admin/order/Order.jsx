@@ -2,9 +2,11 @@ import React from 'react'
 import PreorderItem from '../carts/PreorderItem'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import thai_provinces from '../../../dataThailand/thai_provinces.json'
+import thai_amphures from '../../../dataThailand/thai_amphures.json'
+import thai_tambons from '../../../dataThailand/thai_tambons.json'
 
-export default function Order({order}) {
-  const user = useSelector(state => state.auth.user)
+export default function Order({order, user}) {
   const [accordian, setAccordian] = useState(false)
   const orderItem = order.OrderItems
   let totolAmount, sumPrice;
@@ -19,7 +21,22 @@ export default function Order({order}) {
         return acc
         },0)
     }
-
+  let province, amphure, tambon, zip;
+  if(user) {
+    if (user.province) {
+      const selectedProvince = thai_provinces.find(el => el.id == user.province)
+      province = selectedProvince.name_en
+    }
+    if (user.amphoe) {
+      const selectedAmphoe = thai_amphures.find(el => el.id == user.amphoe)
+      amphure = selectedAmphoe.name_en
+    }
+    if (user.tambon) {
+      const selectedTambon = thai_tambons.find(el => el.id == user.tambon)
+      tambon = selectedTambon.name_en
+      zip = selectedTambon.zip_code
+    }
+  }
   console.log(order)
   return (
     <div className={`flex flex-col gap-4`}>
@@ -36,15 +53,15 @@ export default function Order({order}) {
               </div>
         </div>
             {accordian && 
-            <div className='flex gap-10'>
-              <div className={`max-w-[600px] flex flex-col gap-2`}>
+            <div className='flex gap-10 text-lg'>
+              <div className={`max-w-[500px] flex flex-col gap-2 my-4`}>
                 {order.OrderItems.map(item => <div className='flex flex-col' key={item.id}><PreorderItem item={item}/></div>)}
               </div>
-              <div className='flex flex-1 flex-col items-between pt-10 gap-8'>
+              <div className='flex flex-1 flex-col items-between py-4 gap-6'>
                 <div className='flex items-center justify-between'>
                   <div className='flex flex-col'>
                     <p className='font-medium text-xl'>Total</p>
-                    <p className='text-gray-500'>VAT included</p>
+                    <p className='text-gray-500 text-base'>VAT included</p>
                   </div>
                   <div className='flex flex-col items-end'>
                     <div className='text-2xl font-semibold'>฿ {sumPrice}</div>
@@ -52,19 +69,29 @@ export default function Order({order}) {
                   </div>
                 </div>
                 <div className='flex items-center justify-between '>
-                  <p className='font-medium text-xl'>Payment</p>
-                  <p>{order.payment}</p>
+                  <p className='font-medium'>Payment</p>
+                  <p className='text-base'>{order.payment}</p>
                 </div>
 
+                {user? <>
                 <div className='flex items-center justify-between '>
-                  <p className='font-medium text-xl w-[100px]'>SHIP TO</p>
-                  <p>{order.address}</p>
+                  <p className='font-medium w-[100px]'>Receiver</p>
+                  <p className='text-base'>{user?.firstName} {user?.lastName}</p>
+                </div>
+                <div className='flex items-start justify-between '>
+                  <p className='font-medium w-[120px]'>SHIP TO</p>
+                  <div className="flex flex-col gap-[6px] items-end">
+                        <div className="flex gap-2 flex-wrap justify-end text-base">
+                          <div>{user?.addressLine}</div>
+                          <div>{tambon}</div>
+                          <div>{amphure}</div>
+                          <div>{province}</div>
+                          <div>{zip}</div>
+                        </div>
+                  </div>
                 </div>
 
-                {user.role === 1? <div className='flex items-center justify-between '>
-                  <p className='font-medium text-xl w-[100px]'>Receiver</p>
-                  <p>{order?.User?.firstName} {order?.User?.lastName}</p>
-                </div> : <></>}
+                </> : <></>}
               </div>
             </div>}
         <hr className="border-gray-400 my-2"/>

@@ -31,7 +31,7 @@ export default function DashboardContainer() {
   console.log(dashboard)
   const groupColor = dashboard?.dashboardGroupColor?.map((item) => item?.name);
   const datagroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.total_quantity);
-  const hexcodegroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.hexcode + "");
+  const hexcodegroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.hexcode);
 
   ChartJS.defaults.font.size = 14
   const dataPie = {
@@ -168,8 +168,8 @@ const data = {
       </div>
       {groupColor?.length > 0 ? <div className="grid grid-cols-2 gap-6 mt-2 mb-2">
         <div className="flex flex-col gap-4 w-[410px]">
-          <div className="font-medium py-[5px] px-4 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Color</div>
-          <Pie data={dataPie} />
+          <div className="font-medium py-[5px] px-4 mb-1 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Color</div>
+          <div className="opacity-90"><Pie data={dataPie} /></div>
         </div>
         <div className="flex flex-col gap-6">
           <div className="font-medium py-[5px] px-4 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Model</div>
