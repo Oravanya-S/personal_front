@@ -3,7 +3,8 @@ import * as orderService from '../../../api/order-api';
 
 const initialState = {
     orderList: [],
-    orderListAll: []
+    orderListAll: [],
+    isLoading: []
 };
 
 export const orderListAsync = createAsyncThunk(
@@ -37,17 +38,27 @@ const orderSlice = createSlice({
     },
     extraReducers: builder =>
       builder
+        .addCase(orderListAsync.pending, (state) => {
+          state.isLoading = true;
+        })
         .addCase(orderListAsync.fulfilled, (state, action) => {
           state.orderList = action.payload;
+          state.isLoading = false;
         })
         .addCase(orderListAsync.rejected, (state, action) => {
           state.error = action.payload;
+          state.isLoading = false;
+        })
+        .addCase(orderListAllAsync.pending, (state) => {
+          state.isLoading = true;
         })
         .addCase(orderListAllAsync.fulfilled, (state, action) => {
           state.orderListAll = action.payload;
+          state.isLoading = false;
         })
         .addCase(orderListAllAsync.rejected, (state, action) => {
           state.error = action.payload;
+          state.isLoading = false;
         })
   });
 

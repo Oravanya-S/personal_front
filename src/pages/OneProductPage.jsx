@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import { addCart } from "../features/auth/slice/cart-slice";
 import { toast } from "react-toastify";
-import { SuccessIcon } from "../icons";
+import { FailIcon, SuccessIcon } from "../icons";
 
 export default function OneProductPage() {
   const { id } = useParams();
@@ -52,7 +52,7 @@ export default function OneProductPage() {
 
   const handleClickFavorite = () => {
     if (!isAuthenticated) {
-      toast.error("Login before adding to wishlist", {
+      toast.warning("Login before adding to wishlist", {
         icon: <FailIcon />,
         position: "top-center",
         className: "top-[96px]",
@@ -83,7 +83,7 @@ export default function OneProductPage() {
 
   const handleClickBuynow = async () => {
     if (!isAuthenticated) {
-      toast.error("Login before buy", {
+      toast.error("Login before payment", {
         icon: <FailIcon />,
         position: "top-center",
         className: "top-[96px]",

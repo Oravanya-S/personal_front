@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Order from '../features/admin/order/Order';
 import { useEffect } from 'react';
 import { orderListAllAsync } from '../features/auth/slice/order-slice';
+import LoadingAdmin from '../components/LoadingAdmin';
 
 export default function OrderPage() {
   const dispatch = useDispatch();
@@ -14,6 +15,17 @@ export default function OrderPage() {
   }, []);
 
   const orderAll = useSelector((state) => state.order.orderListAll);
+  const isLoading = useSelector((state) => state.order.isLoading);
+
+  if (isLoading) {
+    return <div className='flex justify-center'>
+            <div className='w-[350px]'>
+            </div>
+            <div className='mt-[300px]'>
+              <LoadingAdmin />
+            </div>
+          </div>
+  }
   return (
     <div className='flex w-[1440px] border-[1px] border-t-0 mx-auto min-h-screen bg-gray-50'>
       <div className='w-[350px]'>

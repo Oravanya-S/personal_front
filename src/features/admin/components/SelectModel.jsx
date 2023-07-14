@@ -23,11 +23,11 @@ export default function SelectModel({ valueId, onChangeModel }) {
         <option disabled selected value>Select model</option>
         {model.map((el) =>
           el.id == valueId ? (
-            <option selected value={el.id}>
+            <option selected value={el.id} key={el.id}>
               {el.name}
             </option>
           ) : (
-            <option value={el.id}>
+            <option value={el.id} key={el.id}>
             {el.name}
             </option>
           )

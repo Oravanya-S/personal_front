@@ -6,6 +6,7 @@ import RegisterForm from '../features/auth/components/RegisterForm'
 import LoginForm from '../features/auth/components/LoginForm'
 import Dropdown from '../components/Dropdown'
 import Menu from './Menu'
+import Loading from '../components/Loading'
 import { toast } from 'react-toastify'
 import { FailIcon } from '../icons'
 import { useNavigate } from 'react-router-dom'
@@ -16,11 +17,12 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
     
     const user = useSelector(state => state.auth.user);
     const cart = useSelector(state => state.cart.cartList);
+    const isLoading = useSelector(state => state.cart.isLoading);
     const dispatch = useDispatch() 
 
     useEffect(() => {
       dispatch(cartListAsync(user?.id))
-    },[]) 
+    },[user]) 
 
     const navigate = useNavigate()
     let id, firstName, role;
@@ -68,6 +70,10 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
       } else {
         navigate(`/wishlist/${id}`)
       }
+    }
+
+    if(isLoading) {
+      return <Loading />
     }
 
     return ( 

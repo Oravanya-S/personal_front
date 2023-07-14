@@ -34,7 +34,7 @@ export default function Models() {
         {product.length > 0 ? (
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 border-slate-600 overflow-auto">
             {product.map((el) => (
-              <ProductWithModel item={el} wish={user && wishProductId.includes(el.id)}/>
+              <ProductWithModel item={el} key={el.id} wish={user && wishProductId.includes(el.id)}/>
             ))}
           </div>
         ) : (

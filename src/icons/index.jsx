@@ -27,11 +27,11 @@ export function BasketIcon() {
         stroke="#121923"
         strokeWidth="1.2"
       />
-      <path d="M12.5 10.5V19.5" stroke="#121923" stroke-width="1.2" />
-      <path d="M9.5 19.5L8.5 10.5" stroke="#121923" stroke-width="1.2" />
-      <path d="M15.5 19.5L16.5 10.5" stroke="#121923" stroke-width="1.2" />
-      <path d="M19.5 13.5H5.5" stroke="#121923" stroke-width="1.2" />
-      <path d="M19 16.5H6" stroke="#121923" stroke-width="1.2" />
+      <path d="M12.5 10.5V19.5" stroke="#121923" strokeWidth="1.2" />
+      <path d="M9.5 19.5L8.5 10.5" stroke="#121923" strokeWidth="1.2" />
+      <path d="M15.5 19.5L16.5 10.5" stroke="#121923" strokeWidth="1.2" />
+      <path d="M19.5 13.5H5.5" stroke="#121923" strokeWidth="1.2" />
+      <path d="M19 16.5H6" stroke="#121923" strokeWidth="1.2" />
     </svg>
   );
 }

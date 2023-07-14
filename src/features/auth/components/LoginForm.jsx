@@ -98,14 +98,14 @@ export default function LoginForm({open, onClose}) {
         </div>
         </div>
         <button type='submit' className='p-3 text-white text-lg bg-black'>Login</button>
-        <div className='flex justify-center'>
+        {/* <div className='flex justify-center'>
             <p className='text-black'>- Or Sign in with-</p>
         </div>
         <div className='flex justify-between gap-4 text-xl'>
             <button type='button' className='w-full border-2 rounded-md p-2 hover:border-black flex justify-center items-center gap-2'><GoogleIcon/>Google</button>
             <button type='button' className='w-full border-2 rounded-md p-2 hover:border-black flex justify-center items-center gap-2'><FacebookIcon />Facebook</button>
-        </div>
-        <div className='mt-16 flex justify-center gap-2 items-center group'>
+        </div> */}
+        <div className='mt-12 flex justify-center gap-2 items-center group'>
             <button type="button" className="group-hover" onClick={open}>Create new account</button> 
             <i className="fa-solid fa-arrow-right group-hover:translate-x-2 duration-500"></i>
         </div>            

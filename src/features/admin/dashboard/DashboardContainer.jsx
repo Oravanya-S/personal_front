@@ -3,12 +3,12 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from "moment";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
+// import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Doughnut, Pie, Bar } from "react-chartjs-2";
 import { FaHeart, FaRegMoneyBillAlt, FaShoppingCart } from "react-icons/fa";
 import {
   BsCalendarFill,
   BsFillBagCheckFill,
-  BsPeopleFill,
 } from "react-icons/bs";
 import LoadingAdmin from "../../../components/LoadingAdmin";
 import { dashboardAsync } from "../../auth/slice/admin-slice";
@@ -20,9 +20,10 @@ ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearS
 
 export default function DashboardContainer() {
   const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(dashboardAsync(moment(startDate).format('YYYY-MM-DD'))).unwrap();
+    dispatch(dashboardAsync({startDate : moment(startDate).format('YYYY-MM-DD'), endDate: moment(endDate).format('YYYY-MM-DD')})).unwrap();
   }, []);
   const dashboard = useSelector((state) => state?.admin?.dashboard);
   const isLoading = useSelector((state) => state?.admin?.isLoading);
@@ -30,8 +31,9 @@ export default function DashboardContainer() {
   console.log(dashboard)
   const groupColor = dashboard?.dashboardGroupColor?.map((item) => item?.name);
   const datagroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.total_quantity);
-  const hexcodegroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.hexcode + "90");
+  const hexcodegroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.hexcode + "");
 
+  ChartJS.defaults.font.size = 14
   const dataPie = {
     type: "pie",
     labels: groupColor,
@@ -48,16 +50,21 @@ export default function DashboardContainer() {
   const dataModel = dashboard?.dashboardModel?.map((item) => item?.total_quantity);
   const handleOnchange = async (date) => {
     setStartDate(date)
-    await dispatch(dashboardAsync(moment(date).format('YYYY-MM-DD'))).unwrap();
+    await dispatch(dashboardAsync({startDate : moment(date).format('YYYY-MM-DD'), endDate: moment(endDate).format('YYYY-MM-DD')})).unwrap();
+  }
+  const handleOnchangeEndDate = async (date) => {
+    setEndDate(date)
+    await dispatch(dashboardAsync({startDate: moment(startDate).format('YYYY-MM-DD'),endDate : moment(date).format('YYYY-MM-DD') })).unwrap();
   }
 
 const data = {
   labels: modelName,
   datasets: [{
-    label: 'My First Dataset',
+    label: ' #quantity',
     data: dataModel,
     backgroundColor: '#7D6352',
     borderColor: 'black',
+    barPercentage: 0.8,
     borderWidth: 1
   }]
 };
@@ -66,6 +73,9 @@ const data = {
     plugins: {
       legend: {
         display: false,
+        font: {
+          size: "4px"
+        }
       },
     },
     responsive: true,
@@ -77,44 +87,59 @@ const data = {
         beginAtZero: true,
         min: 0,
         ticks: {
-          stepSize: 1,
+          stepSize: 2,
         },
       },
       x: {
         grid: {
           display: false,
         },
-        // border: {
-        //   color: "gray",
-        // },
       },
     },
   };
 
 
   if (isLoading) {
-    return <LoadingAdmin />;
+    return <div className="mt-[100px]">
+            <LoadingAdmin />;
+          </div>
   }
 
   return (
     <div className="px-9 flex flex-col gap-6">
       <div className="h-[50px]">
-        <div className="flex justify-end items-center">
-          <div className="px-2">
-            <BsCalendarFill size={22}/>
+        <div className="flex justify-end items-center gap-8">
+          <div className="flex items-center">
+            <div>
+              <BsCalendarFill size={22}/>
+            </div>
+            <div className="mx-2">Start Date:</div>  
+            <div className="cursor-pointer">
+              <DatePicker
+                style={{ fontFamily: 'Arial, sans-serif' }}
+                className="px-3 py-2 w-[242px] shadow-sm text-lg"
+                selected={startDate}
+                onChange={handleOnchange}
+                dateFormat="yyyy-MM-dd"
+              />
+            </div>
           </div>
-          <DatePicker
-            style={{ fontFamily: 'Arial, sans-serif' }}
-            className="px-3 py-2 w-[242px] shadow-sm text-lg"
-            selected={startDate}
-            onChange={handleOnchange}
-            dateFormat="yyyy-MM-dd"
-          />
+          <div className="flex items-center">
+            <div>
+              <BsCalendarFill size={22}/>
+            </div>
+            <div className="mx-2">End Date:</div> 
+            <DatePicker
+              className="px-3 py-2 w-[242px] shadow-sm text-lg"
+              selected={endDate}
+              onChange={handleOnchangeEndDate}
+              dateFormat="yyyy-MM-dd"
+              fontFamily='pop'
+            />
+          </div>
         </div>
       </div>
-      {/* <div>
-        <div className="text-lg pb-2 font-medium">This Month</div>
-      </div> */}
+
       <div className="grid grid-cols-4 gap-4">
         <DashboardItem
           title="Sales"
@@ -141,18 +166,18 @@ const data = {
           <FaHeart fill="#000" size={32} />
         </DashboardItem>
       </div>
-      {modelName.length > 0 ? <div className="grid grid-cols-2 gap-6">
+      {groupColor?.length > 0 ? <div className="grid grid-cols-2 gap-6 mt-2 mb-2">
         <div className="flex flex-col gap-4 w-[410px]">
-          <div className="font-medium py-1 px-4 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Color</div>
+          <div className="font-medium py-[5px] px-4 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Color</div>
           <Pie data={dataPie} />
         </div>
         <div className="flex flex-col gap-6">
-          <div className="font-medium py-1 px-4 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Model</div>
-          <div className="h-[400px]">
+          <div className="font-medium py-[5px] px-4 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Model</div>
+          <div className="h-[400px] ">
             <Bar data={data} options={options}></Bar>
           </div>
         </div>
-      </div> : <div className="mt-12 flex justify-center text-xl text-gray-600">No order this day</div>}
+      </div> : <div className="mt-12 flex justify-center text-xl text-gray-600">No orders in selected date period</div>}
     </div>
   );
 }
