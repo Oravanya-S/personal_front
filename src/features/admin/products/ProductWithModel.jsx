@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { BasketIcon, FailIcon } from "../../../icons";
+import { BasketIcon, FailIcon, SuccessIcon } from "../../../icons";
 import ProductDetail from "./ProductDetail";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, Zoom } from "react-toastify";
 import { addCart } from "../../auth/slice/cart-slice";
 import { addFavorite } from "../../auth/slice/wishlist-slice";
 import { useNavigate } from "react-router-dom";
@@ -17,29 +17,35 @@ export default function ProductWithModel({ item, wish }) {
     user_id = user?.id
   }
 
-  const handleClickFavorite = () => {
+  const handleClickFavorite = async () => {
     if(!isAuthenticated) {
       toast.error('Login before adding to wishlist',{
         icon: <FailIcon />,
         position: 'top-center',
-        className: "top-[96px]"
+        className: "top-[96px] bg-black text-white"
       });
     }
     else {
-      dispatch(addFavorite({"userId": user_id, "productId": item.id}))
+      await dispatch(addFavorite({"userId": user_id, "productId": item.id}))
     }
   }
 
-  const handleClickBasket = () => {
+  const handleClickBasket = async () => {
     if(!isAuthenticated) {
       toast.error('Login before add cart',{
         icon: <FailIcon />,
         position: 'top-center',
-        className: "top-[96px]"
+        className: "top-[96px]",
       });
     }
     else {
-      dispatch(addCart({"userId": user_id, "productId": item.id, "Product": item  }))
+      await dispatch(addCart({"userId": user_id, "productId": item.id, "Product": item  }))
+      toast.success('Add cart already', {
+        icon: <SuccessIcon />,
+        position: 'top-center',
+        className: "top-[96px]",
+        
+      });
     }
   };
 

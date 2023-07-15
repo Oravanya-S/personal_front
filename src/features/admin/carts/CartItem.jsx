@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { DeleteCart, updateCart } from '../../auth/slice/cart-slice'
 import { useDispatch } from 'react-redux'
+import ModalDeleteBoxUser from '../../../components/ModalDeleteBoxUser';
 
 export default function CartItem({item}) {
 
+  
+  const [count, setCount] = useState(item.quantity)
+  const [isClickDeleteBox, setIsClickDeleteBox] = useState(false);
+  const [stock, setStock] = useState(item.Product.stock)
   const dispatch = useDispatch()
     const handleClickDeleteBox = () => {
         dispatch(DeleteCart(item.id))
     };
-
-  const [count, setCount] = useState(item.quantity)
-  const [stock, setStock] = useState(item.Product.stock)
 
   const decrease = () => {
     if(count > 1) setCount((prev)=>prev-1)
@@ -59,12 +61,20 @@ export default function CartItem({item}) {
         </div>
       </div>
       <div className='flex flex-col flex-1 justify-between items-end py-12 pr-8'>
-        <div className='underline cursor-pointer' onClick={handleClickDeleteBox}>Remove</div>
+        <div className='underline cursor-pointer' onClick={() => setIsClickDeleteBox(true)}>Remove</div>
         <div className='flex flex-col items-end'>
           <div className='text-2xl font-semibold'>฿ {item?.Product?.price*count}</div>
           <div className='text-base text-gray-500'>฿ {item?.Product?.price} / piece</div>
         </div>
       </div>
+      {isClickDeleteBox ? 
+        <ModalDeleteBoxUser 
+            open={isClickDeleteBox}
+            onClose={()=> setIsClickDeleteBox(false)}
+            confirm={handleClickDeleteBox}
+        />
+        : 
+        <></>}
     </div>
 
 

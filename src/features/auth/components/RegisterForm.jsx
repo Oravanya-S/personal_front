@@ -1,5 +1,6 @@
 import React from 'react'
 import { toast } from 'react-toastify';
+import { Slide } from 'react-toastify';
 import RegisterInput from './RegisterInput'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -48,13 +49,16 @@ export default function RegisterForm({open, onClose}) {
           setError({});
           await dispatch(registerAsync(input)).unwrap();
           toast.success('register successfully', {
-            icon: <SuccessIcon />
+            icon: <SuccessIcon />,
+            className: "top-[96px]",
+            transition: Slide
           });
           onClose()
           onSuccess();
         } catch (err) {
           toast.error(err,{
-            icon: <FailIcon />
+            icon: <FailIcon />,
+            transition: Slide
         });
         }
       };

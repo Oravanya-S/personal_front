@@ -15,7 +15,7 @@ export default function Dropdown({user}) {
         <div className='cursor-pointer text-lg text-black p-2'>{user.firstName}</div>
       </div>
       {open && (
-        <div className="z-60 absolute translate-y-14 bg-white border border-black shadow-xl w-48 p-2 border-b-[12px]">
+        <div className="z-80 absolute translate-y-14 bg-white border border-black shadow-xl w-48 p-2 border-b-[12px]">
           <Link to={`/orders/${user.id}`}
             className="flex gap-4 items-center mx-1 p-2 hover:bg-gray-100 rounded-lg"
             role="button" onClick={() => setOpen(false)}>

@@ -77,9 +77,9 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
     }
 
     return ( 
-    <div className='sticky top-0 z-20'>
+    <div className='sticky top-0 z-30'>
       {(role==1)? <></> : <div className='max-w-[1440px] relative mx-auto bg-white'>
-        <div className={`z-${(openSignIn || openSignUp)? 20: 30} border border-y-0`}>
+        <div className={`z-${(openSignIn || openSignUp)? 20: 30} border border-t-0`}>
           <nav className={`pl-10 pr-14 flex justify-between items-center bg-${bgColor} h-[94px]`}>
               <div>
                 <Link to='/' className='text-5xl font-bold'>MARIETTA</Link>
@@ -92,7 +92,7 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
                 <div className='cursor-pointer' onClick={goToCart}>
                   <div className='flex items-center relative'>
                     <i className="fa-solid fa-bag-shopping text-2xl text-black p-2"></i>
-                    { cart.length > 0 && user && <div className='absolute -right-5 top-[16px] w-4 h-4 bg-red-600 rounded-full text-white text-[7px] flex items-center justify-center'>{cart.length}</div>}
+                    { cart.length > 0 && user && <div className='absolute -right-6 top-[15px] w-4 h-4 bg-red-600 rounded-full text-white text-[8px] flex items-center justify-center'>{cart.length}</div>}
                     <div className='pt-2'>Cart</div>
                   </div>
                 </div>

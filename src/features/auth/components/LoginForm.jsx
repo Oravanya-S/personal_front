@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginInput from './LoginInput';
 import { toast } from 'react-toastify';
+import { Slide } from 'react-toastify';
 import { HiEye } from "react-icons/hi";
 import validateLogin from '../validators/validate-login';
 import InputErrorMessage from './inputErrorMessage';
@@ -46,13 +47,15 @@ export default function LoginForm({open, onClose}) {
       await dispatch(login(input)).unwrap();
       toast.success('login successfully', {
         icon: <SuccessIcon />,
-        className: "top-[96px]"
+        className: "top-[96px]",
+        transition: Slide
       });
       onClose()
       onSuccess();
     } catch (err) {
       toast.error(err,{
-        icon: <FailIcon />
+        icon: <FailIcon />,
+        transition: Slide
     })
     };
   }

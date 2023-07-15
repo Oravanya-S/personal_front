@@ -49,8 +49,9 @@ export default function FilterList({numProduct}) {
       else dispatch(sortPrice(e.target.value))
     }
   return (
-    <div className='fixed top-[94px] z-10 w-[1438px] bg-white'>
-      <div className="border-y relative border-black">
+    <div className='sticky top-0 z-20 '>
+    <div className='w-[1438px] fixed bg-white'>
+      <div className="border-y border-black">
         <div className="flex items-center justify-start px-10 cursor-pointer gap-2 relative h-16 w-full" onClick={handleFilter}>
                 <p>Filters</p>
                 <p className="w-[18px] h-[18px] bg-black text-white rounded-full text-[10px] flex justify-center items-center">{numProduct}</p>
@@ -79,6 +80,7 @@ export default function FilterList({numProduct}) {
             </div>
           </div>
         }
+    </div>
     </div>
   )
 }
