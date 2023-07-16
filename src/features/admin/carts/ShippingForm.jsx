@@ -5,6 +5,11 @@ import ShippingInput from "./ShippingInput";
 import { FailIcon, SuccessIcon } from "../../../icons";
 import { cartListAsync, checkout } from "../../auth/slice/cart-slice";
 import { useNavigate } from "react-router-dom";
+import thai_provinces from "../../../dataThailand/thai_provinces.json";
+import thai_amphures from "../../../dataThailand/thai_amphures.json";
+import thai_tambons from "../../../dataThailand/thai_tambons.json";
+import validateShipping from "../../auth/validators/validate-shipping";
+import InputErrorMessage from '../../auth/components/inputErrorMessage';
 
 const initialInput = {
   phone: "",
@@ -13,30 +18,64 @@ const initialInput = {
 
 export default function ShippingForm({ item, user, totalPrice }) {
   const [input, setInput] = useState(initialInput);
+  const [newAddress, setNewaddress] = useState(false)
+  const [showCurrentAddress, setShowCurrentAddress] = useState(false)
   const [error, setError] = useState({});
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [payment, setPayment] = useState(false);
-
-  const validate = (text) => {
-    if (text.trim() === "") {
-      setError(true);
-      return false;
-    } else {
-      setError(false);
-      return true;
-    }
-  };
 
   const handleChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
-    if (validate(input.phone) && validate(input.address)) setPayment(true);
-    else setPayment(false);
   };
 
+  let province, amphure, tambon, zip;
+  if (user.province) {
+    const selectedProvince = thai_provinces.find(
+      (el) => el.id == user.province
+    );
+    province = selectedProvince.name_en;
+  }
+  if (user.amphoe) {
+    const selectedAmphoe = thai_amphures.find((el) => el.id == user.amphoe);
+    amphure = selectedAmphoe.name_en;
+  }
+  if (user.tambon) {
+    const selectedTambon = thai_tambons.find((el) => el.id == user.tambon);
+    tambon = selectedTambon.name_en;
+    zip = selectedTambon.zip_code;
+  }
+
+  const currentAddress = (e) => {
+    if (e.target.value === "current") {
+      setInput({
+        ...input,
+        address: `${user.addressLine} ${tambon || ""} ${amphure || ""} ${
+          province || ""
+        } ${zip || ""}`,
+      });
+      setNewaddress(false)
+      setShowCurrentAddress(true)
+    } else {
+      setInput({
+        ...input,
+        address: "",
+      });
+      setNewaddress(true)
+      setShowCurrentAddress(false)
+    }
+  };
+
+  console.log(input);
   const handleSubmitForm = async (e) => {
     try {
       e.preventDefault();
+      const result = validateShipping(input);
+      if (result) {
+        return setError(result);
+      }
+      setError({});
+
       await dispatch(
         checkout({
           userId: user.id,
@@ -47,8 +86,7 @@ export default function ShippingForm({ item, user, totalPrice }) {
         })
       );
       await dispatch(cartListAsync(user?.id)).unwrap();
-        navigate(`/orders/${user.id}`)
-        
+      navigate(`/orders/${user.id}`);
 
       // toast.success('Order successfully', {
       //   icon: <SuccessIcon />
@@ -75,19 +113,38 @@ export default function ShippingForm({ item, user, totalPrice }) {
             <p className="w-full block py-2 outline-none">{user.lastName}</p>
           </div>
         </div>
-        <ShippingInput
-          name="phone"
-          placeholder="Phone"
-          value={input.phone}
-          onChange={handleChangeInput}
-        />
-        <ShippingInput
-          name="address"
-          placeholder="Address"
-          value={input.address}
-          onChange={handleChangeInput}
-        />
-        {payment ? (
+        <div>
+          <ShippingInput
+            name="phone"
+            placeholder="Phone"
+            value={input.phone}
+            onChange={handleChangeInput}
+            />
+          <div className="h-0">
+            {error.phone && <InputErrorMessage message={error.phone} />}
+          </div>
+        </div>
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-2" onChange={currentAddress}>
+              <input type="radio" id="current" name="address" value="current"/>
+              <label for="current">Current address</label>
+            </div>
+            {showCurrentAddress? <div className="pl-[21px] text-gray-500">{input.address}</div> : <></>}
+            <div className="flex gap-2" onChange={currentAddress}>
+              <input type="radio" id="new" name="address" value="new"/>
+              <label for="new">New address</label>
+            </div>
+            { newAddress? <div className="pl-[21px] -mt-4">
+              <ShippingInput
+                name="address"
+                value={input.address}
+                onChange={handleChangeInput}
+              />
+              <div className="h-0">
+                {error.address && <InputErrorMessage message={error.address} />}
+              </div>
+            </div> : <></>}
+          </div>
           <button
             type="submit"
             className="text-white bg-black p-4 my-8 text-center text-lg"
@@ -95,19 +152,7 @@ export default function ShippingForm({ item, user, totalPrice }) {
           >
             PAYMENT
           </button>
-        ) : (
-          <></>
-        )}
       </form>
-      {/* {payment ? 
-      (<div className="overflow-hidden w-[60%] border border-black">
-        <div className="flex flex-col ">
-            <div className="bg-black h-[60px] text-white flex justify-center items-center">Order successfully</div>
-            <button type="button" className="h-[100px] flex justify-center items-center">See your orders </button>
-
-        </div>
-      </div>)
-      : <></>} */}
     </>
   );
 }

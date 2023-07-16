@@ -77,7 +77,7 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
     }
 
     return ( 
-    <div className='z-30 h-[96px] flex justify-center relative'>
+    <div className={`z-30 ${(role==1)? "": "h-[96px]"} flex justify-center relative`}>
       {(role==1)? <></> : <div className='w-[1440px] fixed bg-white'>
         <div className={`z-${(openSignIn || openSignUp)? 20: 30} border border-y-0`}>
           <nav className={`pl-10 pr-14 flex justify-between items-center bg-${bgColor} h-[96px]`}>
@@ -85,7 +85,7 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
                 <Link to='/' className='text-5xl font-bold'>MARIETTA</Link>
               </div>
               <Menu />
-              <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='20'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>
+              <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='40'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>
               <div className='flex gap-4 text-lg'>
                 {user? <Dropdown user={user}/> : <div className='cursor-pointer' onClick={handleSignIn}><i className="fa-regular fa-user text-2xl text-black p-2 hover:underline"></i>Sign in</div>}
                 <div className='cursor-pointer' onClick={goToWishlist}><i className="fa-regular fa-heart text-2xl text-black p-2"></i>Wishlist</div>

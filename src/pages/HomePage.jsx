@@ -20,7 +20,7 @@ export default function HomePage() {
     "../src/assets/groupBag.jpg",
   ];
   return (
-    <div className="max-w-[1440px] mx-auto border">
+    <div className="max-w-[1440px] mx-auto border fade-in">
       <Carousel gallaryList={gallary}/>
       <div className="grid lg:grid-cols-1 xl:grid-cols-2 gap-3 py-3">
         {pic.map((el, idx) => (

@@ -1,10 +1,6 @@
 import React from 'react'
 import PreorderItem from '../carts/PreorderItem'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import thai_provinces from '../../../dataThailand/thai_provinces.json'
-import thai_amphures from '../../../dataThailand/thai_amphures.json'
-import thai_tambons from '../../../dataThailand/thai_tambons.json'
 
 export default function Order({order, user}) {
   const [accordian, setAccordian] = useState(false)
@@ -21,23 +17,7 @@ export default function Order({order, user}) {
         return acc
         },0)
     }
-  let province, amphure, tambon, zip;
-  if(user) {
-    if (user.province) {
-      const selectedProvince = thai_provinces.find(el => el.id == user.province)
-      province = selectedProvince.name_en
-    }
-    if (user.amphoe) {
-      const selectedAmphoe = thai_amphures.find(el => el.id == user.amphoe)
-      amphure = selectedAmphoe.name_en
-    }
-    if (user.tambon) {
-      const selectedTambon = thai_tambons.find(el => el.id == user.tambon)
-      tambon = selectedTambon.name_en
-      zip = selectedTambon.zip_code
-    }
-  }
-  console.log(order)
+
   return (
     <div className={`flex flex-col gap-4`}>
         <div className={`flex justify-between items-center`}>
@@ -78,17 +58,11 @@ export default function Order({order, user}) {
                   <p className='font-medium w-[100px]'>Receiver</p>
                   <p className='text-base'>{user?.firstName} {user?.lastName}</p>
                 </div>
-                <div className='flex items-start justify-between '>
+                <div className='flex justify-between'>
                   <p className='font-medium w-[120px]'>SHIP TO</p>
-                  <div className="flex flex-col gap-[6px] items-end">
-                        <div className="flex gap-2 flex-wrap justify-end text-base">
-                          <div>{user?.addressLine}</div>
-                          <div>{tambon}</div>
-                          <div>{amphure}</div>
-                          <div>{province}</div>
-                          <div>{zip}</div>
+                        <div className="flex flex-1 text-right flex-wrap justify-end text-base">
+                          {order?.address}
                         </div>
-                  </div>
                 </div>
 
                 </> : <></>}

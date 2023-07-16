@@ -6,16 +6,52 @@
 
 *::-webkit-scrollbar {
   width: 6px;
+  position: fixed;
 }
 *::-webkit-scrollbar-track {
   background: #eeeeee;
   border-radius: 2px;
+  position: fixed;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 2px;
   border: 3px solid #ccc;
+  position: fixed;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fade-in { animation: fadeIn 1s; }
+
+.animate-slideInRight {
+  animation: slideInRight 500ms forwards;
+}
+
+.animate-slideOutRight {
+  animation: slideOutRight 500ms forwards;
 }
 
 

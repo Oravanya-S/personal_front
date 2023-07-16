@@ -45,6 +45,17 @@ export default function DashboardContainer() {
       },
     ],
   };
+
+  const op = {
+    plugins: { 
+    legend: {
+        display: true,
+        labels: {
+            fontColor: 'rgb(255, 99, 132)'
+        }
+    }
+    }
+  }
   
   const modelName = dashboard?.dashboardModel?.map((item) => item?.name)
   const dataModel = dashboard?.dashboardModel?.map((item) => item?.total_quantity);
@@ -166,16 +177,17 @@ const data = {
           <FaHeart fill="#000" size={32} />
         </DashboardItem>
       </div>
-      {groupColor?.length > 0 ? <div className="grid grid-cols-2 gap-6 mt-2 mb-2">
-        <div className="flex flex-col gap-4 w-[410px]">
-          <div className="font-medium py-[5px] px-4 mb-1 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Color</div>
-          <div className="opacity-90"><Pie data={dataPie} /></div>
-        </div>
+      {groupColor?.length > 0 ? 
+      <div className="grid grid-cols-2 gap-4 mt-2 mb-2">
         <div className="flex flex-col gap-6">
           <div className="font-medium py-[5px] px-4 bg-[#7D6352] text-white rounded-lg w-fit">Sale by Model</div>
           <div className="h-[400px] ">
             <Bar data={data} options={options}></Bar>
           </div>
+        </div>
+        <div className="flex flex-col gap-4 ml-10 w-[396px]">
+          <div className="font-medium px-4 py-[5px] bg-[#7D6352] text-white rounded-lg w-fit">Sale by Color</div>
+          <div className="opacity-90"><Pie data={dataPie} options={op}/></div>
         </div>
       </div> : <div className="mt-12 flex justify-center text-xl text-gray-600">No orders in selected date period</div>}
     </div>

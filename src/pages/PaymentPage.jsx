@@ -42,7 +42,7 @@ export default function PaymentPage() {
         <ShippingForm item={preorder} user={user} totalPrice={sumPrice}/>
 
       </div>
-      <div className='flex flex-col w-[40%] p-10 gap-8 '>
+      <div className='flex flex-col w-[40%] p-10 gap-8'>
         <div className='flex justify-between'>
             <div className='text-xl font-medium'>Order Summary</div>
             <button type="button" className="hover:underline underline-offset-4" onClick={()=> navigate(-1)}>Edit cart</button> 
