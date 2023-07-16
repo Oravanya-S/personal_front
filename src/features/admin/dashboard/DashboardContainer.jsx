@@ -28,7 +28,6 @@ export default function DashboardContainer() {
   const dashboard = useSelector((state) => state?.admin?.dashboard);
   const isLoading = useSelector((state) => state?.admin?.isLoading);
 
-  console.log(dashboard)
   const groupColor = dashboard?.dashboardGroupColor?.map((item) => item?.name);
   const datagroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.total_quantity);
   const hexcodegroupColor = dashboard?.dashboardGroupColor?.map((item) => item?.hexcode);

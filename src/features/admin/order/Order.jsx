@@ -28,7 +28,7 @@ export default function Order({order, user}) {
               <div className='flex items-center gap-3 cursor-pointer' onClick={()=> setAccordian(!accordian)}>
                 <p>See more details</p>
                 <div className='w-[30px] flex justify-center'>
-                  <i class={`fa-solid fa-chevron-${(accordian? "down" : "right")} overflow-auto`}></i>
+                  <i className={`fa-solid fa-chevron-${(accordian? "down" : "right")} overflow-auto`}></i>
                 </div>
               </div>
         </div>

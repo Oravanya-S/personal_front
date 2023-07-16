@@ -3,8 +3,8 @@ import LoadingColor from "./LoadingColor";
 export default function Skeleton() {
   return (
     <>
-      <div class="w-full mx-auto">
-        <div class="animate-pulse flex space-x-4">
+      <div className="w-full mx-auto">
+        <div className="animate-pulse flex space-x-4">
           <div className="flex flex-col w-full gap-6 overflow-auto flex-1">
             <div className="bg-slate-200 h-[110px]"></div>
             <div className="flex flex-col mx-8 gap-6">
@@ -15,7 +15,7 @@ export default function Skeleton() {
             <div className="flex flex-col gap-6 mx-8">
               <div>
                 <div className="w-full flex justify-end relative">
-                  <div class="rounded-full bg-slate-200 h-8 w-56"></div>
+                  <div className="rounded-full bg-slate-200 h-8 w-56"></div>
                 </div>
               </div>
               <div className="rounded-lg flex flex-col h-[700px] w-full overflow-hidden p-6 bg-white">

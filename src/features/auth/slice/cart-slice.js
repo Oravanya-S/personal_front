@@ -3,7 +3,9 @@ import * as cartService from '../../../api/cart-api';
 
 const initialState = {
     cartList: [],
-    isLoading: true
+    isLoading: true,
+    payment:'',
+    paymentSuccess:false
 };
 
 export const cartListAsync = createAsyncThunk(
@@ -16,6 +18,19 @@ export const cartListAsync = createAsyncThunk(
         return thunkApi.rejectWithValue(err.response.data.message);
       }
     }
+);
+
+export const paymentAsync = createAsyncThunk(
+  'cart/paymentAsync',
+  async (input, thunkApi) => {
+    try {
+      console.log('cart/paymentAsync',input)
+      const response = await cartService.payment(input);
+      return response.data
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.response.data);
+    }
+  } 
 );
 
 const cartSlice = createSlice({
@@ -51,6 +66,19 @@ const cartSlice = createSlice({
           state.isLoading = false;
         })
         .addCase(cartListAsync.rejected, (state, action) => {
+          state.error = action.payload;
+          state.isLoading = false;
+        })
+        .addCase(paymentAsync.pending, (state) => {
+          state.isLoading = true;
+          state.paymentSuccess =false;
+        })
+        .addCase(paymentAsync.fulfilled, (state, action) => {
+          state.cartList = action.payload;
+          state.isLoading = false;
+          state.paymentSuccess =true;
+        })
+        .addCase(paymentAsync.rejected, (state, action) => {
           state.error = action.payload;
           state.isLoading = false;
         })

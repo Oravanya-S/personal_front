@@ -19,6 +19,8 @@ const productSchema = Joi.object({
     image: Joi.any().empty('').required().messages({
         'any.required': 'Image is required.'
     }),
+    productDefaultPrice: Joi.string().trim().optional().allow('').messages({
+    }),
 });
   
   const validateProduct = input => {

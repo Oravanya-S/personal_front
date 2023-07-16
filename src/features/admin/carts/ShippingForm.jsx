@@ -67,6 +67,8 @@ export default function ShippingForm({ item, user, totalPrice }) {
   };
 
   console.log(input);
+
+
   const handleSubmitForm = async (e) => {
     try {
       e.preventDefault();
@@ -75,6 +77,20 @@ export default function ShippingForm({ item, user, totalPrice }) {
         return setError(result);
       }
       setError({});
+
+        const resultPayment = await axios.post(
+          `http://localhost:8888/payment/create-payment`,
+          {
+            payload: array
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        window.location.replace(result.data.session.url);
 
       await dispatch(
         checkout({
@@ -144,6 +160,9 @@ export default function ShippingForm({ item, user, totalPrice }) {
                 {error.address && <InputErrorMessage message={error.address} />}
               </div>
             </div> : <></>}
+            {(!showCurrentAddress && !newAddress)? <div className="h-0">
+                {error.address && <InputErrorMessage message={error.address} />}
+              </div> : <></>}
           </div>
           <button
             type="submit"
