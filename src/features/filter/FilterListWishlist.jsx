@@ -49,7 +49,7 @@ export default function FilterListWishlist({numProduct}) {
       else dispatch(sortPriceWishlist(e.target.value))
     }
   return (
-    <div className='fixed top-[94px] z-10 w-[1438px] bg-white'>
+    <div className='fixed z-20 w-[1438px] bg-white'>
       <div className="border-y relative border-black">
         <div className="flex items-center justify-start px-10 cursor-pointer gap-2 relative h-16 w-full" onClick={handleFilter}>
                 <p>Filters</p>

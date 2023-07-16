@@ -31,7 +31,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-94px)] border border-b-0">
+    <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-96px)] border border-b-0">
       <div className="p-12 pb-0">
         <div className="flex">
           <div className="w-1/5 text-xl font-medium">Hello,</div>
@@ -42,7 +42,7 @@ export default function ProfilePage() {
           <div className="w-1/5">
             <div className="flex flex-col gap-6 my-3">
               <Link to={`/orders/${user.id}`}>Order History</Link>
-              <Link to={`/profile/${user.id}`} className="font-medium">
+              <Link to={`/profile/${user.id}`} className="font-semibold">
                 Profile
               </Link>
             </div>

@@ -77,10 +77,10 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
     }
 
     return ( 
-    <div className='sticky top-0 z-30'>
-      {(role==1)? <></> : <div className='max-w-[1440px] relative mx-auto bg-white'>
-        <div className={`z-${(openSignIn || openSignUp)? 20: 30} border border-t-0`}>
-          <nav className={`pl-10 pr-14 flex justify-between items-center bg-${bgColor} h-[94px]`}>
+    <div className='z-30 h-[96px] flex justify-center relative'>
+      {(role==1)? <></> : <div className='w-[1440px] fixed bg-white'>
+        <div className={`z-${(openSignIn || openSignUp)? 20: 30} border border-y-0`}>
+          <nav className={`pl-10 pr-14 flex justify-between items-center bg-${bgColor} h-[96px]`}>
               <div>
                 <Link to='/' className='text-5xl font-bold'>MARIETTA</Link>
               </div>
