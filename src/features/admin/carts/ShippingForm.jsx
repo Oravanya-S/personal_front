@@ -135,10 +135,10 @@ export default function ShippingForm({ item, user, totalPrice }) {
           </div>
         </div>
           <div className="flex flex-col gap-4">
-            <div className="flex gap-2" onChange={currentAddress}>
+            {user.addressLine? <div className="flex gap-2" onChange={currentAddress}>
               <input type="radio" id="current" name="address" value="current"/>
               <label for="current">Current address</label>
-            </div>
+            </div> : <></>}
             {showCurrentAddress? <div className="pl-[21px] text-gray-500">{input.address}</div> : <></>}
             <div className="flex gap-2" onChange={currentAddress}>
               <input type="radio" id="new" name="address" value="new"/>

@@ -32,7 +32,7 @@ export default function PaymentPage() {
         },0)
     }
   return (
-    <div className='max-w-[1440px] mx-auto min-h-screen border'>
+    <div className='max-w-[1440px] mx-auto min-h-screen border fade-in'>
     <div className='flex'>
       <div className='w-[60%] flex flex-col p-10 border-r min-h-screen'>
         <div className='flex justify-end'>
