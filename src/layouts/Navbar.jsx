@@ -85,7 +85,7 @@ export default function Navbar({bgColor = 'white', borderColor = "black"}) {
                 <Link to='/' className='text-5xl font-bold'>MARIETTA</Link>
               </div>
               <Menu />
-              <Modal open={openSignIn} onClose={((openSignUp)? closeSignUp : closeSignIn)} z='40'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>
+              <Modal open={openSignIn} onClose={(openSignUp)? closeSignUp : closeSignIn} z='40'>{(openSignUp)? <RegisterForm open={handleSignIn} onClose={closeSignUp}/> : <LoginForm open={handleSignUp} onClose={closeSignIn}/>}</Modal>
               <div className='flex gap-4 text-lg'>
                 {user? <Dropdown user={user}/> : <div className='cursor-pointer' onClick={handleSignIn}><i className="fa-regular fa-user text-2xl text-black p-2 hover:underline"></i>Sign in</div>}
                 <div className='cursor-pointer' onClick={goToWishlist}><i className="fa-regular fa-heart text-2xl text-black p-2"></i>Wishlist</div>

@@ -16,7 +16,8 @@ export default function ModelList() {
   },[]) 
 
   if (isLoading) {
-    return <LoadingAdmin /> }
+    return <div><LoadingAdmin /> </div>
+  }
 
   return (
     <>

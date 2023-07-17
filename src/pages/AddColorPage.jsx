@@ -11,7 +11,7 @@ import ColorContainer from '../features/admin/colors/ColorContainer'
 export default function AddColorPage() {
   
   return (
-    <div className='flex w-[1440px] border-2 border-y-0 mx-auto min-h-screen bg-gray-50'>
+    <div className='flex w-[1440px] border-2 border-y-0 mx-auto min-h-screen bg-gray-50 fade-in'>
       <div className='w-[350px]'>
         <SideBar />
       </div>

@@ -9,8 +9,8 @@ import {
 import validateProduct from "../../auth/validators/validate-product";
 import InputErrorMessage from "../../auth/components/inputErrorMessage";
 import defaultImage from "../../../assets/default.jpg";
-import Loading from "../../../components/Loading";
 import { Clound } from "../../../icons";
+import LoadingProduct from "../../../components/LoadingProduct";
 
 export default function ProductForm({
   textConFirm,
@@ -82,7 +82,7 @@ export default function ProductForm({
   if (isLoading) {
     return (
       <>
-        <Loading />
+        <LoadingProduct />
       </>
     );
   }
