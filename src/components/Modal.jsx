@@ -3,9 +3,9 @@ import {createPortal} from 'react-dom'
 
   return createPortal((
       <>
-      {open && ( 
-        <>
-          <div className='fixed inset-0 bg-white opacity-50 z-30 shadow-lg'></div>
+      {/* {open && (  */}
+        <div className={`${open? "block": "hidden"}`}>
+          <div className={`fixed inset-0 bg-white opacity-50 z-30 shadow-lg`}></div>
           <div className={`fixed inset-0 z-${z}`} onMouseUp={onClose}>
           <div className={`flex ${position} min-h-full duration-2000 transform ease-in-out ${open ? 'animate-slideInRight' : 'animate-slideOutRight'}`}>
             <div 
@@ -21,8 +21,8 @@ import {createPortal} from 'react-dom'
             </div>
         </div>
         </div>
-        </>
-      )}
+        </div>
+      {/* )} */}
       </>
     ), document.getElementById("modal")
   );

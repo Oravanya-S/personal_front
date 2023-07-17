@@ -70,3 +70,12 @@ export const {
 
 
 
+export function checkPayment(session_id) {
+  return async (dispatch) => {
+    try {
+      const response = await orderService.checkPayment(session_id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

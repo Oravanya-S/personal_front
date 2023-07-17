@@ -14,7 +14,6 @@ export default function PaymentPage() {
         dispatch(cartListAsync(id))
     },[]) 
     const user = useSelector(state => state.auth.user)
-    console.log(user)
     
     let totolAmount, sumPrice;
     

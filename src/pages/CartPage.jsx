@@ -35,7 +35,7 @@ export default function CartPage() {
   if (isLoading) {
     return <Loading /> }
   return (
-    <div className='max-w-[1440px] mx-auto min-h-[calc(100vh-94px)] border border-y-0'>
+    <div className='max-w-[1440px] mx-auto min-h-[calc(100vh-94px)] border border-b-0 fade-in'>
     { (cart.length==0)? <div className='flex justify-center text-xl text-gray-500 py-24'>No cart now</div> : 
     <div className='flex'>
       <div className='w-[60%] items-center'>

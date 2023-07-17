@@ -30,10 +30,10 @@ export default function Models() {
     return <Loading /> }
   return (
     <div className="flex justify-center fade-in">
-      <div className="w-[1440px] min-h-[calc(100vh-96px)] flex justify-center overflow-hidden border border-black border-y-0">
+      <div className="w-[1440px] min-h-[calc(100vh-96px)] flex justify-center overflow-hidden border-y-0 border">
             <FilterList numProduct={numProduct}/>
         {product.length > 0 ? (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 border-slate-600 overflow-auto">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 border border-black  overflow-auto">
             {product.map((el) => (
               <ProductWithModel item={el} key={el.id} wish={user && wishProductId.includes(el.id)}/>
             ))}

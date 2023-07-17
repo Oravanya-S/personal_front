@@ -19,7 +19,7 @@ export default function HistoryPage() {
   const user = useSelector((state) => state.auth.user);
 
   return (
-    <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-96px)] border">
+    <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-96px)] border fade-in">
       {order.length == 0 ? (
         <div className="flex justify-center text-3xl text-gray-500 py-24">
           No history

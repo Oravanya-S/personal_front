@@ -31,7 +31,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-96px)] border border-b-0">
+    <div className="max-w-[1440px] mx-auto min-h-[calc(100vh-96px)] border border-b-0 fade-in">
       <div className="p-12 pb-0">
         <div className="flex">
           <div className="w-1/5 text-xl font-medium">Hello,</div>

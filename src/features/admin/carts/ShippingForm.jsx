@@ -10,6 +10,7 @@ import thai_amphures from "../../../dataThailand/thai_amphures.json";
 import thai_tambons from "../../../dataThailand/thai_tambons.json";
 import validateShipping from "../../auth/validators/validate-shipping";
 import InputErrorMessage from '../../auth/components/inputErrorMessage';
+import axios from '../../../api/axios';
 
 const initialInput = {
   phone: "",
@@ -68,6 +69,7 @@ export default function ShippingForm({ item, user, totalPrice }) {
 
   console.log(input);
 
+  const array = useSelector(state => state.cart.cartList)
 
   const handleSubmitForm = async (e) => {
     try {
@@ -78,36 +80,28 @@ export default function ShippingForm({ item, user, totalPrice }) {
       }
       setError({});
 
-        const resultPayment = await axios.post(
-          `http://localhost:8888/payment/create-payment`,
-          {
-            payload: array
+      const resultPayment = await axios.post(
+        `http://localhost:8888/payment/create-payment/${user.id}`,
+          
+        {
+          payload: item,
+          result: input
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        window.location.replace(result.data.session.url);
-
-      await dispatch(
-        checkout({
-          userId: user.id,
-          status: "PAID",
-          payment: "POMPTPAY",
-          phone: input.phone,
-          address: input.address,
-        })
+        }
       );
-      await dispatch(cartListAsync(user?.id)).unwrap();
-      navigate(`/orders/${user.id}`);
 
+      console.log("resultPayment -------------------------->", resultPayment.session)
+      window.location.replace(resultPayment.data.session.url);
+        
+      
       // toast.success('Order successfully', {
       //   icon: <SuccessIcon />
       // });
-
       //   onSuccess();
     } catch (err) {
       toast.error(err, {

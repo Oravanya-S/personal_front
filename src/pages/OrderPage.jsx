@@ -27,7 +27,7 @@ export default function OrderPage() {
           </div>
   }
   return (
-    <div className='flex w-[1440px] border-[1px] border-t-0 mx-auto min-h-screen bg-gray-50'>
+    <div className='flex w-[1440px] border-[1px] border-t-0 mx-auto min-h-screen bg-gray-50 fade-in'>
       <div className='w-[350px]'>
         <SideBar />
       </div>

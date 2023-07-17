@@ -50,7 +50,7 @@ export default function FilterListWishlist({numProduct}) {
     }
   return (
     <div className='fixed z-20 w-[1438px] bg-white'>
-      <div className="border-y relative border-black">
+      <div className="border relative border-black">
         <div className="flex items-center justify-start px-10 cursor-pointer gap-2 relative h-16 w-full" onClick={handleFilter}>
                 <p>Filters</p>
                 <p className="w-[18px] h-[18px] bg-black text-white rounded-full text-[10px] flex justify-center items-center">{numProduct}</p>
@@ -58,7 +58,7 @@ export default function FilterListWishlist({numProduct}) {
       </div>
         {
           isFilter && 
-          <div className='border-b border-black grid grid-cols-2'>
+          <div className='border border-t-0 border-black grid grid-cols-2'>
             <div className='border-r border-black px-10 py-6'>
               <p className='pb-2 text-sm'>COLOR</p>
               <div className="grid grid-cols-4 gap-[6px] gap-x-8">
