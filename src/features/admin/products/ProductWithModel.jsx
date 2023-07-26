@@ -50,8 +50,8 @@ export default function ProductWithModel({ item, wish }) {
   };
 
   return (
-    <div className="flex justify-center items-center relative border border-black border-t-0 border-l-0 group cursor-pointer h-[500px]">
-      <p className="absolute bottom-4 right-4 text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+    <div className="flex justify-center items-center relative border border-black border-t-0 border-l-0 group cursor-pointer h-fit">
+      <p className="absolute bottom-3 right-4 text-2xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         ฿ {item?.price}
       </p>
       <div className="flex gap-2 absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
