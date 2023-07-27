@@ -40,7 +40,7 @@ export default function OrderPage() {
             No order
             </div>
         ) :(
-            <div className="px-6 max-h-[780px] overflow-auto">
+            <div className="px-6 max-h-[700px] overflow-auto">
             <div className="flex justify-end gap-3">
             <div className="text-xl font-medium">
                 Total:
