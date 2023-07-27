@@ -36,7 +36,7 @@ export default function OrderPage() {
         <div className=''>
         <div className='bg-white mx-8 rounded-md pt-8 overflow-auto'>
             {orderAll.length == 0 ? (
-            <div className="flex justify-center text-3xl text-gray-500 py-24">
+            <div className="flex justify-center text-2xl text-gray-500 py-24">
             No order
             </div>
         ) :(

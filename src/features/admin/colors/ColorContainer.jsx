@@ -23,7 +23,7 @@ export default function ColorContainer() {
             <div>
               <SearchValue />
             </div>
-            <div className='border rounded-lg flex flex-col h-[740px] w-full overflow-hidden p-6 bg-white'>
+            <div className='border rounded-lg flex flex-col h-[600px] w-full overflow-hidden p-6 bg-white'>
               <AddColor category="color" nameType="Color"/>
               <div className='overflow-auto mt-2'>
                   <ColorList />

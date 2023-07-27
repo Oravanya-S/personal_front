@@ -29,8 +29,8 @@ export default function Models() {
   if (isLoading) {
     return <Loading /> }
   return (
-    <div className="flex justify-center fade-in">
-      <div className="w-[1440px] min-h-[calc(100vh-96px)] flex justify-center overflow-hidden border-y-0 border">
+    <div className="flex justify-center fade-in max-w-[1440px] min-h-[calc(100vh-96px)] mx-auto">
+      <div className="flex justify-center overflow-hidden border-y-0 border flex-wrap w-full">
             <FilterList numProduct={numProduct}/>
         {product.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-16 border border-black overflow-auto">
