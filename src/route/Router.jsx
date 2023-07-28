@@ -18,6 +18,7 @@ import DashboardPage from '../pages/DashboardPage';
 import FavoritePage from '../pages/FavoritePage';
 import OneProductPage from '../pages/OneProductPage';
 import PaymentSuccess from '../pages/PaymentSucces';
+import AddColourPage from '../pages/AddColourPage';
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
             path: '/admin/color',
             element: (<ProtectedRoute>
                       <AddColorPage /> 
+                    </ProtectedRoute>)
+          },
+          {
+            path: '/admin/colour',
+            element: (<ProtectedRoute>
+                      <AddColourPage /> 
                     </ProtectedRoute>)
           },
           {
