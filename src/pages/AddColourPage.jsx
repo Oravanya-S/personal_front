@@ -1,6 +1,6 @@
 import React from 'react'
 import SideBar from '../features/admin/layouts/SideBar'
-import ColourContainer from '../features/admin/colours/ColourContainer'
+import ColourContainer from '../features/admin/groupcolors/ColourContainer'
 
 export default function AddColourPage() {
   

@@ -1,17 +1,17 @@
 import React from 'react'
 import HeaderAdmin from '../components/HeaderAdmin'
-// import AddColor from './AddColor'
-// import ColorList from './ColorList'
+// import ColourList from './ColourList'
 import SearchValue from './SearchValue'
 import { useDispatch, useSelector } from 'react-redux'
-import { groupColorListAsync } from '../../auth/slice/admin-slice'
+import { groupColourListAsync } from '../../auth/slice/admin-slice'
 import { useEffect } from 'react'
+import GroupColourList from './GroupColourList'
 
 export default function ColourContainer() { 
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(groupColorListAsync())
+    dispatch(groupColourListAsync())
   },[]) 
 
   return (
@@ -22,9 +22,8 @@ export default function ColourContainer() {
               <SearchValue />
             </div>
             <div className='border rounded-lg flex flex-col h-[600px] w-full overflow-hidden p-6 bg-white'>
-              {/* <AddColor category="color" nameType="Color"/> */}
               <div className='overflow-auto mt-2'>
-                  {/* <ColorList /> */}
+                  <GroupColourList />
               </div>
             </div>
         </div>

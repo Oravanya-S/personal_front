@@ -45,7 +45,7 @@ export default function ModelItem({item, nameType}) {
                         <ModelForm textConFirm={`Edit`} onIsAddMode={setIsEditMode} oldModel={item} nameType={nameType}/>
                     </div>}
                     <div className=''>
-                        <AddProduct category='color' idModel={item.id} idModelName={item.name}/>
+                        <AddProduct category='product' idModel={item.id} idModelName={item.name}/>
                         <ProductListWithModel modelId={item.id}/>
                     </div>
                   </div>

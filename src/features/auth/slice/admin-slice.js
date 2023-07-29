@@ -8,6 +8,9 @@ const initialState = {
   colorList: [],
   colorListFilter: [],
   searchColorValue: "",
+  colourList: [],
+  colourListFilter: [],
+  searchColourValue: "",
   searchBagTypeValue: "",
   searchModelValue: "",
   modelList: [],
@@ -35,6 +38,18 @@ export const groupColorListAsync = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const res = await adminService.getGroupColor();
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const groupColourListAsync = createAsyncThunk(
+  "admin/groupColourListAsync",
+  async (_, thunkApi) => {
+    try {
+      const res = await adminService.getGroupColorWithColor()
       return res.data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.response.data.message);
@@ -197,8 +212,18 @@ const adminSlice = createSlice({
         state.error = action.payload;
         state.isLoading = false;
       })
+      .addCase(groupColourListAsync.fulfilled, (state, action) => {
+        state.colourList = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(groupColourListAsync.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      })
       .addCase(groupColorListAsync.fulfilled, (state, action) => {
         state.groupColorList = action.payload;
+        if(state.searchColorValue.trim() === "") state.colorListFilter = state.colorList
+        else state.colorListFilter = action.payload.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
         state.isLoading = false;
       })
       .addCase(groupColorListAsync.rejected, (state, action) => {
