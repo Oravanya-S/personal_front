@@ -21,7 +21,7 @@ export default function ColourContainer() {
             <div>
               <SearchValue />
             </div>
-            <div className='border rounded-lg flex flex-col h-[600px] w-full overflow-hidden p-6 bg-white'>
+            <div className='border rounded-lg flex flex-col h-[580px] w-full overflow-hidden p-6 bg-white'>
               <div className='overflow-auto mt-2'>
                   <GroupColourList />
               </div>

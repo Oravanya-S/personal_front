@@ -7,7 +7,7 @@ import GroupColourItem from "./GroupColourItem";
 
 export default function GroupColourList() {
   const dispatch = useDispatch();
-  const groupColor = useSelector((state) => state.admin.colourList);
+  const groupColor = useSelector((state) => state.admin.colourListFilter);
   const isLoading = useSelector((state) => state.admin.isLoading);
   useEffect(() => {
     dispatch(groupColourListAsync());
@@ -24,13 +24,15 @@ export default function GroupColourList() {
 
   return (
     <>
+      {groupColor.length === 0 ? 
+        <div className='flex justify-center text-gray-500 text-lg pt-8'>No colors match your search</div> :
         <div className="flex flex-col gap-6">
           {groupColor.map((item) => (
             <div className="flex flex-col" key={item.id}>
-              <GroupColourItem item={item} />
+              <GroupColourItem item={item} groupColorId={item.id} />
             </div>
           ))}
-        </div>
+        </div>}
     </>
   );
 }

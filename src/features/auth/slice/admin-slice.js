@@ -135,6 +135,21 @@ const adminSlice = createSlice({
       state.colorList = state.colorList.filter((color) => color.id != colorId);
       state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
     },
+    removeColour: (state, action) => {
+      const {colorId, groupColorId} = action.payload;
+      const indexNewListInGroupColor = state.colourList.findIndex(el => el.id == groupColorId)
+      state.colourList[indexNewListInGroupColor].Colors = state.colourList[indexNewListInGroupColor].Colors.filter(el => el.id != colorId)
+      state.colourListFilter = state.colourList.filter((color) => color.name.toLowerCase().includes(state.searchColourValue.toLowerCase()))
+    },
+    addColour: (state, action) => {
+      const newColor = action.payload;
+      console.log(newColor)
+      // const groupColor = JSON.parse(JSON.stringify(state.groupColorList))
+      // const indexGroupColor = groupColor.findIndex((el) => el.id == newColor.groupColorId);
+      // const groupColorNow = groupColor[indexGroupColor]
+      // state.colorList.unshift({...newColor, GroupColor: groupColorNow});
+      // state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
+    },
     addColor: (state, action) => {
       const newColor = action.payload;
       const groupColor = JSON.parse(JSON.stringify(state.groupColorList))
@@ -143,6 +158,7 @@ const adminSlice = createSlice({
       state.colorList.unshift({...newColor, GroupColor: groupColorNow});
       state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
     },
+
     editColor: (state, action) => {
       const { colorId, updateColorObj } = action.payload;
       const index = state.colorList.findIndex((el) => el.id == colorId)
@@ -157,6 +173,11 @@ const adminSlice = createSlice({
       const searchValue = action.payload
       state.searchColorValue = action.payload;
       state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(searchValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(searchValue.toLowerCase()))
+    },
+    searchColour: (state, action) => {
+      const searchValue = action.payload
+      state.searchColourValue = action.payload;
+      state.colourListFilter = state.colourList.filter((color) => color.name.toLowerCase().includes(searchValue.toLowerCase()))
     },
     addModel: (state, action) => {
       const newModel = action.payload;
@@ -214,6 +235,8 @@ const adminSlice = createSlice({
       })
       .addCase(groupColourListAsync.fulfilled, (state, action) => {
         state.colourList = action.payload;
+        if(state.searchColourValue.trim() === "") state.colourListFilter = state.colourList
+        else state.colourListFilter = action.payload.filter((color) => color.name.toLowerCase().includes(state.searchColourValue.toLowerCase()) || color.Colors?.name.toLowerCase().includes(state.searchColourValue.toLowerCase()))
         state.isLoading = false;
       })
       .addCase(groupColourListAsync.rejected, (state, action) => {
@@ -292,6 +315,10 @@ export const {
   addColor,
   editColor,
   searchColor,
+  removeColour,
+  addColour,
+  editColour,
+  searchColour,
   addModel,
   removeModel,
   editModel,
@@ -306,6 +333,17 @@ export function createColor(newColorObj) {
     try {
       const response = await adminService.createColor(newColorObj);
       dispatch(addColor(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function createColour(newColorObj) {
+  return async (dispatch) => {
+    try {
+      const response = await adminService.createColour(newColorObj);
+      dispatch(addColour(response.data));
     } catch (error) {
       console.log(error);
     }
@@ -350,6 +388,17 @@ export function updateColor(colorId, updateColorObj) {
   };
 }
 
+export function updateColour(colorId, updateColorObj) {
+  return async (dispatch) => {
+    try {
+      const response = await adminService.updateColour(colorId, updateColorObj);
+      dispatch(editColour({ colorId, updateColorObj }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function deleteBagtype(bagTypeId) {
   return async (dispatch) => {
     try {
@@ -366,6 +415,18 @@ export function deleteColor(colorId) {
     try {
       await adminService.deleteColor(colorId);
       dispatch(removeColor(colorId));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function deleteColour(colorId, groupColorId) {
+  return async (dispatch) => {
+    try {
+      console.log("colourId", colorId)
+      await adminService.deleteColour(colorId);
+      dispatch(removeColour({colorId, groupColorId}));
     } catch (error) {
       console.log(error);
     }

@@ -1,22 +1,19 @@
 import { CloseIcon, SearchIcon } from "../../../icons";
 import { useDispatch, useSelector } from "react-redux";
-import { searchColor } from "../../auth/slice/admin-slice";
+import { searchColour } from "../../auth/slice/admin-slice";
 export default function SearchValue({
-  value,
-  onChange,
   name,
 }) {
-
     const className = "p-2 pl-[40px] rounded-md w-[250px] border-[0.5px]"
     const dispatch = useDispatch()
-    const searchValue = useSelector((state) => state?.admin?.searchColorValue);
+    const searchValue = useSelector((state) => state?.admin?.searchColourValue);
 
     const handleChangeSearchValue = (e) => {
-      dispatch(searchColor(e.target.value))
+      dispatch(searchColour(e.target.value))
     }
 
     const clearSearch = () => {
-      dispatch(searchColor(""))
+      dispatch(searchColour(""))
     }
   return (
     <div className='w-full flex justify-end relative'>

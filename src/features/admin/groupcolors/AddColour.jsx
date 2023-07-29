@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import ColorForm from './ColorForm'
+import ColourForm from './ColourForm'
 
 export default function AddColour({category = "", nameType = ""}) {
     const [isAddMode, setIsAddMode] = useState(false)
@@ -7,8 +7,8 @@ export default function AddColour({category = "", nameType = ""}) {
   return (
     <div className='bg-white'>
         {(isAddMode)? (
-        <div>
-            <ColorForm textConFirm={`Add`} onIsAddMode={setIsAddMode} nameType={nameType}/>
+        <div className='pl-8'>
+            <ColourForm textConFirm={`Add`} onIsAddMode={setIsAddMode} nameType={nameType}/>
         </div>
         ) : (
         <div className='flex gap-2 items-center cursor-pointer group hover:border-black text-xl px-1 py-2 min-h-[70px] rounded-lg' onClick={() => setIsAddMode(true)}>
