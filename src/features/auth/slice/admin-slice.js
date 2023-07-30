@@ -143,12 +143,24 @@ const adminSlice = createSlice({
     },
     addColour: (state, action) => {
       const newColor = action.payload;
-      console.log(newColor)
-      // const groupColor = JSON.parse(JSON.stringify(state.groupColorList))
-      // const indexGroupColor = groupColor.findIndex((el) => el.id == newColor.groupColorId);
-      // const groupColorNow = groupColor[indexGroupColor]
-      // state.colorList.unshift({...newColor, GroupColor: groupColorNow});
-      // state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
+      const indexGroupColor = state.colourList.findIndex((el) => el.id == newColor.groupColorId);
+      state.colourList[indexGroupColor].Colors.unshift(newColor)
+      state.colourListFilter = state.colourList.filter((color) => color.name.toLowerCase().includes(state.searchColourValue.toLowerCase()))
+    },
+    editColour: (state, action) => {
+      const { colorId, updateColorObj } = action.payload;
+      console.log("updateColorObj in slice", updateColorObj)
+      const indexGroupColor = state.colourList.findIndex((el) => el.id == updateColorObj.groupColorId);
+      const groupColor = JSON.parse(JSON.stringify(state.colourList[indexGroupColor]))
+      console.log(indexGroupColor, groupColor)
+      const indexColor = groupColor.Colors.findIndex(el => el.id == colorId)
+      console.log(indexGroupColor, "dddd", indexColor)
+      console.log("rrrrrrrrrrr", groupColor.Colors[indexColor])
+      groupColor.Colors[indexColor] = updateColorObj
+      console.log("ddddddddddd", groupColor.Colors[indexColor])
+      console.log("eeeeeeeeeee", groupColor)
+      state.colourList[indexGroupColor] = groupColor
+      state.colourListFilter = state.colourList.filter((color) => color.name.toLowerCase().includes(state.searchColourValue.toLowerCase()))
     },
     addColor: (state, action) => {
       const newColor = action.payload;
@@ -169,6 +181,7 @@ const adminSlice = createSlice({
       state.colorList[index] = {...updateColorObj, GroupColor: now}
       state.colorListFilter = state.colorList.filter((color) => color.name.toLowerCase().includes(state.searchColorValue.toLowerCase()) || color.GroupColor?.name.toLowerCase().includes(state.searchColorValue.toLowerCase()))
     },
+
     searchColor: (state, action) => {
       const searchValue = action.payload
       state.searchColorValue = action.payload;
@@ -391,6 +404,7 @@ export function updateColor(colorId, updateColorObj) {
 export function updateColour(colorId, updateColorObj) {
   return async (dispatch) => {
     try {
+      console.log("upColor", updateColorObj)
       const response = await adminService.updateColour(colorId, updateColorObj);
       dispatch(editColour({ colorId, updateColorObj }));
     } catch (error) {

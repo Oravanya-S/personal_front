@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import ColourForm from './ColourForm'
 
-export default function AddColour({category = "", nameType = ""}) {
+export default function AddColour({category = "", nameType = "", idGroupColour}) {
     const [isAddMode, setIsAddMode] = useState(false)
 
   return (
     <div className='bg-white'>
         {(isAddMode)? (
         <div className='pl-8'>
-            <ColourForm textConFirm={`Add`} onIsAddMode={setIsAddMode} nameType={nameType}/>
+            <ColourForm textConFirm={`Add`} onIsAddMode={setIsAddMode} groupColorId={idGroupColour} nameType={nameType}/>
         </div>
         ) : (
         <div className='flex gap-2 items-center cursor-pointer group hover:border-black text-xl px-1 py-2 min-h-[70px] rounded-lg' onClick={() => setIsAddMode(true)}>

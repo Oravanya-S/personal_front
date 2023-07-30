@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import validateColor from '../../auth/validators/validate-color';
 import InputErrorMessage from '../../auth/components/inputErrorMessage';
-import { createColour } from '../../auth/slice/admin-slice';
+import { createColour, updateColour } from '../../auth/slice/admin-slice';
 
 
 export default function ColourForm({textConFirm, onIsAddMode, oldColor, groupColorId, nameType}) {
@@ -33,7 +33,7 @@ export default function ColourForm({textConFirm, onIsAddMode, oldColor, groupCol
       await dispatch(createColour(input))
       onIsAddMode(false);
     } else if (oldColor) {
-      await dispatch(updateColor(oldColor.id, {...oldColor, ...input}))
+      await dispatch(updateColour(oldColor.id, {...oldColor, ...input}))
       onIsAddMode(false);
     }
   };
