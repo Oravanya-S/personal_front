@@ -23,8 +23,6 @@ export default function ChangePasswordForm({open, onClose}) {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
 
-    console.log(input, error)
-
     const handleSubmitForm = async e => {
         try {
           e.preventDefault();

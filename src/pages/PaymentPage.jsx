@@ -18,8 +18,7 @@ export default function PaymentPage() {
     let totolAmount, sumPrice;
     
     const preorder = useSelector(state=> state.cart.cartList)
-    console.log(preorder)
-
+    
     if (preorder.length > 0) {
         totolAmount = preorder.reduce((acc,el)=>{
         acc+=el?.quantity

@@ -149,16 +149,10 @@ const adminSlice = createSlice({
     },
     editColour: (state, action) => {
       const { colorId, updateColorObj } = action.payload;
-      console.log("updateColorObj in slice", updateColorObj)
       const indexGroupColor = state.colourList.findIndex((el) => el.id == updateColorObj.groupColorId);
       const groupColor = JSON.parse(JSON.stringify(state.colourList[indexGroupColor]))
-      console.log(indexGroupColor, groupColor)
       const indexColor = groupColor.Colors.findIndex(el => el.id == colorId)
-      console.log(indexGroupColor, "dddd", indexColor)
-      console.log("rrrrrrrrrrr", groupColor.Colors[indexColor])
       groupColor.Colors[indexColor] = updateColorObj
-      console.log("ddddddddddd", groupColor.Colors[indexColor])
-      console.log("eeeeeeeeeee", groupColor)
       state.colourList[indexGroupColor] = groupColor
       state.colourListFilter = state.colourList.filter((color) => color.name.toLowerCase().includes(state.searchColourValue.toLowerCase()))
     },
@@ -404,7 +398,6 @@ export function updateColor(colorId, updateColorObj) {
 export function updateColour(colorId, updateColorObj) {
   return async (dispatch) => {
     try {
-      console.log("upColor", updateColorObj)
       const response = await adminService.updateColour(colorId, updateColorObj);
       dispatch(editColour({ colorId, updateColorObj }));
     } catch (error) {
@@ -438,7 +431,6 @@ export function deleteColor(colorId) {
 export function deleteColour(colorId, groupColorId) {
   return async (dispatch) => {
     try {
-      console.log("colourId", colorId)
       await adminService.deleteColour(colorId);
       dispatch(removeColour({colorId, groupColorId}));
     } catch (error) {
@@ -473,7 +465,6 @@ export function updateModel(modelId, updateModelObj) {
   return async (dispatch) => {
     try {
       const response = await adminService.updateModel(modelId, updateModelObj);
-      console.log("up", updateModelObj)
       dispatch(editModel({ modelId, updateModelObj }));
     } catch (error) {
       console.log(error);
@@ -496,7 +487,6 @@ export function deleteProduct(productId, updateProductObj) {
   return async (dispatch) => {
     try {
       const response = await adminService.deleteProduct(productId, updateProductObj);
-      console.log(response.data)
       dispatch(removeProduct({productId, updateProductObj}));
     } catch (error) {
       console.log(error);

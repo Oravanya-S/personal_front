@@ -40,7 +40,6 @@ const wishlistSlice = createSlice({
     reducers: {
       addToWishlist: (state, action) => {
         const wishlist = action.payload;
-        console.log(wishlist)
         const index = state.wishlist.findIndex((el) => el.productId == wishlist.productId && el.userId == wishlist.userId);
         if(index==-1){
           state.wishlist.unshift({...wishlist});
@@ -52,7 +51,6 @@ const wishlistSlice = createSlice({
           state.wishlistFilter.splice(indexWishlistFilter, 1)
           state.productIdWishlist.splice(indexWishlist, 1)
         }
-        console.log(wishlist)
       },
 
       searchProductWishlist: (state, action) => {

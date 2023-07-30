@@ -12,7 +12,6 @@ export default function GroupColourList() {
   useEffect(() => {
     dispatch(groupColourListAsync());
   }, []);
-  console.log(groupColor)
 
   if (isLoading) {
     return (

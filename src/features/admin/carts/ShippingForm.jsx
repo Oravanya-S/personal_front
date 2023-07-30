@@ -67,8 +67,6 @@ export default function ShippingForm({ item, user, totalPrice }) {
     }
   };
 
-  console.log(input);
-
   const array = useSelector(state => state.cart.cartList)
 
   const handleSubmitForm = async (e) => {

@@ -28,7 +28,6 @@ export default function ProfileForm({open, onClose}) {
     const [error, setError] = useState({});
     const dispatch = useDispatch();
 
-    console.log(input)
     const handleChangeInput = e => {
         if(e.target.name === 'province') {
             setInput({ ...input, [e.target.name]: e.target.value, amphoe: '', tambon: '', zipcode: '' });

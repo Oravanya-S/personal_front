@@ -96,8 +96,6 @@ export default function OneProductPage() {
     }
   };
 
-  console.log(item);
-
   if (isLoading) {
     return <Loading />;
   }

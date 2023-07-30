@@ -15,7 +15,6 @@ export default function PaymentSuccess() {
     useEffect(()=>{
 const check = async() => {
     const session_id = searchParams.get("session_id")
-    console.log(session_id)
     const response = await orderService.checkPayment(session_id);
 if (response.data.payment_status === "paid") {
     await dispatch(

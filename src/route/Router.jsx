@@ -39,13 +39,13 @@ const router = createBrowserRouter([
           {
             path: '/admin/color',
             element: (<ProtectedRoute>
-                      <AddColorPage /> 
+                      <AddColourPage /> 
                     </ProtectedRoute>)
           },
           {
             path: '/admin/colour',
             element: (<ProtectedRoute>
-                      <AddColourPage /> 
+                      <AddColorPage /> 
                     </ProtectedRoute>)
           },
           {
