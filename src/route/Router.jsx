@@ -79,7 +79,7 @@ const router = createBrowserRouter([
               </RedirectedAdmin>)
           },
           {
-            path: '/product/:id',
+            path: '/product/:id/:modelId',
             element: <OneProductPage />
           },
           {

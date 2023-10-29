@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { BasketIcon, FailIcon, SuccessIcon } from "../../../icons";
-import ProductDetail from "./ProductDetail";
 import { useDispatch, useSelector } from "react-redux";
-import { toast, Zoom } from "react-toastify";
+import { toast } from "react-toastify";
 import { addCart } from "../../auth/slice/cart-slice";
 import { addFavorite } from "../../auth/slice/wishlist-slice";
 import { useNavigate } from "react-router-dom";
@@ -79,7 +78,7 @@ export default function ProductWithModel({ item, wish }) {
         className="object-cover h-full block"
         src={item?.image || "https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw70c09258/23E213BA001-3100-852_1_main.jpg?sw=475&sh=633&q=100"}
         alt="Bag"
-        onClick={() => navigate(`/product/${item.id}`)}
+        onClick={() => navigate(`/product/${item?.id}/${item?.modelId}`)}
       />
     </div>
   );

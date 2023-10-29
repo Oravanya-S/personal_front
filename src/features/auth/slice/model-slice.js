@@ -4,6 +4,7 @@ import * as modelService from '../../../api/model-api';
 const initialState = {
     modelListWithBagType: [],
     modelListWithBagTypeFilter: [],
+    productListWithModel: [],
     product: {},
     groupColorFilter: {},
     priceFilter: "",
@@ -20,6 +21,18 @@ export const modelListWithBagTypeAsync = createAsyncThunk(
         return thunkApi.rejectWithValue(err.response.data.message);
       }
     }
+);
+
+export const productListWithModelAsync = createAsyncThunk(
+  "model/productListWithModelAsync",
+  async (modelId, thunkApi) => {
+    try {
+      const res = await modelService.getProductByModel(modelId);
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.response.data.message);
+    }
+  }
 );
 
 export const productAsync = createAsyncThunk(
@@ -77,6 +90,17 @@ export const productAsync = createAsyncThunk(
           state.isLoading = false;
         })
         .addCase(modelListWithBagTypeAsync.rejected, (state, action) => {
+          state.error = action.payload;
+          state.isLoading = false;
+        })
+        .addCase(productListWithModelAsync.pending, (state) => {
+          state.isLoading = true;
+        })
+        .addCase(productListWithModelAsync.fulfilled, (state, action) => {
+          state.productListWithModel = action.payload;
+          state.isLoading = false;
+        })
+        .addCase(productListWithModelAsync.rejected, (state, action) => {
           state.error = action.payload;
           state.isLoading = false;
         })

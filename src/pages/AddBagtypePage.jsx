@@ -17,7 +17,7 @@ export default function AddBagtypePage() {
             <div>
               <SearchBagTypeValue />
             </div>
-            <div className='border rounded-lg flex flex-col max-h-[740px] w-full overflow-hidden p-6 bg-white'>
+            <div className='border rounded-lg flex flex-col max-h-[660px] w-full overflow-hidden p-6 bg-white'>
                 <AddBagType title="Bag Type" category="Type" nameType="Type" list=""/>
                 <div className='overflow-auto mt-2'>
                     <BagList /> 
