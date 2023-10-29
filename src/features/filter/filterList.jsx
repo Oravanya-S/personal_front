@@ -5,7 +5,7 @@ import FilterItem from './filterItem'
 import { searchProduct, sortPrice } from '../auth/slice/model-slice'
 import { groupColorListAsync } from '../auth/slice/admin-slice'
 
-export default function FilterList({numProduct}) {
+export default function FilterList({numProduct, colorsAvailable}) {
 
     const groupColor = useSelector(state=> state.admin.groupColorList)
     const dispatch = useDispatch()
@@ -62,7 +62,7 @@ export default function FilterList({numProduct}) {
             <div className='border-r border-black px-10 py-6'>
               <p className='pb-2 text-sm'>COLOR</p>
               <div className="grid grid-cols-4 gap-[6px] gap-x-8">
-                {groupColor.map( item => <FilterItem key={item.id} item={item} status={groupColorFilterId.includes(String(item.id))} onClick={handleChangeChooseColor}/>)}
+                {groupColor.map( item => <FilterItem key={item.id} item={item} status={groupColorFilterId.includes(String(item.id))} isDisabled={!(colorsAvailable[item.id])} onClick={handleChangeChooseColor}/>)}
               </div>
             </div>
             <div className='pt-6 text-sm flex flex-col justify-between'>

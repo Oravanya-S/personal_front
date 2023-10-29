@@ -6,22 +6,33 @@ import ProductWithModel from "../features/admin/products/ProductWithModel";
 import FilterList from "../features/filter/filterList";
 import Loading from "../components/Loading";
 import { wishlistAllProductIdAsync } from "../features/auth/slice/wishlist-slice";
+import { useMemo } from "react";
 
 export default function Models() {
   const { modelId } = useParams();
   const dispatch = useDispatch();
   
+  const productAllWithModel = useSelector((state) => state.model.modelListWithBagType);
   const product = useSelector((state) => state.model.modelListWithBagTypeFilter);
   const user = useSelector((state) => state.auth.user);
   const wishProductId = useSelector((state) => state.wishlist.productIdWishlist);
   
+  const colorsAvailable = useMemo(() => {
+    const groupColorIdAvailable = {}
+    for(let product of productAllWithModel) {
+      if(groupColorIdAvailable.length === 11) break;
+      const groupColorId = product.Color?.groupColorId
+      if(!groupColorIdAvailable[groupColorId]) groupColorIdAvailable[groupColorId] = true
+    }
+    return groupColorIdAvailable
+  }, [productAllWithModel])
+
   useEffect(() => {
       dispatch(modelListWithBagTypeAsync(modelId));
       dispatch(searchProduct({}))
       dispatch(sortPrice(""))
       if(user) dispatch(wishlistAllProductIdAsync(user.id))
   }, [modelId]);
-  
 
   const isLoading = useSelector((state) => state?.model?.isLoading);
   const numProduct = product.length;
@@ -31,7 +42,7 @@ export default function Models() {
   return (
     <div className="flex justify-center fade-in max-w-[1440px] min-h-[calc(100vh-96px)] mx-auto">
       <div className="flex justify-center overflow-hidden border-y-0 border flex-wrap w-full">
-            <FilterList numProduct={numProduct}/>
+            <FilterList numProduct={numProduct} colorsAvailable={colorsAvailable} />
         {product.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-16 border border-black overflow-auto">
             {product.map((el) => (

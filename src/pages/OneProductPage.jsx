@@ -126,7 +126,7 @@ export default function OneProductPage() {
                   <div className="flex gap-4 items-center">
                   {itemsWithModel.map((item) =>
                   <>
-                    <div className={`${currentProduct?.id===item?.id? "pt-[1px] border-b-[1px] border-b-black" : ""}`}>
+                    <div key={item.id} className={`${currentProduct?.id===item?.id? "pt-[1px] border-b-[1px] border-b-black" : ""}`}>
                       <div
                         key={item.id}
                         className={`w-6 h-6 rounded-full mb-1 cursor-pointer ${item?.Color?.groupColorId===10? "border-[1px] border-gray-300": "border-0"}`}
